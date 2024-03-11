@@ -1,10 +1,14 @@
 let seconds = 0, angleSec  = 0;
 let minutes = 0, angleMin  = 0;
 let hours   = 0, angleHour = 0;
-let colorVar = 0;
 
-let outCircDiameter = 600;
-let secPointerMult  = outCircDiameter / 2;
+let outCircDiameter = 700;
+let hourIconDiameter = 25;
+let smallIconsDiameter = 8;
+let iconDistance = outCircDiameter / 2 - hourIconDiameter;
+let offsetBigIcons = 360 / 12;
+let offsetSmallIcons = 360 / 60;
+let secPointerMult  = outCircDiameter / 2.5;
 let minPointerMult  = outCircDiameter / 3;
 let hourPointerMult = outCircDiameter / 5;
 
@@ -13,47 +17,58 @@ function setup() {
   colorMode(HSL);
   background(0, 0, 0, 1);
   angleMode(DEGREES);
-  fill(0);
-  strokeWeight(10);
+  fill(255);
 }
 
 function draw() {
-  background(0, 0, 0, 0.3);
+  background(0);
   translate(width/2, height/2);
   frameRate(1);
-  drawOutCircle();
+  drawHoursIcons();
+  drawHoursSmallIcons();
   increment();
   setAngles();
   drawPointers();
-}
-
-function drawOutCircle(){
-  stroke(255)
-  fill(0, 0, 0 , 0);
-  circle(0, 0, outCircDiameter);
+  drawMiddleScrew();
 }
 
 function increment(){
   seconds = (seconds + 1) % 60;
+  hours = (hours + 1) % 43200;
 
   if(seconds == 0){
     minutes = (minutes + 1) % 60;
-    if(minutes == 0){
-      hours++;
-    }
   }
-  console.log(seconds);
 }
 
 function setAngles(){
   angleSec  = map(seconds, 0, 60, 0, 360) - 90;
   angleMin  = map(minutes, 0, 60, 0, 360) - 90;
-  angleHour = map(hours, 0, 12, 0, 360) - 90;
+  angleHour = map(hours, 0, 43200, 0, 360) - 90;
+}
+
+function drawHoursIcons(){
+  strokeWeight();
+  for (let i = 0; i < 12; i++) {
+    stroke(255);
+    circle(cos(i * offsetBigIcons) * iconDistance, 
+           sin(i * offsetBigIcons) * iconDistance, hourIconDiameter);
+  }
+}
+
+function drawHoursSmallIcons(){
+  strokeWeight();
+  for (let i = 0; i < 60; i++) {
+    stroke(255);
+    circle(cos(i * offsetSmallIcons) * iconDistance, 
+           sin(i * offsetSmallIcons) * iconDistance, smallIconsDiameter);
+  }
 }
 
 function drawPointers(){
-  colorVar = angleSec + 90;
-  stroke(colorVar, 100, 50, 1);
+  strokeWeight(20);
+
+  stroke(0, 100, 50, 1);
   line(0, 0, cos(angleSec) * secPointerMult, 
              sin(angleSec) * secPointerMult);
 
@@ -64,4 +79,10 @@ function drawPointers(){
   stroke(240, 100, 50, 1);
   line(0, 0, cos(angleHour) * hourPointerMult, 
              sin(angleHour) * hourPointerMult);             
+}
+
+function drawMiddleScrew(){
+  strokeWeight();
+  fill(255);
+  circle(0, 0, 10);
 }
