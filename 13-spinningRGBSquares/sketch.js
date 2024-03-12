@@ -4,7 +4,7 @@ let colorVar = 0;
 
 function setup() {
   createCanvas(800, 800);
-  background(255,02,255);
+  background(255,0,255);
   colorMode(HSL);
   angleMode(DEGREES);
   rectMode(CENTER);
@@ -39,5 +39,5 @@ function drawCircles(){
 }
 
 function mousePressed(){
-  background(255,02,255);
+  background(255, 0, 255);
 }
