@@ -4,13 +4,14 @@ let rightBound;
 let leftBound;
 let ySpeed;
 let colorVar;
+let gameOver = false;
 
 class Ball{
-    constructor(x, y, diameter, moveSpeed, racket1, racket2){
+    constructor(x, y, diameter, xSpeed, racket1, racket2){
         this.x = x;
         this.y = y;
         this.diameter = diameter;
-        this.moveSpeed = moveSpeed;
+        this.xSpeed = xSpeed;
         this.racket1 = racket1;
         this.racket2 = racket2;
         ySpeed = 0;
@@ -21,21 +22,23 @@ class Ball{
     }
 
     update(){
-        this.x += this.moveSpeed;
+        this.x += this.xSpeed;
         this.y += ySpeed;
 
         if(this.reachedTopOrBottomBound())
             ySpeed *= -1;
 
-        if(this.moveSpeed < 0){
-            if(this.reachedLeftBound() && this.hitsRacket1()){
-                this.moveSpeed *= -1;
-                ySpeed = random(-5,5);
+        if(this.reachedLeftBound()){
+            if(this.hitsRacket1()){
+                this.updateSpeeds();
+            } else {
+                gameOver = true;
             }
-        } else {
-            if(this.reachedRightBound() && this.hitsRacket2()){
-                this.moveSpeed *= -1;
-                ySpeed = random(-5,5);
+        } else if (this.reachedRightBound()){
+            if(this.hitsRacket2()){
+                this.updateSpeeds();
+            } else {
+                gameOver = true;
             }
         }
     }
@@ -44,6 +47,15 @@ class Ball{
         colorVar = map(this.y, 0, height, 0, 360)
         fill(colorVar, 100, 50, 1)
         circle(this.x, this.y, this.diameter);
+    }
+
+    gameIsOver(){
+        return gameOver;
+    }
+
+    updateSpeeds(){
+        this.xSpeed *= -1;
+        ySpeed = random(-5,5);
     }
 
     reachedTopOrBottomBound(){
