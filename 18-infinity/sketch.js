@@ -2,6 +2,7 @@ let angle = -90;
 let multiplierX = 300;
 let multiplierY = 100;
 let diameter = 50;
+let colorVar = 0;
 let speed = 5;
 
 function setup(){
@@ -22,6 +23,9 @@ function draw(){
 
 function drawInfinite(){
     let x = cos(angle) * multiplierX;
-    let y = sin(map(angle, 0, 360, 0, 720)) * multiplierY;
+    let y = sin(map(angle, 0, 360, 0, 360 * 2)) * multiplierY;
+    
+    colorVar = (colorVar + 6) % 360;
+    fill(colorVar, 100, 50, 1);
     circle(x, y, diameter);
 }
