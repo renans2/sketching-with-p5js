@@ -1,7 +1,6 @@
 let amount;
 let minAmount = 3;
 let maxAmount = 10;
-let coordinates = [];
 let offset = 0;
 let multiplier = 300;
 
@@ -12,6 +11,7 @@ function setup(){
     strokeWeight(5);
     angleMode(DEGREES);
     background(0);
+    noFill();
 }
 
 function draw(){
@@ -22,25 +22,15 @@ function draw(){
     offset = 360 / amount;
     multiplier = map(mouseY, height, 0, 0, width/2);
     
-    updateCoordinates();
-    drawLines();
+    drawPolygon();
 }
 
-function updateCoordinates(){
-    coordinates = [];
+function drawPolygon(){
+    beginShape();
     for (let i = 0; i < amount; i++) {
         let x = cos(i * offset - 90) * multiplier;
         let y = sin(i * offset - 90) * multiplier;
-        coordinates.push(createVector(x, y));
+        vertex(x, y);
     }
-}
-
-function drawLines(){
-    for (let i = 0; i < coordinates.length; i++) {
-        let xFrom = coordinates[i].x;
-        let yFrom = coordinates[i].y;
-        let xTo   = coordinates[(i + 1) % coordinates.length].x;
-        let yTo   = coordinates[(i + 1) % coordinates.length].y;
-        line(xFrom, yFrom, xTo, yTo);
-    }
+    endShape(CLOSE);
 }
