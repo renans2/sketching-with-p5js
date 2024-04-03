@@ -9,7 +9,8 @@ function setup() {
   angleMode(DEGREES);
   rectMode(CENTER);
   fill(0,0,255);
-  strokeWeight(5);
+  //strokeWeight(5);
+  noStroke();
 }
 
 function draw() {
@@ -27,7 +28,7 @@ function draw() {
 }
 
 function drawSquare(){
-  fill(colorVar, 100, 50, 1);
+  fill(colorVar, 100, 50, 0.05);
   colorVar = (colorVar + 4) % 360;
   rect(0,0, length, length);
 }
