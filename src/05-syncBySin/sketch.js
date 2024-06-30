@@ -1,37 +1,34 @@
-let amount = 40;
-let diameter = 40;
-let startingX = 0;
+const amount = 50;
+let diameter = 10;
 let offset;
 let angle = 0;
-let startingAngle = 270;
+const startingAngle = 270;
+const speed = 0.1;
 let multiplier;
-let speed = 0.4;
 
 function setup(){
-    createCanvas(900, 900);
+    noStroke();
+    createCanvas(250, 900);
     angleMode(DEGREES);
     colorMode(HSL);
     multiplier = width / 2;
+    offset = height / amount;
+    diameter = offset;
 }
 
 function draw(){
-    background(0);
-    calculateOffset();
+    background(0,0,0,0.1);
     generateCircles();
     angle = (angle + speed) % 360;
 }
 
-function calculateOffset(){
-    offset = height / amount;
-}
-
 function generateCircles(){
     for (let i = 0; i < amount; i++) {
-        let currentAngle = startingAngle + angle * (i+1);
-        let x = (sin(currentAngle) + 1) * multiplier;
-        let y = offset * i + offset / 2;
-        let colorVar = map(x, 0, width, 0, 360);
-        fill(colorVar, 100, 50, 1);
+        const currentAngle = startingAngle + angle * (i+1);
+        const x = (sin(currentAngle) + 1) * multiplier;
+        const y = offset * i + offset / 2;
+        const color = map(x, 0, width, 100, 200);
+        fill(color, 100, 50, 1);
         circle(x, y, diameter);
     }
 }

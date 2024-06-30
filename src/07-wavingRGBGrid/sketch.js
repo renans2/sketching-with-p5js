@@ -1,14 +1,14 @@
-let dimension = 20;
-let widthHeight = 900
-let side = widthHeight / dimension;
+const dimension = 50;
+const widthHeight = 900
+const side = widthHeight / dimension;
 let cells = [];
 let isWaving = false;
-let waveTime = 625;
+const waveTime = 625;
 let timer = 0;
 
 function setup(){
     createCanvas(widthHeight, widthHeight);
-    background(100);
+    noStroke();
     colorMode(HSL);
     generateGrid();
 }

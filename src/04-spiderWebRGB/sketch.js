@@ -1,5 +1,6 @@
-let amount = 2;
-let colorVar = 0;
+let amount = 1;
+let color = 0;
+const colorIncrementer = 3;
 
 function setup(){
     createCanvas(700, 700);
@@ -9,18 +10,20 @@ function setup(){
 }
 
 function draw(){
-    if(keyIsPressed)
-        amount = 1
     if(!mouseIsPressed)
         background(0);
 
-    stroke(colorVar, 100, 50, 1);
-    colorVar = (colorVar + 3) % 360
+    stroke(color, 100, 50, 1);
+    color = (color + colorIncrementer) % 360
 
     drawTopLines();
     drawBottomLines();
     drawLeftLines();
     drawRightLines();
+}
+
+function keyPressed(){
+    amount = 1;
 }
 
 function mouseClicked(){
@@ -35,13 +38,13 @@ function drawTopLines(){
 
 function drawBottomLines(){
     let offset = width/amount;
-    for (let i = 0; i <= amount; i++)
+    for (let i = amount; i > 0; i--)
         line(i*offset, height, mouseX, mouseY);
 }
 
 function drawLeftLines(){
     let offset = height/amount;
-    for (let i = 0; i < amount; i++)
+    for (let i = amount; i > 0; i--)
         line(0, i*offset, mouseX, mouseY);
 }
 

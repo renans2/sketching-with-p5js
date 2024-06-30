@@ -1,45 +1,36 @@
-let x, y, angle = 1;
-let diameter = 50;
-let colorVar = 0;
-let amount = 10;
-let speed = 0.5;
+let angle = 0;
+let diameter;
+const amount = 15;
+const speed = 0.25;
 let offset;
+let color = 0;
+const colorIncrementer = 5;
 
 function setup(){
     createCanvas(900, 900);
     colorMode(HSL);
     angleMode(DEGREES);
-    noStroke();
+    //noStroke();
     background(0);
+    offset = (width/2) / amount;
+    diameter = offset;
 }
 
 function draw(){
-    if(mouseIsPressed){
-        updateColor(0.2)
-    } else {
-        background(0);
-        updateColor(1);
-    }
+    background(0,0,0,0.1)
 
     translate(width/2, height/2);
-    offset = (width/2) / amount;
+
+    color = (color + colorIncrementer) % 360;
+    fill(color, 100, 50, 1);
     drawCircles();
     angle = (angle + speed) % 360;
 }
 
-function mouseReleased(){
-    amount++;
-}
-
-function updateColor(alpha){
-    fill(colorVar, 100, 50, alpha);
-    colorVar = (colorVar + 1) % 360
-}
-
 function drawCircles(){
     for (let i = 1; i <= amount; i++) {
-        x = cos(angle*i);
-        y = sin(angle*i);
-        circle(x*i*offset, -y*i*offset, diameter);
+        const x = cos(i * angle) * (i * offset);
+        const y = sin(i * angle) * (i * offset);
+        circle(x, -y, diameter);
     }
 }
