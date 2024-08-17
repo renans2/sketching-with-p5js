@@ -1,7 +1,7 @@
-let distance = 1;
+const diameter = 50;
+let distance = 0;
 let angle = 0;
 let amount = 5;
-let diameter = 50;
 let angleOffset;
 let x, y;
 let colorOffset = 0;
@@ -35,7 +35,7 @@ function drawCircles(){
         fill(color, 100, 50, 1);
         circle(x * distance, y * distance, diameter);
     }
-    //colorVar = (colorVar + 5) % 360; 
+    //colorVar = (colorVar + 5) % 360;
 }
 
 function calcOffsets(){
