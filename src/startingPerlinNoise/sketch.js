@@ -1,7 +1,7 @@
 let branches = 50;
 let offset;
-let xoff = 200;
-let ySpeed = 10;
+let xoff = 125;
+let ySpeed = 5;
 let xVariation = 50;
 let colorVar = 0;
 
@@ -32,7 +32,7 @@ function draw(){
 function drawBlade(){
     x = map(noise(xoff), 0, 1, -xVariation, xVariation);
     xVariation *= 1.01;
-    xoff += 0.07;
+    xoff += 0.045;
     y += ySpeed;
 
     oldVector     = createVector(currentVector.x, currentVector.y);
