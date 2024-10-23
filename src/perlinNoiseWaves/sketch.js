@@ -19,7 +19,7 @@ function draw() {
 
 function updateVariables(){
   m1 = map(mouseX, 0, width, 0, 0.0025);
-  offset = map(mouseY, height, 0, 150, 15);
+  offset = map(mouseY, height, 0, 20, 125);
   amountX = width / offset;
   amountY = height / offset;
   rectHeight = offset/4;
