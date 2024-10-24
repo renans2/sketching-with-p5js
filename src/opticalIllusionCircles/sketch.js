@@ -3,17 +3,22 @@ let maxDiameter = 50
 let diameter;
 let strkWeightOuterCicle = 5;
 let strkWeightlines = 2;
-let multiplier = 300;
+let multiplier;
 let offset;
 let angleIncrementer = 0;
 let speed = 2;
 
 function setup(){
-    createCanvas(900, 900);
+    createCanvas(windowWidth, windowHeight);
     noStroke();
     fill(255);
     angleMode(DEGREES);
     background(0);
+    multiplier = 0.9 * windowHeight/2;
+}
+
+function windowResized(){
+    resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw(){
