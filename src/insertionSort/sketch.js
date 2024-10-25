@@ -1,7 +1,7 @@
 let amount = 50;
 let hs = [];
 
-let doSort = false;
+let doSort = true;
 let isShuffled = false;
 let barrier = 1;
 let index = barrier;
@@ -9,7 +9,7 @@ let index = barrier;
 let offset;
 
 function setup(){
-    createCanvas(900, 900);
+    createCanvas(windowWidth, windowHeight);
     rectMode(CENTER);
     strokeWeight(2);
     background(0);
@@ -17,8 +17,12 @@ function setup(){
     offset = width / amount;
 }
 
+function windowResized(){
+    resizeCanvas(windowWidth, windowHeight);
+}
+
 function draw(){
-    //frameRate(10);
+    // frameRate(map(mouseX, 0, width, 1, 60));
     translate(0, height);
     background(0);
     

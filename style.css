@@ -44,15 +44,15 @@ p{
 ul li{
     list-style: none;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-bottom: 15px;
 }
 
-ul li::before{
-    content: "=>";
-    color: white;
-    margin-right: 20px;
-}
+/*ul li::before{*/
+/*    content: "=>";*/
+/*    color: white;*/
+/*    margin-right: 20px;*/
+/*}*/
 
 ul li a{
     color: #95fff7;

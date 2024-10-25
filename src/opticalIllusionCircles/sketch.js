@@ -22,7 +22,7 @@ function windowResized(){
 }
 
 function draw(){
-    background(0);
+    background(24, 1, 97);
     translate(width / 2, height / 2);
     
     calcNewAmountAndDiameter();

@@ -1,20 +1,25 @@
 let minMultiplier = 50;
-let maxMultiplier = 425;
+let maxMultiplier;
 let minAmount = 3;
 let maxAmount = 150;
 let maxDiameter = 20;
 let minDiameter = 1;
 let amount = 15;
 let globalAngle = 0;
-let globalSpeed = 0.35;
+let globalSpeed;
 
 function setup(){
-    createCanvas(900, 900);
+    createCanvas(windowWidth, windowHeight);
+    maxMultiplier = height/2;
     colorMode(HSL);
     angleMode(DEGREES);
     stroke(255);
     strokeWeight(3);
     background(0);
+}
+
+function windowResized(){
+    resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw(){
@@ -23,7 +28,7 @@ function draw(){
 
     amount = floor(map(mouseX, 0, width, minAmount, maxAmount));
     diameter = map(amount, minAmount, maxAmount, maxDiameter, minDiameter);
-    globalSpeed = map(mouseY, height, 0, 0, 0.5);
+    globalSpeed = map(mouseY, height, 0, 0, 0.3);
     globalAngle = (globalAngle - globalSpeed) % 360;
     drawCirclesAndLines();
 }
