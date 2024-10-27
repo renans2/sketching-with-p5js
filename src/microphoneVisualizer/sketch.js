@@ -52,6 +52,8 @@ function startAudio() {
 }
 
 function mousePressed(){
-    if(!started)
+    if(!started){
+        document.getElementById("click").remove();
         startAudio();
+    }
 }
