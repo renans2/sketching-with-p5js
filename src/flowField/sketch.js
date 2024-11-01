@@ -11,7 +11,7 @@ function setup() {
     colorMode(HSL);
     amountX = width/offset;
     amountY = height/offset;
-    strokeWeight(2);
+    strokeWeight(1);
 
     noLoop();
     drawAll();
