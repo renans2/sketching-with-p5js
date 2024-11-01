@@ -1,7 +1,10 @@
 const DEPTH = 1000;
 const offset = 10;
 let amountX, amountY;
-let m1 = 0.0015;
+const minMultiplier = 0.00035;
+const maxMultiplier = 0.0025;
+let bottomColor, topColor;
+let m1;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -16,6 +19,10 @@ function setup() {
 
 function drawAll(){
     background(0);
+    noiseSeed(random(1000000));
+    m1 = random(minMultiplier, maxMultiplier);
+    bottomColor = random(50);
+    topColor = random(50, 360 - bottomColor) + bottomColor;
 
     fill(255, 100);
     for (let i = 0; i < amountY; i++) {
@@ -41,7 +48,7 @@ function drawLine(x, y, depth){
         if(depth < DEPTH)
             vertex(x, y);
         else
-            stroke(map(x, 0, width, 0, 360), 100, 50, 0.075);
+            stroke(map(x, 0, width, bottomColor, topColor), 100, 50, 0.075);
 
         const newVec = p5.Vector.fromAngle(angle, 10);
         drawLine(x + newVec.x, y + newVec.y, depth - 1);
@@ -52,9 +59,8 @@ function drawLine(x, y, depth){
 }
 
 function mousePressed(){
-    noiseSeed(random(1000000));
-    m1 = map(mouseX, 0, width, 0, 0.01);
-    drawAll();
+    if(mouseButton === LEFT)
+        drawAll();
 }
 
 function isInsideCanvas(x, y){
