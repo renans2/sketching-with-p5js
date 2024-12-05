@@ -1,18 +1,19 @@
-const DEPTH = 1000;
 const offset = 10;
 let amountX, amountY;
-const minMultiplier = 0.00035;
-const maxMultiplier = 0.0025;
+const minMultiplier = 0.00045;
+const maxMultiplier = 0.0020;
 let bottomColor, topColor;
+const colorGap = 100;
 let m1;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     colorMode(HSL);
+    cursor(HAND);
+    strokeWeight(1);
+    noFill();
     amountX = width/offset;
     amountY = height/offset;
-    strokeWeight(1);
-
     noLoop();
     drawAll();
 }
@@ -21,41 +22,29 @@ function drawAll(){
     background(0);
     noiseSeed(random(1000000));
     m1 = random(minMultiplier, maxMultiplier);
-    bottomColor = random(50);
-    topColor = random(50, 360 - bottomColor) + bottomColor;
+    bottomColor = random(360 - colorGap);
+    topColor = random(bottomColor + colorGap, 360);
 
-    fill(255, 100);
     for (let i = 0; i < amountY; i++) {
         for (let j = 0; j < amountX; j++) {
             const y = i * offset;
             const x = j * offset;
+            stroke(map(x, 0, width, bottomColor, topColor), 100, 50, 0.075);
             beginShape();
-            noFill();
-            drawLine(x, y, DEPTH);
+            drawLine(x, y);
         }
     }
 }
 
-// function windowResized(){
-//     resizeCanvas(windowWidth, windowHeight);
-// }
-
-function drawLine(x, y, depth){
-    if(isInsideCanvas(x, y) && depth > 0){
+function drawLine(x, y){
+    if(isInsideCanvas(x, y)){
+        vertex(x, y);
         const n = noise(x * m1, y * m1);
         const angle = map(n, 0, 1, 0, 2 * TWO_PI);
-
-        if(depth < DEPTH)
-            vertex(x, y);
-        else
-            stroke(map(x, 0, width, bottomColor, topColor), 100, 50, 0.075);
-
         const newVec = p5.Vector.fromAngle(angle, 10);
-        drawLine(x + newVec.x, y + newVec.y, depth - 1);
+        drawLine(x + newVec.x, y + newVec.y);
     }
-    else{
-        endShape();
-    }
+    else endShape();
 }
 
 function mousePressed(){
@@ -64,5 +53,5 @@ function mousePressed(){
 }
 
 function isInsideCanvas(x, y){
-    return x >= 0 && x <= width && y >= 0 && y <= height;
+    return 0 <= x && x <= width && 0 <= y && y <= height;
 }
