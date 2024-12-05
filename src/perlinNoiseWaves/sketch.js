@@ -12,7 +12,7 @@ function windowResized(){
 }
 
 function draw() {
-  background(0);
+  background(0, 0.05);
   updateVariables();
   drawRectangles();
 }
