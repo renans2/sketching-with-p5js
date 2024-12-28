@@ -1,50 +1,66 @@
-let seconds = 0, angleSec  = 0;
-let minutes = 0, angleMin  = 0;
-let hours   = 0, angleHour = 0;
+const now = new Date();
+let hours = now.getHours() % 12;
+let minutes = now.getMinutes();
+let seconds = now.getSeconds();
+console.log(hours);
 
-let outCircDiameter = 700;
+let angleHours;
+let angleMinutes;
+let angleSeconds;
+
+let outCircDiameter;
 let hourIconDiameter = 25;
 let smallIconsDiameter = 8;
-let iconDistance = outCircDiameter / 2 - hourIconDiameter;
+let iconDistance;
 let offsetBigIcons = 360 / 12;
 let offsetSmallIcons = 360 / 60;
-let secPointerMult  = outCircDiameter / 2.5;
-let minPointerMult  = outCircDiameter / 3;
-let hourPointerMult = outCircDiameter / 5;
+let secPointerMult;
+let minPointerMult;
+let hourPointerMult;
 
 function setup() {
-  createCanvas(700, 700);
+  createCanvas(windowWidth, windowHeight);
   colorMode(HSL);
   background(0, 0, 0, 1);
   angleMode(DEGREES);
   fill(255);
+
+  outCircDiameter = height;
+  iconDistance = outCircDiameter / 2 - hourIconDiameter;
+  secPointerMult  = outCircDiameter / 2.5;
+  minPointerMult  = outCircDiameter / 3;
+  hourPointerMult = outCircDiameter / 5;
+
+  angleHours   = map(hours,   0, 12, 0, 360);
+  angleMinutes = map(minutes, 0, 60, 0, 360);
+  angleSeconds = map(seconds, 0, 60, 0, 360);
 }
 
 function draw() {
   background(0);
   translate(width/2, height/2);
   frameRate(1);
+
   drawHoursIcons();
   drawHoursSmallIcons();
   increment();
-  setAngles();
   drawPointers();
   drawMiddleScrew();
 }
 
 function increment(){
   seconds = (seconds + 1) % 60;
-  hours = (hours + 1) % 43200;
 
-  if(seconds == 0){
+  if(seconds === 0){
     minutes = (minutes + 1) % 60;
+    if(minutes === 0){
+      hours = (hours + 1) % 12;
+    }
   }
-}
 
-function setAngles(){
-  angleSec  = map(seconds, 0, 60, 0, 360) - 90;
-  angleMin  = map(minutes, 0, 60, 0, 360) - 90;
-  angleHour = map(hours, 0, 43200, 0, 360) - 90;
+  angleSeconds = map(seconds, 0, 60, 0, 360) - 90;
+  angleMinutes = map(minutes, 0, 60, 0, 360) - 90;
+  angleHours   = map(hours, 0, 12, 0, 360) - 90;
 }
 
 function drawHoursIcons(){
@@ -69,16 +85,16 @@ function drawPointers(){
   strokeWeight(20);
 
   stroke(0, 100, 50, 1);
-  line(0, 0, cos(angleSec) * secPointerMult, 
-             sin(angleSec) * secPointerMult);
+  line(0, 0, cos(angleSeconds) * secPointerMult,
+             sin(angleSeconds) * secPointerMult);
 
   stroke(120, 100, 50, 1);
-  line(0, 0, cos(angleMin) * minPointerMult, 
-             sin(angleMin) * minPointerMult);             
+  line(0, 0, cos(angleMinutes) * minPointerMult,
+             sin(angleMinutes) * minPointerMult);
 
   stroke(240, 100, 50, 1);
-  line(0, 0, cos(angleHour) * hourPointerMult, 
-             sin(angleHour) * hourPointerMult);             
+  line(0, 0, cos(angleHours) * hourPointerMult,
+             sin(angleHours) * hourPointerMult);
 }
 
 function drawMiddleScrew(){
