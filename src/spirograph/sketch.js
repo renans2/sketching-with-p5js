@@ -22,8 +22,8 @@ function draw(){
     translate(width/2, height/2);
 
     for (let i = 0; i < 15; i++) {
-        const leadX = cos(leadAngle) * r1;
-        const leadY = sin(leadAngle) * r1;
+        const leadX = cos(-leadAngle) * r1;
+        const leadY = sin(-leadAngle) * r1;
 
         const x = leadX + cos(angle) * r2;
         const y = leadY + sin(angle) * r2;
