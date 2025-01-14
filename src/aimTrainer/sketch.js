@@ -10,7 +10,7 @@ let over = false;
 let timeLimit = 10;
 
 function setup(){
-    createCanvas(900, 900);
+    createCanvas(windowWidth, windowHeight);
     colorMode(HSL);
     textAlign(CENTER);
     noStroke();
@@ -48,7 +48,7 @@ function mouseClicked(){
 }
 
 function keyPressed(){
-    if(keyCode == 82)
+    if(keyCode === 82)
         reset();
 }
 
