@@ -10,7 +10,7 @@ let amplitude = 0;
 let frequency = 0;
 
 function setup(){
-    createCanvas(1000,800);
+    createCanvas(windowWidth,windowHeight);
     colorMode(HSL);
     noStroke();
 
