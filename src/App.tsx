@@ -1,5 +1,6 @@
 import { NavLink, Route, Routes } from "react-router";
 import P5Canvas from "./components/P5Canvas";
+import PineTree from "./components/PineTree";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
       <Routes>
         <Route index element={<h1>Home</h1>} />
         <Route path="about" element={<h1>About</h1>} />
-        <Route path="sketches">
-          <Route path="one" element={<P5Canvas />} />
+        <Route path="sketch">
+          <Route path="test" element={<P5Canvas />} />
+          <Route path="pine-tree" element={<PineTree />} />
         </Route>
       </Routes>
     </div>
