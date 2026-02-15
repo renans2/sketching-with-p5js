@@ -1,48 +1,57 @@
-let offset, amountX, amountY, m1, rectHeight;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
+
+export const perlinNoiseWaves = (p: p5) => {
+  let offset, amountX, amountY, m1, p.rectHeight;
 const m2 = 0.005;
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSL);
-  noStroke();
-}
+p.setup = () => {
+  const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+  p.colorMode(p.HSL);
+  p.noStroke();
+};
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
 
-function draw() {
-  background(0, 0.05);
+p.draw = () => {
+  p.background(0, 0.05);
   updateVariables();
   drawRectangles();
-}
+};
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
 function updateVariables() {
-  m1 = map(mouseX, 0, width, 0, 0.0025);
-  offset = map(mouseY, height, 0, 20, 125);
-  amountX = width / offset;
-  amountY = height / offset;
-  rectHeight = offset / 4;
+  m1 = p.map(p.mouseX, 0, p.width, 0, 0.0025);
+  offset = p.map(p.mouseY, p.height, 0, 20, 125);
+  amountX = p.width / offset;
+  amountY = p.height / offset;
+  p.rectHeight = offset / 4;
 }
 
 function drawRectangles() {
   for (let i = 0; i < amountY; i++) {
     for (let j = 0; j < amountX; j++) {
       const x = j * offset;
-      const y = i * offset + rectHeight;
-      const angle = map(
-        noise(x * m1 + frameCount * m2, y * m1 + frameCount * m2),
+      const y = i * offset + p.rectHeight;
+      const angle = p.map(
+        p.noise(x * m1 + p.frameCount * m2, y * m1 + p.frameCount * m2),
         0,
         1,
         0,
-        2 * TWO_PI,
+        2 * p.TWO_PI,
       );
-      push();
-      translate(x, y);
-      rotate(angle);
-      fill(map(angle, 0, 1.5 * TWO_PI, 0, 360), 100, 50, 1);
-      rect(0, 0, offset, rectHeight);
-      pop();
+      p.push();
+      p.translate(x, y);
+      p.rotate(angle);
+      p.fill(p.map(angle, 0, 1.5 * p.TWO_PI, 0, 360), 100, 50, 1);
+      p.rect(0, 0, offset, p.rectHeight);
+      p.pop();
     }
   }
+}
+
 }

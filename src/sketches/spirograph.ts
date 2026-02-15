@@ -1,41 +1,52 @@
-let leadAngle = 0;
-let angle = 0;
-let leadAngleInc, angleInc, r1, r2, prevX, prevY, color;
-const colorInc = 0.05;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  strokeWeight(2);
-  colorMode(HSL);
-  background(0);
+export const spirograph = (p: p5) => {
+  let leadAngle = 0;
+  let angle = 0;
+  let leadAngleInc, angleInc, r1, r2, prevX, prevY, color;
+  const colorInc = 0.05;
 
-  leadAngleInc = random(0.001, 0.1);
-  angleInc = random(0.001, 0.1);
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.strokeWeight(2);
+    p.colorMode(p.HSL);
+    p.background(0);
 
-  color = random(360);
+    leadAngleInc = p.random(0.001, 0.1);
+    angleInc = p.random(0.001, 0.1);
 
-  r1 = random(height / 10, height / 4);
-  r2 = height / 2 - r1;
-}
+    color = p.random(360);
 
-function draw() {
-  translate(width / 2, height / 2);
+    r1 = p.random(p.height / 10, p.height / 4);
+    r2 = p.height / 2 - r1;
+  };
 
-  for (let i = 0; i < 15; i++) {
-    const leadX = cos(-leadAngle) * r1;
-    const leadY = sin(-leadAngle) * r1;
+  p.draw = () => {
+    p.translate(p.width / 2, p.height / 2);
 
-    const x = leadX + cos(angle) * r2;
-    const y = leadY + sin(angle) * r2;
+    for (let i = 0; i < 15; i++) {
+      const leadX = p.cos(-leadAngle) * r1;
+      const leadY = p.sin(-leadAngle) * r1;
 
-    stroke(color, 100, 50, 1);
-    line(prevX, prevY, x, y);
+      const x = leadX + p.cos(angle) * r2;
+      const y = leadY + p.sin(angle) * r2;
 
-    prevX = x;
-    prevY = y;
+      p.stroke(color, 100, 50, 1);
+      p.line(prevX, prevY, x, y);
 
-    leadAngle += leadAngleInc;
-    angle += angleInc;
-    color = (color + colorInc) % 360;
-  }
-}
+      prevX = x;
+      prevY = y;
+
+      leadAngle += leadAngleInc;
+      angle += angleInc;
+      color = (color + colorInc) % 360;
+    }
+  };
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+};

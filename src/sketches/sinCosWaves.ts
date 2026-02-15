@@ -1,51 +1,62 @@
-const diameter = 20;
-let amount = 100;
-let offset = 0;
-let startingY = 0;
-let angle = 0;
-let index = 0;
-let color = 0;
-let colorVar = 0;
-let amplitude = 0;
-let frequency = 0;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSL);
-  noStroke();
+export const sinCosWaves = (p: p5) => {
+  const diameter = 20;
+  let amount = 100;
+  let offset = 0;
+  let startingY = 0;
+  let angle = 0;
+  let index = 0;
+  let color = 0;
+  let colorVar = 0;
+  let amplitude = 0;
+  let frequency = 0;
 
-  angleMode(DEGREES);
-  startingY = height / 2;
-}
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.colorMode(p.HSL);
+    p.noStroke();
 
-function draw() {
-  background(0);
-  calculateOffset();
-  amplitude = map(mouseY, height, 0, 0, 500);
-  frequency = map(mouseX, 0, width, 100, 5000);
-  generateCircles(amplitude, frequency);
-}
+    p.angleMode(p.DEGREES);
+    startingY = p.height / 2;
+  };
 
-function mouseReleased() {
-  amount += 100;
-}
+  p.draw = () => {
+    p.background(0);
+    calculateOffset();
+    amplitude = p.map(p.mouseY, p.height, 0, 0, 500);
+    frequency = p.map(p.mouseX, 0, p.width, 100, 5000);
+    generateCircles(amplitude, frequency);
+  };
 
-function generateCircles(amplitude, frequency) {
-  index = (index + 3) % 360;
-  colorVar = (colorVar + 3) % 360;
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
-  for (let i = 0; i < amount; i++) {
-    color = (offset * i + colorVar) % 360;
-    angle = map(i, 0, amount, 0, frequency);
-    fill(color, 100, 50, 1);
-    circle(
-      offset * i + offset / 2,
-      startingY + sin(angle + index) * amplitude,
-      diameter,
-    );
+  function mouseReleased() {
+    amount += 100;
   }
-}
 
-function calculateOffset() {
-  offset = width / amount;
-}
+  function generateCircles(amplitude, frequency) {
+    index = (index + 3) % 360;
+    colorVar = (colorVar + 3) % 360;
+
+    for (let i = 0; i < amount; i++) {
+      color = (offset * i + colorVar) % 360;
+      angle = p.map(i, 0, amount, 0, frequency);
+      p.fill(color, 100, 50, 1);
+      p.circle(
+        offset * i + offset / 2,
+        startingY + p.sin(angle + index) * amplitude,
+        diameter,
+      );
+    }
+  }
+
+  function calculateOffset() {
+    offset = p.width / amount;
+  }
+};

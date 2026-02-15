@@ -1,36 +1,48 @@
-const rotations = 75;
-let angleOffset;
-const speed = 0.01;
-let x;
-let y;
-let color;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(0);
-  colorMode(HSL);
-  strokeWeight(1);
+export const kaleidoscope = (p: p5) => {
+  const rotations = 75;
+  let angleOffset;
+  const speed = 0.01;
+  let x;
+  let y;
+  let color;
 
-  angleOffset = TWO_PI / rotations;
-  // noiseDetail(8, 0.25);
-  translate(width / 2, height / 2);
-  x = (noise(frameCount * speed) * 2 - 1) * height * 0.75;
-  y = (noise(frameCount * speed + 1000) * 2 - 1) * height * 0.75;
-  color = random(360);
-}
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.background(0);
+    p.colorMode(p.HSL);
+    p.strokeWeight(1);
 
-function draw() {
-  translate(width / 2, height / 2);
-  stroke(color, 100, 50, 0.1);
-  const newX = (noise(frameCount * speed) * 2 - 1) * height * 0.75;
-  const newY = (noise(frameCount * speed + 1000) * 2 - 1) * height * 0.75;
+    angleOffset = p.TWO_PI / rotations;
+    // noiseDetail(8, 0.25);
+    p.translate(p.width / 2, p.height / 2);
+    x = (p.noise(p.frameCount * speed) * 2 - 1) * p.height * 0.75;
+    y = (p.noise(p.frameCount * speed + 1000) * 2 - 1) * p.height * 0.75;
+    color = p.random(360);
+  };
 
-  for (let i = 0; i < rotations; i++) {
-    rotate(angleOffset);
-    line(x, y, newX, newY);
-  }
+  p.draw = () => {
+    p.translate(p.width / 2, p.height / 2);
+    p.stroke(color, 100, 50, 0.1);
+    const newX = (p.noise(p.frameCount * speed) * 2 - 1) * p.height * 0.75;
+    const newY =
+      (p.noise(p.frameCount * speed + 1000) * 2 - 1) * p.height * 0.75;
 
-  x = newX;
-  y = newY;
-  color = (color + 0.1) % 360;
-}
+    for (let i = 0; i < rotations; i++) {
+      p.rotate(angleOffset);
+      p.line(x, y, newX, newY);
+    }
+
+    x = newX;
+    y = newY;
+    color = (color + 0.1) % 360;
+  };
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+};

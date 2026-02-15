@@ -1,76 +1,83 @@
-let webcam;
-let saved = [];
-let ii = 0;
-let timer = 0;
-const wait = 650;
-let ready = false;
-let speed = 4;
-let aspectRatio;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  webcam = createCapture("video", { flipped: true });
-  createCanvas(windowWidth, windowHeight);
-  webcam.hide();
-  pixelDensity(1);
-  stroke(255, 0, 0);
-  strokeWeight(5);
-}
+export const cameraEffects = (p: p5) => {
+  let webcam;
+  let saved = [];
+  let ii = 0;
+  let timer = 0;
+  const wait = 650;
+  let ready = false;
+  let speed = 4;
+  let aspectRatio;
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+  p.setup = () => {
+    webcam = createCapture("video", { flipped: true });
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    webcam.hide();
+    p.pixelDensity(1);
+    p.stroke(255, 0, 0);
+    p.strokeWeight(5);
+  };
 
-function draw() {
-  if (!ready) {
-    timer += deltaTime;
-    if (timer > wait) ready = true;
-  } else {
-    background(0);
-    frameRate(30);
-    aspectRatio = webcam.width / webcam.height;
-    image(
-      webcam,
-      (width - height * aspectRatio) / 2,
-      0,
-      height * aspectRatio,
-      height,
-    );
+  p.draw = () => {
+    if (!ready) {
+      timer += p.deltaTime;
+      if (timer > wait) ready = true;
+    } else {
+      p.background(0);
+      p.frameRate(30);
+      aspectRatio = webcam.width / webcam.height;
+      image(
+        webcam,
+        (p.width - p.height * aspectRatio) / 2,
+        0,
+        p.height * aspectRatio,
+        p.height,
+      );
 
-    loadPixels();
-    for (let i = 0; i < speed; i++) {
-      for (let j = 0; j < width; j++) {
-        const x = (ii * width + j) * 4;
-        saved.push(pixels[x]);
-        saved.push(pixels[x + 1]);
-        saved.push(pixels[x + 2]);
-        saved.push(pixels[x + 3]);
+      p.loadPixels();
+      for (let i = 0; i < speed; i++) {
+        for (let j = 0; j < p.width; j++) {
+          const x = (ii * p.width + j) * 4;
+          saved.push(pixels[x]);
+          saved.push(pixels[x + 1]);
+          saved.push(pixels[x + 2]);
+          saved.push(pixels[x + 3]);
+        }
+        ii++;
       }
-      ii++;
-    }
 
-    let index = 0;
-    for (let i = 0; i < ii; i++) {
-      for (let j = 0; j < width; j++) {
-        const x = (i * width + j) * 4;
-        pixels[x] = saved[index];
-        index++;
-        pixels[x + 1] = saved[index];
-        index++;
-        pixels[x + 2] = saved[index];
-        index++;
-        pixels[x + 3] = saved[index];
-        index++;
+      let index = 0;
+      for (let i = 0; i < ii; i++) {
+        for (let j = 0; j < p.width; j++) {
+          const x = (i * p.width + j) * 4;
+          p.pixels[x] = saved[index];
+          index++;
+          p.pixels[x + 1] = saved[index];
+          index++;
+          p.pixels[x + 2] = saved[index];
+          index++;
+          p.pixels[x + 3] = saved[index];
+          index++;
+        }
       }
+      p.updatePixels();
+
+      p.line(0, ii, p.width, ii);
     }
-    updatePixels();
+  };
 
-    line(0, ii, width, ii);
-  }
-}
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
-function keyPressed() {
-  if (key === "r") {
-    ii = 0;
-    saved = [];
+  function keyPressed() {
+    if (key === "r") {
+      ii = 0;
+      saved = [];
+    }
   }
-}
+};

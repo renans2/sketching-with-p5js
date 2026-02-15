@@ -1,28 +1,39 @@
-const n = 100;
-let angleMultiplier = 0.035;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSL);
+export const sinVisualization = (p: p5) => {
+  const n = 100;
+  let angleMultiplier = 0.035;
 
-  stroke(255);
-  strokeWeight(5);
-  noFill();
-  rectMode(CENTER);
-}
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.colorMode(p.HSL);
 
-function draw() {
-  background(0, 0, 0, 0.25);
-  translate(width / 2, height / 2);
-  rotate(-PI / 4);
+    p.stroke(255);
+    p.strokeWeight(5);
+    p.noFill();
+    p.rectMode(p.CENTER);
+  };
 
-  for (let i = 0; i < n; i++) {
-    push();
-    const angle = map(i, 0, n, TWO_PI * 1.5, 0);
-    rotate(sin(angle + frameCount * angleMultiplier));
-    const side = map(i, 0, n, 10, width);
-    stroke((map(i, 0, n, 0, 360) + frameCount * 2) % 360, 100, 50, 0.1);
-    rect(0, 0, side, side);
-    pop();
-  }
-}
+  p.draw = () => {
+    p.background(0, 0, 0, 0.25);
+    p.translate(p.width / 2, p.height / 2);
+    p.rotate(-p.PI / 4);
+
+    for (let i = 0; i < n; i++) {
+      p.push();
+      const angle = p.map(i, 0, n, p.TWO_PI * 1.5, 0);
+      p.rotate(p.sin(angle + p.frameCount * angleMultiplier));
+      const side = p.map(i, 0, n, 10, p.width);
+      p.stroke((p.map(i, 0, n, 0, 360) + p.frameCount * 2) % 360, 100, 50, 0.1);
+      p.rect(0, 0, side, side);
+      p.pop();
+    }
+  };
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+};

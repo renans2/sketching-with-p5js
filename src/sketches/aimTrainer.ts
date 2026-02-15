@@ -1,83 +1,94 @@
-let diameter = 40;
-let progressBarHeight = 20;
-let x, y;
-let score = 0;
-let timer = 0;
-let over = false;
-let timeLimit = 10;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSL);
-  textAlign(CENTER);
-  noStroke();
-  setNewLocation();
-}
+export const aimTrainer = (p: p5) => {
+  let diameter = 40;
+  let progressBarHeight = 20;
+  let x, y;
+  let score = 0;
+  let timer = 0;
+  let over = false;
+  let timeLimit = 10;
 
-function draw() {
-  background(0);
-
-  if (!over) {
-    printProgressBar();
-    drawCircle();
-    timer += deltaTime;
-    if (timer > timeLimit * 1000) {
-      over = true;
-      x = -100;
-      y = -100;
-    }
-  } else {
-    printScore();
-  }
-}
-
-function drawCircle() {
-  let colorVar = map(timer, 0, timeLimit * 1000, 0, 360);
-  fill(colorVar, 100, 50, 1);
-  circle(x, y, diameter);
-}
-
-function mouseClicked() {
-  if (mouseOverCircle()) {
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.colorMode(p.HSL);
+    p.textAlign(p.CENTER);
+    p.noStroke();
     setNewLocation();
-    score++;
+  };
+
+  p.draw = () => {
+    p.background(0);
+
+    if (!over) {
+      printProgressBar();
+      drawCircle();
+      timer += p.deltaTime;
+      if (timer > timeLimit * 1000) {
+        over = true;
+        x = -100;
+        y = -100;
+      }
+    } else {
+      printScore();
+    }
+  };
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+
+  function drawCircle() {
+    let colorVar = p.map(timer, 0, timeLimit * 1000, 0, 360);
+    p.fill(colorVar, 100, 50, 1);
+    p.circle(x, y, diameter);
   }
-}
 
-function keyPressed() {
-  if (keyCode === 82) reset();
-}
+  function mouseClicked() {
+    if (mouseOverCircle()) {
+      setNewLocation();
+      score++;
+    }
+  }
 
-function setNewLocation() {
-  x = random(diameter / 2, width - diameter / 2);
-  y = random(progressBarHeight + diameter / 2, height - diameter / 2);
-}
+  function keyPressed() {
+    if (p.keyCode === 82) reset();
+  }
 
-function printProgressBar() {
-  let length = map(timer, 0, timeLimit * 1000, 0, width);
-  rect(0, 0, length, progressBarHeight);
-}
+  function setNewLocation() {
+    x = p.random(diameter / 2, p.width - diameter / 2);
+    y = p.random(progressBarHeight + diameter / 2, p.height - diameter / 2);
+  }
 
-function printScore() {
-  fill(0, 0, 100, 1);
-  textSize(100);
-  text("score: " + score, width / 2, height / 2);
-  textSize(50);
-  text('press "R" to play again', width / 2, height / 2 + 100);
-}
+  function printProgressBar() {
+    let length = p.map(timer, 0, timeLimit * 1000, 0, p.width);
+    p.rect(0, 0, length, progressBarHeight);
+  }
 
-function reset() {
-  setNewLocation();
-  over = false;
-  timer = 0;
-  score = 0;
-}
+  function printScore() {
+    p.fill(0, 0, 100, 1);
+    p.textSize(100);
+    p.text("score: " + score, p.width / 2, p.height / 2);
+    p.textSize(50);
+    p.text('press "R" to play again', p.width / 2, p.height / 2 + 100);
+  }
 
-function mouseOverCircle() {
-  return (
-    mouseX > x - diameter / 2 &&
-    mouseX < x + diameter / 2 &&
-    mouseY > y - diameter / 2 &&
-    mouseY < y + diameter / 2
-  );
-}
+  function reset() {
+    setNewLocation();
+    over = false;
+    timer = 0;
+    score = 0;
+  }
+
+  function mouseOverCircle() {
+    return (
+      p.mouseX > x - diameter / 2 &&
+      p.mouseX < x + diameter / 2 &&
+      p.mouseY > y - diameter / 2 &&
+      p.mouseY < y + diameter / 2
+    );
+  }
+};

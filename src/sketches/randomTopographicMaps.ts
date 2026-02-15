@@ -1,57 +1,64 @@
-let m1 = 0.0025;
-let gaps = 15;
-let gapInterval = 0.007;
-let gapOffset = 1 / gaps;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  pixelDensity(1);
-  colorMode(HSL);
-  noiseDetail(3, 1);
+export const randomTopographicMaps = (p: p5) => {
+  let m1 = 0.0025;
+  let gaps = 15;
+  let gapInterval = 0.007;
+  let gapOffset = 1 / gaps;
 
-  drawMap();
-}
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.pixelDensity(1);
+    p.colorMode(p.HSL);
+    noiseDetail(3, 1);
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+    drawMap();
+  };
 
-function drawMap() {
-  frameRate(1);
-  background(0);
-  loadPixels();
-  // updateVariables();
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
-  for (let i = 0; i < height; i++) {
-    for (let j = 0; j < width; j++) {
-      const p = (j + i * width) * 4;
-      const nois = noise(j * m1, i * m1);
+  function drawMap() {
+    p.frameRate(1);
+    p.background(0);
+    p.loadPixels();
+    // updateVariables();
 
-      for (let k = 0; k < gaps; k++) {
-        if (
-          k * gapOffset + gapOffset / 2 < nois &&
-          nois <= k * gapOffset + gapOffset / 2 + gapInterval
-        ) {
-          const c = color(map(k, 0, gaps, 0, 270) - 95, 100, 50, 1);
-          pixels[p] = red(c);
-          pixels[p + 1] = green(c);
-          pixels[p + 2] = blue(c);
-          pixels[p + 3] = 255;
-          break;
+    for (let i = 0; i < p.height; i++) {
+      for (let j = 0; j < p.width; j++) {
+        const p = (j + i * p.width) * 4;
+        const nois = p.noise(j * m1, i * m1);
+
+        for (let k = 0; k < gaps; k++) {
+          if (
+            k * gapOffset + gapOffset / 2 < nois &&
+            nois <= k * gapOffset + gapOffset / 2 + gapInterval
+          ) {
+            const c = p.color(p.map(k, 0, gaps, 0, 270) - 95, 100, 50, 1);
+            p.pixels[p] = p.red(c);
+            p.pixels[p + 1] = p.green(c);
+            p.pixels[p + 2] = p.blue(c);
+            p.pixels[p + 3] = 255;
+            break;
+          }
         }
       }
     }
+    p.updatePixels();
   }
-  updatePixels();
-}
 
-function updateVariables() {
-  gaps = map(mouseX, 0, width, 0, 40);
-  gapInterval = map(mouseY, 0, height, 0.0015, 0.05);
-  gapOffset = 1 / gaps;
-}
+  function updateVariables() {
+    gaps = p.map(p.mouseX, 0, p.width, 0, 40);
+    gapInterval = p.map(p.mouseY, 0, p.height, 0.0015, 0.05);
+    gapOffset = 1 / gaps;
+  }
 
-function mouseClicked() {
-  noiseSeed(random(100));
-  drawMap();
-}
+  function mouseClicked() {
+    p.noiseSeed(p.random(100));
+    drawMap();
+  }
+};

@@ -1,53 +1,64 @@
-const branchProb = 25;
-let maxAngle;
-const minLength = 10;
-const maxLength = 50;
-const depth = 20;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSL);
-  cursor(HAND);
-  stroke(255);
-  strokeWeight(1);
-  maxAngle = PI / 8;
+export const randomTree = (p: p5) => {
+  const branchProb = 25;
+  let maxAngle;
+  const minLength = 10;
+  const maxLength = 50;
+  const depth = 20;
 
-  background(0);
-  push();
-  translate(width / 2, height);
-  rotate(-PI / 2);
-  drawLightning(depth);
-  pop();
-  noLoop();
-}
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.colorMode(p.HSL);
+    p.cursor(HAND);
+    p.stroke(255);
+    p.strokeWeight(1);
+    maxAngle = p.PI / 8;
 
-function drawLightning(d) {
-  if (d > 0) {
-    const len = random(minLength, maxLength);
-    stroke(map(d, 0, depth, 360, 0), 100, 50, 1);
-    line(0, 0, len, 0);
-    translate(len, 0);
+    p.background(0);
+    p.push();
+    p.translate(p.width / 2, p.height);
+    p.rotate(-p.PI / 2);
+    drawLightning(depth);
+    p.pop();
+    p.noLoop();
+  };
 
-    const num = random(100);
-    if (num <= branchProb) {
-      const childAngle = random(-maxAngle, maxAngle);
-      push();
-      rotate(childAngle);
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+
+  function drawLightning(d) {
+    if (d > 0) {
+      const len = p.random(minLength, maxLength);
+      p.stroke(p.map(d, 0, depth, 360, 0), 100, 50, 1);
+      p.line(0, 0, len, 0);
+      p.translate(len, 0);
+
+      const num = p.random(100);
+      if (num <= branchProb) {
+        const childAngle = p.random(-maxAngle, maxAngle);
+        p.push();
+        p.rotate(childAngle);
+        drawLightning(d - 1);
+        p.pop();
+      }
+
+      const angle = p.random(-maxAngle, maxAngle);
+      p.rotate(angle);
       drawLightning(d - 1);
-      pop();
     }
-
-    const angle = random(-maxAngle, maxAngle);
-    rotate(angle);
-    drawLightning(d - 1);
   }
-}
 
-function mousePressed() {
-  background(0);
-  push();
-  translate(width / 2, height);
-  rotate(-PI / 2);
-  drawLightning(depth);
-  pop();
-}
+  function mousePressed() {
+    p.background(0);
+    p.push();
+    p.translate(p.width / 2, p.height);
+    p.rotate(-p.PI / 2);
+    drawLightning(depth);
+    p.pop();
+  }
+};

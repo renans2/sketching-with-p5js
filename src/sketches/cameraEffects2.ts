@@ -1,6 +1,10 @@
-let webcam;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
+
+export const cameraEffects2 = (p: p5) => {
+  let webcam;
 const offset = 10;
-const pixelsPerBlock = offset * offset;
+const p.pixelsPerBlock = offset * offset;
 let nHor, nVer;
 const greyLevels = 5;
 
@@ -14,29 +18,35 @@ let constraints = {
   audio: false,
 };
 
-function setup() {
+p.setup = () => {
   webcam = createCapture(constraints, { flipped: true });
-  createCanvas(windowWidth, windowHeight);
+  const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
   webcam.hide();
-  pixelDensity(1);
-  noStroke();
+  p.pixelDensity(1);
+  p.noStroke();
 
-  nHor = width / offset;
-  nVer = height / offset;
-}
+  nHor = p.width / offset;
+  nVer = p.height / offset;
+};
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function draw() {
-  frameRate(30);
-  image(webcam, 0, 0, width, height);
-  loadPixels();
+p.draw = () => {
+  p.frameRate(30);
+  image(webcam, 0, 0, p.width, p.height);
+  p.loadPixels();
 
   for (let i = 0; i < nVer; i++)
     for (let j = 0; j < nHor; j++) processBlock(j, i);
-}
+};
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
 function processBlock(x, y) {
   let totalRed = 0;
@@ -47,16 +57,18 @@ function processBlock(x, y) {
 
   for (let i = yFixed; i < yFixed + offset; i++) {
     for (let j = xFixed; j < xFixed + offset; j++) {
-      const index = (width * i + j) * 4;
-      totalRed += pixels[index];
-      totalGreen += pixels[index + 1];
-      totalBlue += pixels[index + 2];
+      const index = (p.width * i + j) * 4;
+      totalRed += p.pixels[index];
+      totalGreen += p.pixels[index + 1];
+      totalBlue += p.pixels[index + 2];
     }
   }
 
-  const brightness = (totalRed + totalGreen + totalBlue) / 3 / pixelsPerBlock;
-  const greyIndex = Math.floor(map(brightness, 0, 255, 0, greyLevels));
+  const brightness = (totalRed + totalGreen + totalBlue) / 3 / p.pixelsPerBlock;
+  const greyIndex = Math.floor(p.map(brightness, 0, 255, 0, greyLevels));
 
-  fill(lerp(0, 255, greyIndex / (greyLevels - 1)));
-  rect(x * offset, y * offset, offset, offset);
+  p.fill(lerp(0, 255, greyIndex / (greyLevels - 1)));
+  p.rect(x * offset, y * offset, offset, offset);
+}
+
 }

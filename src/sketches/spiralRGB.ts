@@ -1,36 +1,47 @@
-let angle = 0;
-let diameter;
-const amount = 15;
-const speed = 0.25;
-let offset;
-let color = 0;
-const colorIncrementer = 5;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowHeight, windowHeight);
-  colorMode(HSL);
-  angleMode(DEGREES);
-  //noStroke();
-  background(0);
-  offset = width / 2 / amount;
-  diameter = offset;
-}
+export const spiralRGB = (p: p5) => {
+  let angle = 0;
+  let diameter;
+  const amount = 15;
+  const speed = 0.25;
+  let offset;
+  let color = 0;
+  const colorIncrementer = 5;
 
-function draw() {
-  background(0, 0, 0, 0.1);
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.colorMode(p.HSL);
+    p.angleMode(p.DEGREES);
+    //noStroke();
+    p.background(0);
+    offset = p.width / 2 / amount;
+    diameter = offset;
+  };
 
-  translate(width / 2, height / 2);
+  p.draw = () => {
+    p.background(0, 0, 0, 0.1);
 
-  color = (color + colorIncrementer) % 360;
-  fill(color, 100, 50, 1);
-  drawCircles();
-  angle = (angle + speed) % 360;
-}
+    p.translate(p.width / 2, p.height / 2);
 
-function drawCircles() {
-  for (let i = 1; i <= amount; i++) {
-    const x = cos(i * angle) * (i * offset);
-    const y = sin(i * angle) * (i * offset);
-    circle(x, -y, diameter);
+    color = (color + colorIncrementer) % 360;
+    p.fill(color, 100, 50, 1);
+    drawCircles();
+    angle = (angle + speed) % 360;
+  };
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+
+  function drawCircles() {
+    for (let i = 1; i <= amount; i++) {
+      const x = p.cos(i * angle) * (i * offset);
+      const y = p.sin(i * angle) * (i * offset);
+      p.circle(x, -y, diameter);
+    }
   }
-}
+};

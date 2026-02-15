@@ -1,5 +1,9 @@
-let amount = 50;
-let hs = [];
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
+
+export const insertionSort = (p: p5) => {
+  let amount = 50;
+let hs: number[] = [];
 
 let doSort = true;
 let isShuffled = false;
@@ -8,23 +12,20 @@ let index = barrier;
 
 let offset;
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  rectMode(CENTER);
-  strokeWeight(2);
-  background(0);
-  fillArray();
-  offset = width / amount;
-}
+p.setup = () => {
+  const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+  p.rectMode(p.CENTER);
+  p.strokeWeight(2);
+  p.background(0);
+  p.fillArray();
+  offset = p.width / amount;
+};
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
-
-function draw() {
-  // frameRate(map(mouseX, 0, width, 1, 60));
-  translate(0, height);
-  background(0);
+p.draw = () => {
+  // p.frameRate(p.map(p.mouseX, 0, p.width, 1, 60));
+  p.translate(0, p.height);
+  p.background(0);
 
   if (doSort) {
     if (!isShuffled) {
@@ -36,7 +37,12 @@ function draw() {
   } else {
     drawRectangles();
   }
-}
+};
+
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
 function doCicle() {
   drawRectangles();
@@ -71,21 +77,23 @@ function mousePressed() {
 function fillArray() {
   hs = [];
   for (let i = 0; i < amount; i++) {
-    let rectHeight = (i + 1) * (height / amount);
+    let p.rectHeight = (i + 1) * (p.height / amount);
     hs.push(rectHeight);
   }
 }
 
 function drawRectangles() {
   for (let i = 0; i < amount; i++) {
-    if (i == index && doSort) fill(0, 255, 0);
-    else if (i == barrier && doSort) fill(255, 0, 0);
-    else fill(255, 255, 255);
+    if (i == index && doSort) p.fill(0, 255, 0);
+    else if (i == barrier && doSort) p.fill(255, 0, 0);
+    else p.fill(255, 255, 255);
 
     let x = i * offset + offset / 2;
     let rectHeight = hs[i];
     let y = -rectHeight / 2;
 
-    rect(x, y, width / amount, rectHeight);
+    p.rect(x, y, p.width / amount, p.rectHeight);
   }
+}
+
 }
