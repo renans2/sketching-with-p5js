@@ -8,18 +8,17 @@ export default function HomePage() {
   return (
     <main className="max-w-4xl w-full mx-auto p-2 space-y-2">
       <h2>Home</h2>
-      <ul className="space-y-4">
+      <div className="grid grid-cols-3 gap-1">
         {SKETCH_ROUTES.map((route) => (
-          <li key={route.path}>
-            <Link
-              className="bg-black font-bold p-2 text-white"
-              to={`/sketch/${route.path}`}
-            >
-              {route.title}
-            </Link>
-          </li>
+          <Link
+            key={route.path}
+            className="bg-black font-bold p-2 text-white w-full aspect-square rounded-lg"
+            to={`/sketch/${route.path}`}
+          >
+            {route.title}
+          </Link>
         ))}
-      </ul>
+      </div>
     </main>
   );
 }
