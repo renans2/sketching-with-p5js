@@ -20,5 +20,11 @@ export default function Sketch({ sketchScript }: SketchType) {
     };
   }, []);
 
-  return <div id={CANVAS_CONTAINER} className="flex-1" ref={containerRef} />;
+  return (
+    <div
+      id={CANVAS_CONTAINER}
+      className="flex-1 flex justify-end"
+      ref={containerRef}
+    />
+  );
 }

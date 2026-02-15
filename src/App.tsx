@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router";
-import P5Canvas from "./components/P5Canvas";
-import { pineTree } from "./sketches/pineTree";
 import Header from "./components/layout/Header";
 import SketchPage from "./pages/SketchPage";
+import { SKETCH_ROUTES } from "./constants/sketch-routes";
+import HomePage from "./pages/Home";
 
 function App() {
   return (
@@ -10,14 +10,21 @@ function App() {
       <Header />
 
       <Routes>
-        <Route index element={<h1>Home</h1>} />
+        <Route index element={<HomePage />} />
         <Route path="about" element={<h1>About</h1>} />
         <Route path="sketch">
-          <Route path="test" element={<P5Canvas />} />
-          <Route
-            path="pine-tree"
-            element={<SketchPage sketchScript={pineTree} />}
-          />
+          {SKETCH_ROUTES.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={
+                <SketchPage
+                  title={route.title}
+                  sketchScript={route.sketchScript}
+                />
+              }
+            />
+          ))}
         </Route>
       </Routes>
     </div>
