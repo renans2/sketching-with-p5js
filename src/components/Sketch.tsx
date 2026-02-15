@@ -3,17 +3,17 @@ import { useEffect, useRef } from "react";
 import { CANVAS_CONTAINER } from "../constants/elements-ids";
 
 type SketchType = {
-  sketchScript: (p: p5) => void;
+  script: (p: p5) => void;
 };
 
-export default function Sketch({ sketchScript }: SketchType) {
+export default function Sketch({ script }: SketchType) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const p5Ref = useRef<p5 | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    p5Ref.current = new p5(sketchScript, containerRef.current);
+    p5Ref.current = new p5(script, containerRef.current);
 
     return () => {
       p5Ref.current?.remove();

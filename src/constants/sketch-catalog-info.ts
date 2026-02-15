@@ -1,4 +1,4 @@
-import p5 from "p5";
+import type { SketchInfo } from "../types/SketchInfo";
 import { pineTree } from "../sketches/pineTree";
 import { flowField } from "../sketches/flowField";
 import { rotatingSquares } from "../sketches/rotatingSquares";
@@ -12,77 +12,85 @@ import { insertionSort } from "../sketches/insertionSort";
 import { kaleidoscope } from "../sketches/kaleidoscope";
 import { manualClock } from "../sketches/manualClock";
 import { matrixDigitalRain } from "../sketches/matrixDigitalRain";
+import { getSketchSourceUrl } from "../utils/get-sketch-source";
 
-interface SketchRoute {
-  path: string;
-  title: string;
-  sketchScript: (p: p5) => void;
-}
-
-export const SKETCH_ROUTES: SketchRoute[] = [
+export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
     path: "pine-tree",
     title: "Pine Tree",
-    sketchScript: pineTree,
+    script: pineTree,
+    githubUrl: getSketchSourceUrl(pineTree.name),
   },
   {
     path: "flow-field",
     title: "Flow Field",
-    sketchScript: flowField,
+    script: flowField,
+    githubUrl: getSketchSourceUrl(flowField.name),
   },
   {
     path: "rotating-squares",
     title: "Rotating Squares",
-    sketchScript: rotatingSquares,
+    script: rotatingSquares,
+    githubUrl: getSketchSourceUrl(rotatingSquares.name),
   },
   {
     path: "bouncing-lines",
     title: "Bouncing Lines",
-    sketchScript: bouncingLines,
+    script: bouncingLines,
+    githubUrl: getSketchSourceUrl(bouncingLines.name),
   },
   {
     path: "bouncing-circles",
     title: "Bouncing Circles",
-    sketchScript: bouncingCircles,
+    script: bouncingCircles,
+    githubUrl: getSketchSourceUrl(bouncingCircles.name),
   },
   {
     path: "circles-around-circles",
     title: "Circles Around Circles",
-    sketchScript: circlesAroundCircles,
+    script: circlesAroundCircles,
+    githubUrl: getSketchSourceUrl(circlesAroundCircles.name),
   },
   {
     path: "connected-dots",
     title: "Connected Dots",
-    sketchScript: connectedDots,
+    script: connectedDots,
+    githubUrl: getSketchSourceUrl(connectedDots.name),
   },
   {
     path: "cow-effect",
     title: "Cow Effect",
-    sketchScript: cowEffect,
+    script: cowEffect,
+    githubUrl: getSketchSourceUrl(cowEffect.name),
   },
   {
     path: "flow-field-simulation",
     title: "Flow Field Simulation",
-    sketchScript: flowFieldSimulation,
+    script: flowFieldSimulation,
+    githubUrl: getSketchSourceUrl(flowFieldSimulation.name),
   },
   {
     path: "insertion-sort",
     title: "Insertion Sort",
-    sketchScript: insertionSort,
+    script: insertionSort,
+    githubUrl: getSketchSourceUrl(insertionSort.name),
   },
   {
     path: "kaleidoscope",
     title: "Kaleidoscope",
-    sketchScript: kaleidoscope,
+    script: kaleidoscope,
+    githubUrl: getSketchSourceUrl(kaleidoscope.name),
   },
   {
     path: "manual-clock",
     title: "Manual Clock",
-    sketchScript: manualClock,
+    script: manualClock,
+    githubUrl: getSketchSourceUrl(manualClock.name),
   },
   {
     path: "matrix-digital-rain",
     title: "Matrix Digital Rain",
-    sketchScript: matrixDigitalRain,
+    script: matrixDigitalRain,
+    githubUrl: getSketchSourceUrl(matrixDigitalRain.name),
   },
 ];

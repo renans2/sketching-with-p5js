@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import Header from "./components/layout/Header";
 import SketchPage from "./pages/SketchPage";
-import { SKETCH_ROUTES } from "./constants/sketch-routes";
+import { SKETCH_CATALOG_INFO } from "./constants/sketch-catalog-info";
 import HomePage from "./pages/Home";
 
 function App() {
@@ -13,16 +13,11 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="about" element={<h1>About</h1>} />
         <Route path="sketch">
-          {SKETCH_ROUTES.map((route) => (
+          {SKETCH_CATALOG_INFO.map((sketch) => (
             <Route
-              key={route.path}
-              path={route.path}
-              element={
-                <SketchPage
-                  title={route.title}
-                  sketchScript={route.sketchScript}
-                />
-              }
+              key={sketch.path}
+              path={sketch.path}
+              element={<SketchPage sketch={sketch} />}
             />
           ))}
         </Route>
