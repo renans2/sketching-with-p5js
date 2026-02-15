@@ -1,33 +1,23 @@
-import { NavLink, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import P5Canvas from "./components/P5Canvas";
-import PineTree from "./components/PineTree";
+import { pineTree } from "./sketches/pineTree";
+import Header from "./components/layout/Header";
+import SketchPage from "./pages/SketchPage";
 
 function App() {
   return (
     <div>
-      <header>
-        <nav>
-          <ul className="flex gap-2">
-            <li>
-              <NavLink to="/" className="p-1 bg-gray-300 rounded-sm">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" className="p-1 bg-gray-300 rounded-sm">
-                About
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
       <Routes>
         <Route index element={<h1>Home</h1>} />
         <Route path="about" element={<h1>About</h1>} />
         <Route path="sketch">
           <Route path="test" element={<P5Canvas />} />
-          <Route path="pine-tree" element={<PineTree />} />
+          <Route
+            path="pine-tree"
+            element={<SketchPage sketchScript={pineTree} />}
+          />
         </Route>
       </Routes>
     </div>

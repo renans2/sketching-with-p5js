@@ -7,7 +7,10 @@ export const pineTree = (p: p5) => {
   const angleDecay = 0.92;
 
   p.setup = () => {
-    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.createCanvas(
+      0.8 * p.min(p.windowWidth, p.windowHeight),
+      0.8 * p.min(p.windowWidth, p.windowHeight),
+    );
     p.background(0);
     p.translate(p.width / 2, p.height);
     p.scale(1, -1);
