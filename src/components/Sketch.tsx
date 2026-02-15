@@ -1,5 +1,6 @@
 import p5 from "p5";
 import { useEffect, useRef } from "react";
+import { CANVAS_CONTAINER } from "../constants/elements-ids";
 
 type SketchType = {
   sketchScript: (p: p5) => void;
@@ -19,5 +20,5 @@ export default function Sketch({ sketchScript }: SketchType) {
     };
   }, []);
 
-  return <div ref={containerRef} />;
+  return <div id={CANVAS_CONTAINER} className="flex-1" ref={containerRef} />;
 }
