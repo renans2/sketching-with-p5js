@@ -9,39 +9,43 @@ let colorVar = 0;
 let amplitude = 0;
 let frequency = 0;
 
-function setup(){
-    createCanvas(windowWidth,windowHeight);
-    colorMode(HSL);
-    noStroke();
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSL);
+  noStroke();
 
-    angleMode(DEGREES);
-    startingY = height / 2;
+  angleMode(DEGREES);
+  startingY = height / 2;
 }
 
-function draw(){
-    background(0);
-    calculateOffset();
-    amplitude = map(mouseY, height, 0, 0, 500);
-    frequency = map(mouseX, 0, width, 100, 5000);
-    generateCircles(amplitude, frequency);
+function draw() {
+  background(0);
+  calculateOffset();
+  amplitude = map(mouseY, height, 0, 0, 500);
+  frequency = map(mouseX, 0, width, 100, 5000);
+  generateCircles(amplitude, frequency);
 }
 
-function mouseReleased(){
-    amount += 100;
+function mouseReleased() {
+  amount += 100;
 }
 
-function generateCircles(amplitude, frequency){
-    index = (index + 3) % 360;
-    colorVar = (colorVar + 3) % 360;
-    
-    for (let i = 0; i < amount; i++) {
-        color = ((offset * i) + colorVar) % 360;
-        angle = map(i, 0 , amount, 0, frequency);
-        fill(color, 100, 50, 1);
-        circle(offset * i + offset / 2, startingY + (sin(angle + index) * amplitude), diameter);
-    }
+function generateCircles(amplitude, frequency) {
+  index = (index + 3) % 360;
+  colorVar = (colorVar + 3) % 360;
+
+  for (let i = 0; i < amount; i++) {
+    color = (offset * i + colorVar) % 360;
+    angle = map(i, 0, amount, 0, frequency);
+    fill(color, 100, 50, 1);
+    circle(
+      offset * i + offset / 2,
+      startingY + sin(angle + index) * amplitude,
+      diameter,
+    );
+  }
 }
 
-function calculateOffset(){
-    offset = width / amount;
+function calculateOffset() {
+  offset = width / amount;
 }
