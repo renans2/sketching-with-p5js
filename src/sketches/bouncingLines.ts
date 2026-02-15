@@ -7,7 +7,7 @@ export const bouncingLines = (p: p5) => {
   const N_LINES = 5;
   const LINE_COLOR_INCREMENTER = 1;
   let bouncingLines: BouncingLine[] = [];
-  let p.lineColor = 0;
+  let lineColor = 0;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -26,17 +26,17 @@ export const bouncingLines = (p: p5) => {
 
     // draw bouncing p.lines
     p.beginShape();
-    for (const p.line of bouncingLines) {
-      p.line.move();
-      p.vertex(line.x, p.line.y);
+    for (const line of bouncingLines) {
+      line.move();
+      p.vertex(line.x, line.y);
     }
     p.stroke(lineColor, 100, 50, 0.5);
     p.endShape(p.CLOSE);
 
-    p.lineColor = (lineColor + LINE_COLOR_INCREMENTER) % 360;
+    lineColor = (lineColor + LINE_COLOR_INCREMENTER) % 360;
   };
 
-    p.windowResized = () => {
+  p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
