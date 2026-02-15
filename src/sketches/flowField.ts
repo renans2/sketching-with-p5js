@@ -23,6 +23,11 @@ export const flowField = (p: p5) => {
     drawAll();
   };
 
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+
   function drawAll() {
     p.background(0);
     p.noiseSeed(p.random(1000000));

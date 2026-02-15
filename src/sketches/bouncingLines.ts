@@ -1,83 +1,92 @@
-const leftBorder = 0;
-const topBorder = 0;
-let rightBorder, bottomBorder;
-const minSpeed = 4;
-const maxSpeed = 8;
-const nLines = 5;
-const bouncingLines = [];
-let lineColor = 0;
-const lineColorIncrementer = 1;
+import p5 from "p5";
+import { getCanvasSize } from "../utils/get-canvas-size";
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSL);
-  strokeWeight(3);
-  noFill();
+export const bouncingLines = (p: p5) => {
+  const MIN_SPEED = 4;
+  const MAX_SPEED = 6;
+  const N_LINES = 5;
+  const LINE_COLOR_INCREMENTER = 1;
+  let bouncingLines: BouncingLine[] = [];
+  let lineColor = 0;
 
-  rightBorder = width;
-  bottomBorder = height;
+  p.setup = () => {
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
+    p.colorMode(p.HSL);
+    p.strokeWeight(3);
+    p.noFill();
 
-  // create bouncing lines
-  for (let i = 0; i < nLines; i++) {
-    bouncingLines.push(new BouncingLine());
-  }
-}
+    for (let i = 0; i < N_LINES; i++) {
+      bouncingLines.push(new BouncingLine());
+    }
+  };
 
-function draw() {
-  background(0, 0, 0, 0.05);
+  p.windowResized = () => {
+    const newCanvasSize = getCanvasSize();
+    p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
 
-  // draw bouncing lines
-  beginShape();
-  for (const line of bouncingLines) {
-    line.move();
-    vertex(line.x, line.y);
-  }
-  stroke(lineColor, 100, 50, 0.5);
-  endShape(CLOSE);
+  p.draw = () => {
+    p.background(0, 0, 0, 0.05);
 
-  lineColor = (lineColor + lineColorIncrementer) % 360;
-}
+    // draw bouncing lines
+    p.beginShape();
+    for (const line of bouncingLines) {
+      line.move();
+      p.vertex(line.x, line.y);
+    }
+    p.stroke(lineColor, 100, 50, 0.5);
+    p.endShape(p.CLOSE);
 
-class BouncingLine {
-  constructor() {
-    this.x = random(width);
-    this.y = random(height);
-    this.xSpeed = random(-1, 1) < 0 ? -maxSpeed : maxSpeed;
-    this.ySpeed = random(-1, 1) < 0 ? -maxSpeed : maxSpeed;
-  }
+    lineColor = (lineColor + LINE_COLOR_INCREMENTER) % 360;
+  };
 
-  move() {
-    this.x += this.xSpeed;
-    this.y += this.ySpeed;
+  class BouncingLine {
+    x: number;
+    y: number;
+    xSpeed: number;
+    ySpeed: number;
 
-    if (this.hitBorderX()) this.reverseXSpeed();
-
-    if (this.hitBorderY()) this.reverseYSpeed();
-  }
-
-  hitBorderX() {
-    if (rightBorder < this.x || this.x < leftBorder) {
-      this.x = this.x < width / 2 ? 0 : rightBorder;
-      return true;
+    constructor() {
+      this.x = p.random(p.width);
+      this.y = p.random(p.height);
+      this.xSpeed = p.random(-1, 1) < 0 ? -MAX_SPEED : MAX_SPEED;
+      this.ySpeed = p.random(-1, 1) < 0 ? -MAX_SPEED : MAX_SPEED;
     }
 
-    return false;
-  }
+    move() {
+      this.x += this.xSpeed;
+      this.y += this.ySpeed;
 
-  hitBorderY() {
-    if (bottomBorder < this.y || this.y < topBorder) {
-      this.y = this.y < height / 2 ? 0 : bottomBorder;
-      return true;
+      if (this.hitBorderX()) this.reverseXSpeed();
+
+      if (this.hitBorderY()) this.reverseYSpeed();
     }
 
-    return false;
-  }
+    hitBorderX() {
+      if (p.width < this.x || this.x < 0) {
+        this.x = this.x < p.width / 2 ? 0 : p.width;
+        return true;
+      }
 
-  reverseXSpeed() {
-    this.xSpeed = (this.xSpeed < 0 ? 1 : -1) * random(minSpeed, maxSpeed);
-  }
+      return false;
+    }
 
-  reverseYSpeed() {
-    this.ySpeed = (this.ySpeed < 0 ? 1 : -1) * random(minSpeed, maxSpeed);
+    hitBorderY() {
+      if (p.height < this.y || this.y < 0) {
+        this.y = this.y < p.height / 2 ? 0 : p.height;
+        return true;
+      }
+
+      return false;
+    }
+
+    reverseXSpeed() {
+      this.xSpeed = (this.xSpeed < 0 ? 1 : -1) * p.random(MIN_SPEED, MAX_SPEED);
+    }
+
+    reverseYSpeed() {
+      this.ySpeed = (this.ySpeed < 0 ? 1 : -1) * p.random(MIN_SPEED, MAX_SPEED);
+    }
   }
-}
+};

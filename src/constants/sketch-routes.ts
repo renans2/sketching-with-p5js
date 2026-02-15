@@ -2,6 +2,7 @@ import p5 from "p5";
 import { pineTree } from "../sketches/pineTree";
 import { flowField } from "../sketches/flowField";
 import { rotatingSquares } from "../sketches/rotatingSquares";
+import { bouncingLines } from "../sketches/bouncingLines";
 
 interface SketchRoute {
   path: string;
@@ -24,5 +25,10 @@ export const SKETCH_ROUTES: SketchRoute[] = [
     path: "rotating-squares",
     title: "Rotating Squares",
     sketchScript: rotatingSquares,
+  },
+  {
+    path: "bouncing-lines",
+    title: "Bouncing Lines",
+    sketchScript: bouncingLines,
   },
 ];
