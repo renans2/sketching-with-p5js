@@ -2,28 +2,27 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const cowEffect = (p: p5) => {
-  let offset = 50;
-  let m1 = 0.005;
-  let m2 = 0.035;
-  let amountX, amountY;
+  const N = 75;
+  const m1 = 0.005;
+  const m2 = 0.035;
+  let offset: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
+    offset = p.width / N;
     p.pixelDensity(1);
-
     p.noStroke();
-    noiseDetail(2, 0.9);
+    p.noiseDetail(2, 0.9);
   };
 
   p.draw = () => {
-    updateVariables();
     p.background(0);
     p.frameRate(24);
     p.noStroke();
 
-    for (let i = 0; i < amountY; i++) {
-      for (let j = 0; j < amountX; j++) {
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
         const n = p.noise(j * offset * m1, i * offset * m1, p.frameCount * m2);
         const colorVal = n < 0.5 ? 0 : 255;
 
@@ -37,10 +36,4 @@ export const cowEffect = (p: p5) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
-
-  function updateVariables() {
-    offset = p.map(p.mouseX, 0, p.width, 15, 50);
-    amountX = p.width / offset;
-    amountY = p.height / offset;
-  }
 };

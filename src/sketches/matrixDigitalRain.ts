@@ -4,25 +4,25 @@ import { getCanvasSize } from "../utils/get-canvas-size";
 export const matrixDigitalRain = (p: p5) => {
   const FONT_SIZE = 20;
   const SIDE_LENGTH = FONT_SIZE;
-  let N_HORIZONTAL;
-  let N_VERTICAL;
+  let N_HORIZONTAL: number;
+  let N_VERTICAL: number;
   const MIN_REVEALER_LENGTH = 3;
   const MAX_REVEALER_LENGTH = 13;
   const MIN_REVEALER_SPEED = 1;
   const MAX_REVEALER_SPEED = 15;
-  let cells = [];
-  let revealers = [];
+  let cells: Cell[][] = [];
+  let revealers: (Revealer | null)[][] = [];
 
   p.setup = () => {
-    N_HORIZONTAL = windowWidth / SIDE_LENGTH;
-    N_VERTICAL = windowHeight / SIDE_LENGTH;
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
+    N_HORIZONTAL = p.width / SIDE_LENGTH;
+    N_VERTICAL = p.height / SIDE_LENGTH;
     p.background(0);
     p.noStroke();
-    p.textAlign(LEFT, TOP);
-    p.textSizeFont("Noto Serif JP Regular", FONT_SIZE);
-    p.textSizeLeading(20);
+    p.textAlign(p.LEFT, p.TOP);
+    p.textFont("Noto Serif JP Regular", FONT_SIZE);
+    p.textLeading(20);
 
     for (let i = 0; i < N_HORIZONTAL; i++) {
       revealers[i] = [];
@@ -88,12 +88,14 @@ export const matrixDigitalRain = (p: p5) => {
     return new Revealer(length, speed);
   }
 
-  $(window).on("resize", function () {
-    location.reload();
-  });
-
   class Revealer {
-    constructor(length, speed) {
+    length: number;
+    delay: number;
+    pos: number;
+    timer: number;
+    previousTime: number;
+
+    constructor(length: number, speed: number) {
       this.length = length;
       this.delay = this.delayFromSpeed(speed);
       this.pos = -this.length;
@@ -101,7 +103,7 @@ export const matrixDigitalRain = (p: p5) => {
       this.previousTime = 0;
     }
 
-    delayFromSpeed(speed) {
+    delayFromSpeed(speed: number) {
       return p.map(speed, MIN_REVEALER_SPEED, MAX_REVEALER_SPEED, 200, 20);
     }
 
@@ -114,7 +116,7 @@ export const matrixDigitalRain = (p: p5) => {
     }
 
     update() {
-      let currentTime = millis();
+      let currentTime = p.millis();
       this.timer += currentTime - this.previousTime;
       this.previousTime = currentTime;
 
@@ -155,8 +157,14 @@ export const matrixDigitalRain = (p: p5) => {
   }
 
   class Cell {
-    constructor(x, y) {
-      this.pos = createVector(x, y);
+    pos: p5.Vector;
+    symbol: string;
+    changeDelay: number;
+    previousTime: number;
+    timer: number;
+
+    constructor(x: number, y: number) {
+      this.pos = p.createVector(x, y);
       this.symbol = "";
       this.changeDelay = 0;
       this.previousTime = 0;
@@ -165,8 +173,8 @@ export const matrixDigitalRain = (p: p5) => {
       this.setNewChangeDelay();
     }
 
-    draw(extraColor) {
-      let currentTime = millis();
+    draw(extraColor: number) {
+      let currentTime = p.millis();
       this.timer += currentTime - this.previousTime;
       this.previousTime = currentTime;
 
@@ -177,7 +185,7 @@ export const matrixDigitalRain = (p: p5) => {
       }
 
       p.fill(extraColor, 255, extraColor);
-      p.textSize(this.symbol, this.pos.x, this.pos.y);
+      p.text(this.symbol, this.pos.x, this.pos.y);
     }
 
     setNewSymbol() {

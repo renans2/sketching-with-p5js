@@ -2,25 +2,25 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const flowFieldSimulation = (p: p5) => {
-  const particles = [];
+  const particles: p5.Vector[] = [];
   let m1 = 0.005;
   let m2 = 0.0025;
-  let speed = 5;
+  let speed = 2;
   const particlesPerFrame = 5;
-  const particleSize = 10;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
+    p.background(0);
     p.colorMode(p.HSL);
     p.stroke(255);
-    p.strokeWeight(10);
+    p.strokeWeight(1);
   };
 
   p.draw = () => {
     spawnParticles(particlesPerFrame);
 
-    p.background(0, 0, 0, 0.15);
+    p.background(0, 0, 0, 0);
     m1 = p.map(p.mouseX, 0, p.width, 0, 0.01);
     speed = p.map(p.mouseY, 0, p.height, 1, 5);
 
@@ -48,13 +48,13 @@ export const flowFieldSimulation = (p: p5) => {
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
 
-  function spawnParticles(n) {
+  function spawnParticles(n: number) {
     for (let i = 0; i < n; i++) {
-      particles.push(createVector(p.random(p.width), p.random(p.height)));
+      particles.push(p.createVector(p.random(p.width), p.random(p.height)));
     }
   }
 
-  function isInsideCanvas(x, y) {
+  function isInsideCanvas(x: number, y: number) {
     return x >= 0 && x <= p.width && y >= 0 && y <= p.height;
   }
 };

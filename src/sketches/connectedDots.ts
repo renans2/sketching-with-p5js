@@ -2,20 +2,21 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const connectedDots = (p: p5) => {
-  let n, angleOffset, speed;
-  const circleDiameter = 10;
+  const RADIUS = 5;
+  let n: number, angleOffset: number;
   let angle = 0;
   let angleIncrementer;
 
   p.setup = () => {
-    createCanvas(700, 700);
+    const canvasSize = getCanvasSize();
+    p.createCanvas(canvasSize, canvasSize);
     p.stroke(0);
   };
 
   p.draw = () => {
     p.background(255, 75);
     p.translate(p.width / 2, p.height / 2);
-    p.rotate(-PI / 2);
+    p.rotate(-p.PI / 2);
 
     n = Math.floor(p.map(p.mouseX, 0, p.width, 1, 15)) * 3;
     angleOffset = p.TWO_PI / n;
@@ -32,7 +33,7 @@ export const connectedDots = (p: p5) => {
         p.line(x, y, otherX, otherY);
       }
 
-      p.circle(x, y, p.circleDiameter);
+      p.circle(x, y, RADIUS * 2);
     }
 
     angle += angleIncrementer;
