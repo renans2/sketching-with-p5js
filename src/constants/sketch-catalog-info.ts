@@ -20,6 +20,7 @@ import { spiralRGB } from "../sketches/spiralRGB";
 import { sinVisualization } from "../sketches/sinVisualization";
 import { sinCosWaves } from "../sketches/sinCosWaves";
 import { rotateAndAlign } from "../sketches/rotateAndAlign";
+import RotatingSquaresDashboard from "../components/dashboards/rotating-squares";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
@@ -38,6 +39,7 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
     path: "rotating-squares",
     title: "Rotating Squares",
     script: rotatingSquares,
+    dashboard: RotatingSquaresDashboard,
     githubUrl: getSketchSourceUrl(rotatingSquares.name),
   },
   {

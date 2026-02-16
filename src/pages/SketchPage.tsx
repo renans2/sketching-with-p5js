@@ -12,7 +12,7 @@ export default function SketchPage({ sketch }: SketchPageType) {
   return (
     <main className="flex flex-1 min-h-0 flex-col md:flex-row p-4">
       <div className="space-y-4">
-        <p className="text-center">Info about the sketch goes here</p>
+        {sketch.dashboard && <sketch.dashboard />}
         <a
           href={sketch.githubUrl}
           target="_blank"
