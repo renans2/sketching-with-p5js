@@ -2,8 +2,8 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const sinVisualization = (p: p5) => {
-  const n = 100;
-  let angleMultiplier = 0.035;
+  const N = 100;
+  const SPEED = 0.035;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -21,12 +21,12 @@ export const sinVisualization = (p: p5) => {
     p.translate(p.width / 2, p.height / 2);
     p.rotate(-p.PI / 4);
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < N; i++) {
       p.push();
-      const angle = p.map(i, 0, n, p.TWO_PI * 1.5, 0);
-      p.rotate(p.sin(angle + p.frameCount * angleMultiplier));
-      const side = p.map(i, 0, n, 10, p.width);
-      p.stroke((p.map(i, 0, n, 0, 360) + p.frameCount * 2) % 360, 100, 50, 0.1);
+      const angle = p.map(i, 0, N, p.TWO_PI * 1.5, 0);
+      p.rotate(p.sin(angle + p.frameCount * SPEED));
+      const side = p.map(i, 0, N, 10, p.width);
+      p.stroke((p.map(i, 0, N, 0, 360) + p.frameCount * 2) % 360, 100, 50, 0.1);
       p.rect(0, 0, side, side);
       p.pop();
     }

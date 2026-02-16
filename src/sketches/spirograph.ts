@@ -2,10 +2,16 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const spirograph = (p: p5) => {
+  const HUE_INCREMENTER = 0.05;
   let leadAngle = 0;
   let angle = 0;
-  let leadAngleInc, angleInc, r1, r2, prevX, prevY, color;
-  const colorInc = 0.05;
+  let leadAngleInc: number;
+  let angleInc: number;
+  let r1: number;
+  let r2: number;
+  let prevX: number;
+  let prevY: number;
+  let hue: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -17,7 +23,7 @@ export const spirograph = (p: p5) => {
     leadAngleInc = p.random(0.001, 0.1);
     angleInc = p.random(0.001, 0.1);
 
-    color = p.random(360);
+    hue = p.random(360);
 
     r1 = p.random(p.height / 10, p.height / 4);
     r2 = p.height / 2 - r1;
@@ -33,7 +39,7 @@ export const spirograph = (p: p5) => {
       const x = leadX + p.cos(angle) * r2;
       const y = leadY + p.sin(angle) * r2;
 
-      p.stroke(color, 100, 50, 1);
+      p.stroke(hue, 100, 50, 1);
       p.line(prevX, prevY, x, y);
 
       prevX = x;
@@ -41,7 +47,7 @@ export const spirograph = (p: p5) => {
 
       leadAngle += leadAngleInc;
       angle += angleInc;
-      color = (color + colorInc) % 360;
+      hue = (hue + HUE_INCREMENTER) % 360;
     }
   };
 

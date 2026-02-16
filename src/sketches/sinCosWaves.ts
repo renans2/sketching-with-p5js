@@ -40,7 +40,7 @@ export const sinCosWaves = (p: p5) => {
     amount += 100;
   }
 
-  function generateCircles(amplitude, frequency) {
+  function generateCircles(amplitude: number, frequency: number) {
     index = (index + 3) % 360;
     colorVar = (colorVar + 3) % 360;
 

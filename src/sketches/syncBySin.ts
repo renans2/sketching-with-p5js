@@ -2,29 +2,26 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const syncBySin = (p: p5) => {
-  const amount = 50;
-  let diameter = 100;
-  let offset;
-  let angle = 0;
-  const startingAngle = 270;
-  const speed = 0.05;
-  let multiplier;
+  const N = 50;
+  const STARTING_ANGLE = 0;
+  const SPEED = 0.0005;
+  let radius: number;
+  let offset: number;
+  let multiplier: number;
 
   p.setup = () => {
     p.noStroke();
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
-    angleMode(DEGREES);
     p.colorMode(p.HSL);
     multiplier = p.width / 2;
-    offset = p.height / amount;
-    diameter = offset * 2;
+    offset = p.height / N;
+    radius = offset / 2;
   };
 
   p.draw = () => {
     p.background(0, 0, 0, 1);
     generateCircles();
-    angle = (angle + speed) % 360;
   };
 
   p.windowResized = () => {
@@ -33,13 +30,13 @@ export const syncBySin = (p: p5) => {
   };
 
   function generateCircles() {
-    for (let i = 0; i < amount; i++) {
-      const currentAngle = startingAngle + angle * (i + 1);
+    for (let i = 0; i < N; i++) {
+      const currentAngle = STARTING_ANGLE + p.frameCount * (i + 1) * SPEED;
       const x = (p.sin(currentAngle) + 1) * multiplier;
       const y = offset * i + offset / 2;
       const color = p.map(x, 0, p.width, 100, 300);
       p.fill(color, 100, 50, 1);
-      p.circle(x, y, diameter);
+      p.circle(x, y, radius * 2);
     }
   }
 };

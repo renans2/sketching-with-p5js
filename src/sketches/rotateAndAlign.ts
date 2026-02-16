@@ -2,8 +2,8 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const rotateAndAlign = (p: p5) => {
-  let minMultiplier = 50;
-  let maxMultiplier;
+  let MIN_MULTIPLIER = 50;
+  let maxMultiplier: number;
   let minAmount = 3;
   let maxAmount = 150;
   let maxDiameter = 20;
@@ -11,6 +11,7 @@ export const rotateAndAlign = (p: p5) => {
   let amount = 15;
   let globalAngle = 0;
   let globalSpeed;
+  let diameter: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -44,7 +45,7 @@ export const rotateAndAlign = (p: p5) => {
     p.rotate(90);
     p.beginShape();
     for (let i = 0; i < amount; i++) {
-      let multiplier = p.map(i, 0, amount, minMultiplier, maxMultiplier);
+      let multiplier = p.map(i, 0, amount, MIN_MULTIPLIER, maxMultiplier);
       let angle = globalAngle * (amount - i);
       let x = p.cos(angle) * multiplier;
       let y = p.sin(angle) * multiplier;

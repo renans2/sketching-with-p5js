@@ -13,6 +13,13 @@ import { kaleidoscope } from "../sketches/kaleidoscope";
 import { manualClock } from "../sketches/manualClock";
 import { matrixDigitalRain } from "../sketches/matrixDigitalRain";
 import { getSketchSourceUrl } from "../utils/get-sketch-source";
+import { trippyEffect } from "../sketches/trippyEffect";
+import { syncBySin } from "../sketches/syncBySin";
+import { spirograph } from "../sketches/spirograph";
+import { spiralRGB } from "../sketches/spiralRGB";
+import { sinVisualization } from "../sketches/sinVisualization";
+import { sinCosWaves } from "../sketches/sinCosWaves";
+import { rotateAndAlign } from "../sketches/rotateAndAlign";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
@@ -92,5 +99,47 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
     title: "Matrix Digital Rain",
     script: matrixDigitalRain,
     githubUrl: getSketchSourceUrl(matrixDigitalRain.name),
+  },
+  {
+    path: "trippy-effect",
+    title: "Trippy Effect",
+    script: trippyEffect,
+    githubUrl: getSketchSourceUrl(trippyEffect.name),
+  },
+  {
+    path: "sync-by-sin",
+    title: "Sync By Sin",
+    script: syncBySin,
+    githubUrl: getSketchSourceUrl(syncBySin.name),
+  },
+  {
+    path: "spirograph",
+    title: "Spirograph",
+    script: spirograph,
+    githubUrl: getSketchSourceUrl(spirograph.name),
+  },
+  {
+    path: "spiral-rgb",
+    title: "Spiral RGB",
+    script: spiralRGB,
+    githubUrl: getSketchSourceUrl(spiralRGB.name),
+  },
+  {
+    path: "sin-visualization",
+    title: "Sin Visualization",
+    script: sinVisualization,
+    githubUrl: getSketchSourceUrl(sinVisualization.name),
+  },
+  {
+    path: "sin-cos-waves",
+    title: "Sin-Cos Waves",
+    script: sinCosWaves,
+    githubUrl: getSketchSourceUrl(sinCosWaves.name),
+  },
+  {
+    path: "rotate-and-align",
+    title: "Rotate And Align",
+    script: rotateAndAlign,
+    githubUrl: getSketchSourceUrl(rotateAndAlign.name),
   },
 ];
