@@ -1,247 +1,259 @@
-import type { SketchInfo, SketchModule } from "../types/SketchInfo";
+import type { SketchInfo } from "../types/SketchInfo";
 import RotatingSquaresDashboard from "../components/controls/rotating-squares";
 import { getSketchSourceUrl } from "../utils/get-sketch-source";
+import { sketch as pineTree } from "../sketches/pineTree";
+import { sketch as flowField } from "../sketches/flowField";
+import { sketch as rotatingSquares } from "../sketches/rotatingSquares";
+import { sketch as bouncingLines } from "../sketches/bouncingLines";
+import { sketch as bouncingCircles } from "../sketches/bouncingCircles";
+import { sketch as circlesAroundCircles } from "../sketches/circlesAroundCircles";
+import { sketch as connectedDots } from "../sketches/connectedDots";
+import { sketch as cowEffect } from "../sketches/cowEffect";
+import { sketch as flowFieldSimulation } from "../sketches/flowFieldSimulation";
+import { sketch as insertionSort } from "../sketches/insertionSort";
+import { sketch as kaleidoscope } from "../sketches/kaleidoscope";
+import { sketch as manualClock } from "../sketches/manualClock";
+import { sketch as matrixDigitalRain } from "../sketches/matrixDigitalRain";
+import { sketch as trippyEffect } from "../sketches/trippyEffect";
+import { sketch as syncBySin } from "../sketches/syncBySin";
+import { sketch as spirograph } from "../sketches/spirograph";
+import { sketch as spiralRGB } from "../sketches/spiralRGB";
+import { sketch as sinVisualization } from "../sketches/sinVisualization";
+import { sketch as sinCosWaves } from "../sketches/sinCosWaves";
+import { sketch as rotateAndAlign } from "../sketches/rotateAndAlign";
+import { sketch as recursiveTrees } from "../sketches/recursiveTrees";
+import { sketch as randomTree } from "../sketches/randomTree";
+import { sketch as randomTopographicMaps } from "../sketches/randomTopographicMaps";
+import { sketch as rainbowFlower } from "../sketches/rainbowFlower";
+import { sketch as perlinNoiseWaves } from "../sketches/perlinNoiseWaves";
+import { sketch as perlinNoiseTree } from "../sketches/perlinNoiseTree";
+import { sketch as opticalIllusionCircles } from "../sketches/opticalIllusionCircles";
+import { sketch as animatedTopographicMaps } from "../sketches/animatedTopographicMaps";
+import { sketch as perlinNoiseRays } from "../sketches/perlinNoiseRays";
+import { sketch as mirrorDraw } from "../sketches/mirrorDraw";
+import { sketch as pendulumWaves } from "../sketches/pendulumWaves";
+import { sketch as fireworks } from "../sketches/fireworks";
+import { sketch as sandEffect } from "../sketches/sandEffect";
+import { sketch as ringsDraw } from "../sketches/ringsDraw";
+import { sketch as rotatingCircles } from "../sketches/rotatingCircles";
+import { sketch as circleLoop } from "../sketches/circleLoop";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
     path: "pine-tree",
     title: "Pine Tree",
-    loadSketch: () => import("../sketches/pineTree") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("pineTree"),
+    script: pineTree,
+    githubUrl: getSketchSourceUrl(pineTree.name),
   },
   {
     path: "flow-field",
     title: "Flow Field",
-    loadSketch: () => import("../sketches/flowField") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("flowField"),
+    script: flowField,
+    githubUrl: getSketchSourceUrl(flowField.name),
   },
   {
     path: "rotating-squares",
     title: "Rotating Squares",
-    loadSketch: () =>
-      import("../sketches/rotatingSquares") as Promise<SketchModule>,
+    script: rotatingSquares,
     dashboard: RotatingSquaresDashboard,
-    githubUrl: getSketchSourceUrl("rotatingSquares"),
+    githubUrl: getSketchSourceUrl(rotatingSquares.name),
   },
   {
     path: "bouncing-lines",
     title: "Bouncing Lines",
-    loadSketch: () =>
-      import("../sketches/bouncingLines") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("bouncingLines"),
+    script: bouncingLines,
+    githubUrl: getSketchSourceUrl(bouncingLines.name),
   },
   {
     path: "bouncing-circles",
     title: "Bouncing Circles",
-    loadSketch: () =>
-      import("../sketches/bouncingCircles") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("bouncingCircles"),
+    script: bouncingCircles,
+    githubUrl: getSketchSourceUrl(bouncingCircles.name),
   },
   {
     path: "circles-around-circles",
     title: "Circles Around Circles",
-    loadSketch: () =>
-      import("../sketches/circlesAroundCircles") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("circlesAroundCircles"),
+    script: circlesAroundCircles,
+    githubUrl: getSketchSourceUrl(circlesAroundCircles.name),
   },
   {
     path: "connected-dots",
     title: "Connected Dots",
-    loadSketch: () =>
-      import("../sketches/connectedDots") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("connectedDots"),
+    script: connectedDots,
+    githubUrl: getSketchSourceUrl(connectedDots.name),
   },
   {
     path: "cow-effect",
     title: "Cow Effect",
-    loadSketch: () => import("../sketches/cowEffect") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("cowEffect"),
+    script: cowEffect,
+    githubUrl: getSketchSourceUrl(cowEffect.name),
   },
   {
     path: "flow-field-simulation",
     title: "Flow Field Simulation",
-    loadSketch: () =>
-      import("../sketches/flowFieldSimulation") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("flowFieldSimulation"),
+    script: flowFieldSimulation,
+    githubUrl: getSketchSourceUrl(flowFieldSimulation.name),
   },
   {
     path: "insertion-sort",
     title: "Insertion Sort",
-    loadSketch: () =>
-      import("../sketches/insertionSort") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("insertionSort"),
+    script: insertionSort,
+    githubUrl: getSketchSourceUrl(insertionSort.name),
   },
   {
     path: "kaleidoscope",
     title: "Kaleidoscope",
-    loadSketch: () =>
-      import("../sketches/kaleidoscope") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("kaleidoscope"),
+    script: kaleidoscope,
+    githubUrl: getSketchSourceUrl(kaleidoscope.name),
   },
   {
     path: "manual-clock",
     title: "Manual Clock",
-    loadSketch: () =>
-      import("../sketches/manualClock") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("manualClock"),
+    script: manualClock,
+    githubUrl: getSketchSourceUrl(manualClock.name),
   },
   {
     path: "matrix-digital-rain",
     title: "Matrix Digital Rain",
-    loadSketch: () =>
-      import("../sketches/matrixDigitalRain") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("matrixDigitalRain"),
+    script: matrixDigitalRain,
+    githubUrl: getSketchSourceUrl(matrixDigitalRain.name),
   },
   {
     path: "trippy-effect",
     title: "Trippy Effect",
-    loadSketch: () =>
-      import("../sketches/trippyEffect") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("trippyEffect"),
+    script: trippyEffect,
+    githubUrl: getSketchSourceUrl(trippyEffect.name),
   },
   {
     path: "sync-by-sin",
     title: "Sync By Sin",
-    loadSketch: () => import("../sketches/syncBySin") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("syncBySin"),
+    script: syncBySin,
+    githubUrl: getSketchSourceUrl(syncBySin.name),
   },
   {
     path: "spirograph",
     title: "Spirograph",
-    loadSketch: () => import("../sketches/spirograph") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("spirograph"),
+    script: spirograph,
+    githubUrl: getSketchSourceUrl(spirograph.name),
   },
   {
     path: "spiral-rgb",
     title: "Spiral RGB",
-    loadSketch: () => import("../sketches/spiralRGB") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("spiralRGB"),
+    script: spiralRGB,
+    githubUrl: getSketchSourceUrl(spiralRGB.name),
   },
   {
     path: "sin-visualization",
     title: "Sin Visualization",
-    loadSketch: () =>
-      import("../sketches/sinVisualization") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("sinVisualization"),
+    script: sinVisualization,
+    githubUrl: getSketchSourceUrl(sinVisualization.name),
   },
   {
     path: "sin-cos-waves",
     title: "Sin-Cos Waves",
-    loadSketch: () =>
-      import("../sketches/sinCosWaves") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("sinCosWaves"),
+    script: sinCosWaves,
+    githubUrl: getSketchSourceUrl(sinCosWaves.name),
   },
   {
     path: "rotate-and-align",
     title: "Rotate And Align",
-    loadSketch: () =>
-      import("../sketches/rotateAndAlign") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("rotateAndAlign"),
+    script: rotateAndAlign,
+    githubUrl: getSketchSourceUrl(rotateAndAlign.name),
   },
   {
     path: "recursive-trees",
     title: "Recursive Trees",
-    loadSketch: () =>
-      import("../sketches/recursiveTrees") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("recursiveTrees"),
+    script: recursiveTrees,
+    githubUrl: getSketchSourceUrl(recursiveTrees.name),
   },
   {
     path: "random-tree",
     title: "Random Tree",
-    loadSketch: () => import("../sketches/randomTree") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("randomTree"),
+    script: randomTree,
+    githubUrl: getSketchSourceUrl(randomTree.name),
   },
   {
     path: "random-topographic-maps",
     title: "Random Topographic Maps",
-    loadSketch: () =>
-      import("../sketches/randomTopographicMaps") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("randomTopographicMaps"),
+    script: randomTopographicMaps,
+    githubUrl: getSketchSourceUrl(randomTopographicMaps.name),
   },
   {
     path: "rainbow-flower",
     title: "Rainbow Flower",
-    loadSketch: () =>
-      import("../sketches/rainbowFlower") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("rainbowFlower"),
+    script: rainbowFlower,
+    githubUrl: getSketchSourceUrl(rainbowFlower.name),
   },
   {
     path: "perlin-noise-waves",
     title: "Perlin Noise Waves",
-    loadSketch: () =>
-      import("../sketches/perlinNoiseWaves") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("perlinNoiseWaves"),
+    script: perlinNoiseWaves,
+    githubUrl: getSketchSourceUrl(perlinNoiseWaves.name),
   },
   {
     path: "perlin-noise-tree",
     title: "Perlin Noise Tree",
-    loadSketch: () =>
-      import("../sketches/perlinNoiseTree") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("perlinNoiseTree"),
+    script: perlinNoiseTree,
+    githubUrl: getSketchSourceUrl(perlinNoiseTree.name),
   },
   {
     path: "optical-illusion-circles",
     title: "Optical Illusion Circles",
-    loadSketch: () =>
-      import("../sketches/opticalIllusionCircles") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("opticalIllusionCircles"),
+    script: opticalIllusionCircles,
+    githubUrl: getSketchSourceUrl(opticalIllusionCircles.name),
   },
   {
     path: "animated-topgraphic-maps",
     title: "Animated Topographic Maps",
-    loadSketch: () =>
-      import("../sketches/animatedTopographicMaps") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("animatedTopographicMaps"),
+    script: animatedTopographicMaps,
+    githubUrl: getSketchSourceUrl(animatedTopographicMaps.name),
   },
   {
     path: "perlin-noise-rays",
     title: "Perlin Noise Rays",
-    loadSketch: () =>
-      import("../sketches/perlinNoiseRays") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("perlinNoiseRays"),
+    script: perlinNoiseRays,
+    githubUrl: getSketchSourceUrl(perlinNoiseRays.name),
   },
   {
     path: "mirror-draw",
     title: "Mirror Draw",
-    loadSketch: () => import("../sketches/mirrorDraw") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("mirrorDraw"),
+    script: mirrorDraw,
+    githubUrl: getSketchSourceUrl(mirrorDraw.name),
   },
   {
     path: "pendulum-waves",
     title: "Pendulum Waves",
-    loadSketch: () =>
-      import("../sketches/pendulumWaves") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("pendulumWaves"),
+    script: pendulumWaves,
+    githubUrl: getSketchSourceUrl(pendulumWaves.name),
   },
   {
     path: "fireworks",
     title: "Fireworks",
-    loadSketch: () => import("../sketches/fireworks") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("fireworks"),
+    script: fireworks,
+    githubUrl: getSketchSourceUrl(fireworks.name),
   },
   {
     path: "sand-effect",
     title: "Sand Effect",
-    loadSketch: () => import("../sketches/sandEffect") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("sandEffect"),
+    script: sandEffect,
+    githubUrl: getSketchSourceUrl(sandEffect.name),
   },
   {
     path: "rings-draw",
     title: "Rings Draw",
-    loadSketch: () => import("../sketches/ringsDraw") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("ringsDraw"),
+    script: ringsDraw,
+    githubUrl: getSketchSourceUrl(ringsDraw.name),
   },
   {
     path: "rotating-circles",
     title: "Rotating Circles",
-    loadSketch: () =>
-      import("../sketches/rotatingCircles") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("rotatingCircles"),
+    script: rotatingCircles,
+    githubUrl: getSketchSourceUrl(rotatingCircles.name),
   },
   {
     path: "circle-loop",
     title: "Circle Loop",
-    loadSketch: () => import("../sketches/circleLoop") as Promise<SketchModule>,
-    githubUrl: getSketchSourceUrl("circleLoop"),
+    script: circleLoop,
+    githubUrl: getSketchSourceUrl(circleLoop.name),
   },
 ];
