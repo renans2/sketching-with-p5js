@@ -4,6 +4,8 @@
   border-radius: 5px;
 } */
 
-.active {
-  text-decoration: underline;
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
