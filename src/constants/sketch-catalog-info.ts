@@ -1,5 +1,5 @@
 import type { SketchInfo } from "../types/SketchInfo";
-import RotatingSquaresDashboard from "../components/dashboards/rotating-squares";
+import RotatingSquaresDashboard from "../components/controls/rotating-squares";
 import { pineTree } from "../sketches/pineTree";
 import { flowField } from "../sketches/flowField";
 import { rotatingSquares } from "../sketches/rotatingSquares";

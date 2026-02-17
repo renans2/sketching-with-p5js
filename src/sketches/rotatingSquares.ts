@@ -1,13 +1,13 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
-import { useRotatingSquaresStore } from "../components/dashboards/rotating-squares";
+import { useControlsStore } from "../stores/controls-store";
 
 export const rotatingSquares = (p: p5) => {
-  let n = useRotatingSquaresStore.getState().n;
+  let n = useControlsStore.getState().val1;
   const SPEED = 0.002;
 
-  const unsubscribe = useRotatingSquaresStore.subscribe((state) => {
-    n = state.n;
+  const unsubscribe = useControlsStore.subscribe((state) => {
+    n = state.val1;
   });
 
   p.setup = () => {
