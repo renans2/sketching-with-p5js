@@ -1,7 +1,7 @@
 // import p5 from "p5";
 // import { getCanvasSize } from "../utils/get-canvas-size";
 
-// export const christmasTree = (p: p5) => {
+// export const sketch = (p: p5) => {
 //   const lines = 20;
 //   let lineOffset;
 //   const diameterPct = 0.000015;

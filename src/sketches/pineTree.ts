@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const pineTree = (p: p5) => {
+export const sketch = (p: p5) => {
   const depth = 4;
   const startingLength = 80;
   // const lengthDecay = 0.9;

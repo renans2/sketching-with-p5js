@@ -1,23 +1,29 @@
 import p5 from "p5";
 import { useEffect, useRef } from "react";
 import { CANVAS_CONTAINER } from "../constants/elements-ids";
+import type { SketchModule } from "../types/SketchInfo";
 
 type SketchType = {
-  script: (p: p5) => void;
+  loadSketch: () => Promise<SketchModule>;
 };
 
-export default function Sketch({ script }: SketchType) {
+export default function Sketch({ loadSketch }: SketchType) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const p5Ref = useRef<p5 | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const load = async () => {
+      if (!containerRef.current) return;
 
-    p5Ref.current = new p5(script, containerRef.current);
+      const { sketch } = await loadSketch();
+      p5Ref.current = new p5(sketch, containerRef.current);
 
-    return () => {
-      p5Ref.current?.remove();
+      return () => {
+        p5Ref.current?.remove();
+      };
     };
+
+    load();
   }, []);
 
   return (

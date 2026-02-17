@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const flowField = (p: p5) => {
+export const sketch = (p: p5) => {
   const offset = 8;
   let amountX: number, amountY: number;
   const minMultiplier = 0.00045;

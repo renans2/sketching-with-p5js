@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const circlesAroundCircles = (p: p5) => {
+export const sketch = (p: p5) => {
   const RADIUS = 15;
   const N = 6;
   const DEPTH = 3;

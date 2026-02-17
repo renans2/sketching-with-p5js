@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const animatedTopographicMaps = (p: p5) => {
+export const sketch = (p: p5) => {
   const AMOUNT = 100;
   const NOISE_MULTIPLIER = 0.02;
   const SPEED = 0.0035;

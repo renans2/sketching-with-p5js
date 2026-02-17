@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const rainbowFlower = (p: p5) => {
+export const sketch = (p: p5) => {
   const nCircles = 100;
   const radius = 15;
   const speed = 0.001;

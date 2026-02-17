@@ -1,10 +1,14 @@
-import p5 from "p5";
 import type { JSX } from "react";
+import p5 from "p5";
+
+export interface SketchModule {
+  sketch: (p: p5) => void;
+}
 
 export interface SketchInfo {
   path: string;
   title: string;
-  script: (p: p5) => void;
+  loadSketch: () => Promise<SketchModule>;
   dashboard?: () => JSX.Element;
   githubUrl: string;
 }

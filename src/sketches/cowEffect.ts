@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const cowEffect = (p: p5) => {
+export const sketch = (p: p5) => {
   const N = 75;
   const m1 = 0.005;
   const m2 = 0.035;

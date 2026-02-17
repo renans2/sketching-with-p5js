@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const bouncingCircles = (p: p5) => {
+export const sketch = (p: p5) => {
   const RADIUS = 20;
   const MIN_SPEED = 7;
   const MAX_SPEED = 14;

@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const perlinNoiseRays = (p: p5) => {
+export const sketch = (p: p5) => {
   const AMOUNT = 10;
   let MULTIPLIER = 0.003;
   const SPEED = 0.01;

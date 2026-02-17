@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const manualClock = (p: p5) => {
+export const sketch = (p: p5) => {
   const now = new Date();
   let hours = now.getHours() % 12;
   let minutes = now.getMinutes();

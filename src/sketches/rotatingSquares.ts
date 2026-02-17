@@ -2,7 +2,7 @@ import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 import { useControlsStore } from "../stores/controls-store";
 
-export const rotatingSquares = (p: p5) => {
+export const sketch = (p: p5) => {
   let n = useControlsStore.getState().val1;
   const SPEED = 0.002;
 

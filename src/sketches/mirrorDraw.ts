@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const mirrorDraw = (p: p5) => {
+export const sketch = (p: p5) => {
   const DIVISIONS = 30;
   let angleOffset: number;
   let x: number | null = 0;

@@ -1,7 +1,7 @@
 // import p5 from "p5";
 // import { getCanvasSize } from "../utils/get-canvas-size";
 
-// export const microphoneVisualizer = (p: p5) => {
+// export const sketch = (p: p5) => {
 //   const bands = 256;
 //   let mic, fft: number, offset: number;
 //   let started = false;

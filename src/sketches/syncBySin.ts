@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const syncBySin = (p: p5) => {
+export const sketch = (p: p5) => {
   const N = 50;
   const STARTING_ANGLE = 0;
   const SPEED = 0.0005;

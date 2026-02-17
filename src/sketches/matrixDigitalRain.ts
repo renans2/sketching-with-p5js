@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const matrixDigitalRain = (p: p5) => {
+export const sketch = (p: p5) => {
   const FONT_SIZE = 20;
   const SIDE_LENGTH = FONT_SIZE;
   let N_HORIZONTAL: number;

@@ -22,7 +22,7 @@ export default function SketchPage({ sketch }: SketchPageType) {
           Sketch source code on GitHub
         </a>
       </div>
-      <Sketch script={sketch.script} />
+      <Sketch loadSketch={sketch.loadSketch} />
     </main>
   );
 }

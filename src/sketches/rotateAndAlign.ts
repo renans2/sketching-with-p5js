@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { getCanvasSize } from "../utils/get-canvas-size";
 
-export const rotateAndAlign = (p: p5) => {
+export const sketch = (p: p5) => {
   let MIN_MULTIPLIER = 50;
   let maxMultiplier: number;
   let minAmount = 3;
