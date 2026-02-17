@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-canvas {
+/* canvas {
   border-radius: 5px;
-}
+} */
 
 .active {
   text-decoration: underline;

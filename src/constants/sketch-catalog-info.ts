@@ -1,4 +1,5 @@
 import type { SketchInfo } from "../types/SketchInfo";
+import RotatingSquaresDashboard from "../components/dashboards/rotating-squares";
 import { pineTree } from "../sketches/pineTree";
 import { flowField } from "../sketches/flowField";
 import { rotatingSquares } from "../sketches/rotatingSquares";
@@ -20,7 +21,6 @@ import { spiralRGB } from "../sketches/spiralRGB";
 import { sinVisualization } from "../sketches/sinVisualization";
 import { sinCosWaves } from "../sketches/sinCosWaves";
 import { rotateAndAlign } from "../sketches/rotateAndAlign";
-import RotatingSquaresDashboard from "../components/dashboards/rotating-squares";
 import { recursiveTrees } from "../sketches/recursiveTrees";
 import { randomTree } from "../sketches/randomTree";
 import { randomTopographicMaps } from "../sketches/randomTopographicMaps";
@@ -28,6 +28,15 @@ import { rainbowFlower } from "../sketches/rainbowFlower";
 import { perlinNoiseWaves } from "../sketches/perlinNoiseWaves";
 import { perlinNoiseTree } from "../sketches/perlinNoiseTree";
 import { opticalIllusionCircles } from "../sketches/opticalIllusionCircles";
+import { animatedTopographicMaps } from "../sketches/animatedTopographicMaps";
+import { perlinNoiseRays } from "../sketches/perlinNoiseRays";
+import { mirrorDraw } from "../sketches/mirrorDraw";
+import { pendulumWaves } from "../sketches/pendulumWaves";
+import { fireworks } from "../sketches/fireworks";
+import { sandEffect } from "../sketches/sandEffect";
+import { ringsDraw } from "../sketches/ringsDraw";
+import { rotatingCircles } from "../sketches/rotatingCircles";
+import { circleLoop } from "../sketches/circleLoop";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
@@ -192,5 +201,59 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
     title: "Optical Illusion Circles",
     script: opticalIllusionCircles,
     githubUrl: getSketchSourceUrl(opticalIllusionCircles.name),
+  },
+  {
+    path: "animated-topgraphic-maps",
+    title: "Animated Topographic Maps",
+    script: animatedTopographicMaps,
+    githubUrl: getSketchSourceUrl(animatedTopographicMaps.name),
+  },
+  {
+    path: "perlin-noise-rays",
+    title: "Perlin Noise Rays",
+    script: perlinNoiseRays,
+    githubUrl: getSketchSourceUrl(perlinNoiseRays.name),
+  },
+  {
+    path: "mirror-draw",
+    title: "Mirror Draw",
+    script: mirrorDraw,
+    githubUrl: getSketchSourceUrl(mirrorDraw.name),
+  },
+  {
+    path: "pendulum-waves",
+    title: "Pendulum Waves",
+    script: pendulumWaves,
+    githubUrl: getSketchSourceUrl(pendulumWaves.name),
+  },
+  {
+    path: "fireworks",
+    title: "Fireworks",
+    script: fireworks,
+    githubUrl: getSketchSourceUrl(fireworks.name),
+  },
+  {
+    path: "sand-effect",
+    title: "Sand Effect",
+    script: sandEffect,
+    githubUrl: getSketchSourceUrl(sandEffect.name),
+  },
+  {
+    path: "rings-draw",
+    title: "Rings Draw",
+    script: ringsDraw,
+    githubUrl: getSketchSourceUrl(ringsDraw.name),
+  },
+  {
+    path: "rotating-circles",
+    title: "Rotating Circles",
+    script: rotatingCircles,
+    githubUrl: getSketchSourceUrl(rotatingCircles.name),
+  },
+  {
+    path: "circle-loop",
+    title: "Circle Loop",
+    script: circleLoop,
+    githubUrl: getSketchSourceUrl(circleLoop.name),
   },
 ];
