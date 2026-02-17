@@ -21,6 +21,13 @@ import { sinVisualization } from "../sketches/sinVisualization";
 import { sinCosWaves } from "../sketches/sinCosWaves";
 import { rotateAndAlign } from "../sketches/rotateAndAlign";
 import RotatingSquaresDashboard from "../components/dashboards/rotating-squares";
+import { recursiveTrees } from "../sketches/recursiveTrees";
+import { randomTree } from "../sketches/randomTree";
+import { randomTopographicMaps } from "../sketches/randomTopographicMaps";
+import { rainbowFlower } from "../sketches/rainbowFlower";
+import { perlinNoiseWaves } from "../sketches/perlinNoiseWaves";
+import { perlinNoiseTree } from "../sketches/perlinNoiseTree";
+import { opticalIllusionCircles } from "../sketches/opticalIllusionCircles";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
@@ -143,5 +150,47 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
     title: "Rotate And Align",
     script: rotateAndAlign,
     githubUrl: getSketchSourceUrl(rotateAndAlign.name),
+  },
+  {
+    path: "recursive-trees",
+    title: "Recursive Trees",
+    script: recursiveTrees,
+    githubUrl: getSketchSourceUrl(recursiveTrees.name),
+  },
+  {
+    path: "random-tree",
+    title: "Random Tree",
+    script: randomTree,
+    githubUrl: getSketchSourceUrl(randomTree.name),
+  },
+  {
+    path: "random-topographic-maps",
+    title: "Random Topographic Maps",
+    script: randomTopographicMaps,
+    githubUrl: getSketchSourceUrl(randomTopographicMaps.name),
+  },
+  {
+    path: "rainbow-flower",
+    title: "Rainbow Flower",
+    script: rainbowFlower,
+    githubUrl: getSketchSourceUrl(rainbowFlower.name),
+  },
+  {
+    path: "perlin-noise-waves",
+    title: "Perlin Noise Waves",
+    script: perlinNoiseWaves,
+    githubUrl: getSketchSourceUrl(perlinNoiseWaves.name),
+  },
+  {
+    path: "perlin-noise-tree",
+    title: "Perlin Noise Tree",
+    script: perlinNoiseTree,
+    githubUrl: getSketchSourceUrl(perlinNoiseTree.name),
+  },
+  {
+    path: "optical-illusion-circles",
+    title: "Optical Illusion Circles",
+    script: opticalIllusionCircles,
+    githubUrl: getSketchSourceUrl(opticalIllusionCircles.name),
   },
 ];

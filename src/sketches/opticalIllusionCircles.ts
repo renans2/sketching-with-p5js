@@ -4,11 +4,11 @@ import { getCanvasSize } from "../utils/get-canvas-size";
 export const opticalIllusionCircles = (p: p5) => {
   let amount = 0;
   let maxDiameter = 50;
-  let diameter;
+  let diameter: number;
   let strkWeightOuterCicle = 5;
   let strkWeightlines = 2;
-  let multiplier;
-  let offset;
+  let multiplier: number;
+  let offset: number;
   let angleIncrementer = 0;
   let speed = 2;
 
@@ -17,9 +17,9 @@ export const opticalIllusionCircles = (p: p5) => {
     p.createCanvas(canvasSize, canvasSize);
     p.noStroke();
     p.fill(255);
-    p.angleMode(DEGREES);
+    p.angleMode(p.DEGREES);
     p.background(0);
-    multiplier = (0.9 * windowHeight) / 2;
+    multiplier = (0.9 * p.height) / 2;
   };
 
   p.draw = () => {

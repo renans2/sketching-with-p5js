@@ -12,7 +12,7 @@ export const randomTopographicMaps = (p: p5) => {
     p.createCanvas(canvasSize, canvasSize);
     p.pixelDensity(1);
     p.colorMode(p.HSL);
-    noiseDetail(3, 1);
+    p.noiseDetail(3, 1);
 
     drawMap();
   };
@@ -20,6 +20,11 @@ export const randomTopographicMaps = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+  };
+
+  p.mouseClicked = () => {
+    p.noiseSeed(p.random(100));
+    drawMap();
   };
 
   function drawMap() {
@@ -30,7 +35,7 @@ export const randomTopographicMaps = (p: p5) => {
 
     for (let i = 0; i < p.height; i++) {
       for (let j = 0; j < p.width; j++) {
-        const p = (j + i * p.width) * 4;
+        const v = (j + i * p.width) * 4;
         const nois = p.noise(j * m1, i * m1);
 
         for (let k = 0; k < gaps; k++) {
@@ -39,10 +44,10 @@ export const randomTopographicMaps = (p: p5) => {
             nois <= k * gapOffset + gapOffset / 2 + gapInterval
           ) {
             const c = p.color(p.map(k, 0, gaps, 0, 270) - 95, 100, 50, 1);
-            p.pixels[p] = p.red(c);
-            p.pixels[p + 1] = p.green(c);
-            p.pixels[p + 2] = p.blue(c);
-            p.pixels[p + 3] = 255;
+            p.pixels[v] = p.red(c);
+            p.pixels[v + 1] = p.green(c);
+            p.pixels[v + 2] = p.blue(c);
+            p.pixels[v + 3] = 255;
             break;
           }
         }
@@ -51,14 +56,9 @@ export const randomTopographicMaps = (p: p5) => {
     p.updatePixels();
   }
 
-  function updateVariables() {
-    gaps = p.map(p.mouseX, 0, p.width, 0, 40);
-    gapInterval = p.map(p.mouseY, 0, p.height, 0.0015, 0.05);
-    gapOffset = 1 / gaps;
-  }
-
-  function mouseClicked() {
-    p.noiseSeed(p.random(100));
-    drawMap();
-  }
+  // function updateVariables() {
+  //   gaps = p.map(p.mouseX, 0, p.width, 0, 40);
+  //   gapInterval = p.map(p.mouseY, 0, p.height, 0.0015, 0.05);
+  //   gapOffset = 1 / gaps;
+  // }
 };

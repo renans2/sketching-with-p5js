@@ -3,7 +3,7 @@ import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const randomTree = (p: p5) => {
   const branchProb = 25;
-  let maxAngle;
+  let maxAngle: number;
   const minLength = 10;
   const maxLength = 50;
   const depth = 20;
@@ -12,7 +12,7 @@ export const randomTree = (p: p5) => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
     p.colorMode(p.HSL);
-    p.cursor(HAND);
+    p.cursor(p.HAND);
     p.stroke(255);
     p.strokeWeight(1);
     maxAngle = p.PI / 8;
@@ -31,7 +31,16 @@ export const randomTree = (p: p5) => {
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
 
-  function drawLightning(d) {
+  p.mousePressed = () => {
+    p.background(0);
+    p.push();
+    p.translate(p.width / 2, p.height);
+    p.rotate(-p.PI / 2);
+    drawLightning(depth);
+    p.pop();
+  };
+
+  function drawLightning(d: number) {
     if (d > 0) {
       const len = p.random(minLength, maxLength);
       p.stroke(p.map(d, 0, depth, 360, 0), 100, 50, 1);
@@ -51,14 +60,5 @@ export const randomTree = (p: p5) => {
       p.rotate(angle);
       drawLightning(d - 1);
     }
-  }
-
-  function mousePressed() {
-    p.background(0);
-    p.push();
-    p.translate(p.width / 2, p.height);
-    p.rotate(-p.PI / 2);
-    drawLightning(depth);
-    p.pop();
   }
 };

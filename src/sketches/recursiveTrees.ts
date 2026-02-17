@@ -12,8 +12,8 @@ export const recursiveTrees = (p: p5) => {
   const minAngle = 0.2;
   const maxAngle = 0.5;
 
-  let leafHue;
-  let leafSat;
+  let leafHue: number;
+  let leafSat: number;
   const leafLight = 85;
   const leafAlpha = 0.075;
   const maxBranches = 3;
@@ -42,7 +42,14 @@ export const recursiveTrees = (p: p5) => {
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
 
-  function drawTree(d, l, lenDecay) {
+  p.mousePressed = () => {
+    p.background(255);
+    p.push();
+    drawNewTree();
+    p.pop();
+  };
+
+  function drawTree(d: number, l: number, lenDecay: number) {
     if (d > 0) {
       const w = p.map(d, depth, 0, maxStrokeWeight, minStrokeWeight);
       const nextW = p.map(d - 1, depth, 0, maxStrokeWeight, minStrokeWeight);
@@ -83,12 +90,5 @@ export const recursiveTrees = (p: p5) => {
   function drawNewTree() {
     setColors();
     drawTree(depth, startingLength, lengthDecay);
-  }
-
-  function mousePressed() {
-    p.background(255);
-    p.push();
-    drawNewTree();
-    p.pop();
   }
 };

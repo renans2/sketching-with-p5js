@@ -25,7 +25,7 @@ export const perlinNoiseTree = (p: p5) => {
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
 
-  function drawBranch(length, depth) {
+  function drawBranch(length: number, depth: number) {
     if (depth > 0) {
       if (length > 0) {
         p.strokeWeight(p.map(depth, DEPTH, 1, 10, 3));

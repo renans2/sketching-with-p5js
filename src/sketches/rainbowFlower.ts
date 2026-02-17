@@ -3,11 +3,11 @@ import { getCanvasSize } from "../utils/get-canvas-size";
 
 export const rainbowFlower = (p: p5) => {
   const nCircles = 100;
-  const circlesDiameter = 30;
+  const radius = 15;
   const speed = 0.001;
-  let minRadius;
-  let maxRadius;
-  let angleOffset;
+  let minRadius: number;
+  let maxRadius: number;
+  let angleOffset: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -34,7 +34,7 @@ export const rainbowFlower = (p: p5) => {
         maxRadius,
       );
       p.fill(p.map(i, 0, nCircles, 0, 360), 100, 50, 0.5);
-      p.circle(0, localRadius, p.circlesDiameter);
+      p.circle(0, localRadius, radius * 2);
     }
   };
 

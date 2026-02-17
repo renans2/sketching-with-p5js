@@ -4,7 +4,7 @@ import { getCanvasSize } from "../utils/get-canvas-size";
 export const pineTree = (p: p5) => {
   const depth = 4;
   const startingLength = 80;
-  const lengthDecay = 0.9;
+  // const lengthDecay = 0.9;
   const angleDecay = 0.92;
 
   p.setup = () => {
@@ -25,8 +25,8 @@ export const pineTree = (p: p5) => {
 
   function drawPineTree(d: number, l: number, a: number, it: number) {
     if (d < depth) {
-      let nextLen = l;
-      let currAng = a;
+      // let nextLen = l;
+      // let currAng = a;
       let mainTrunc = l;
 
       for (let i = 0; i < it; i++) {
