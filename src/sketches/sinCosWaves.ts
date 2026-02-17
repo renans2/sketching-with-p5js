@@ -36,9 +36,9 @@ export const sinCosWaves = (p: p5) => {
     p.resizeCanvas(newCanvasSize, newCanvasSize);
   };
 
-  function mouseReleased() {
+  p.mouseReleased = () => {
     amount += 100;
-  }
+  };
 
   function generateCircles(amplitude: number, frequency: number) {
     index = (index + 3) % 360;
