@@ -1,259 +1,199 @@
 import type { SketchInfo } from "../types/SketchInfo";
 import RotatingSquaresDashboard from "../components/controls/rotating-squares";
 import { getSketchSourceUrl } from "../utils/get-sketch-source";
-import { sketch as pineTree } from "../sketches/pineTree";
-import { sketch as flowField } from "../sketches/flowField";
-import { sketch as rotatingSquares } from "../sketches/rotatingSquares";
-import { sketch as bouncingLines } from "../sketches/bouncingLines";
-import { sketch as bouncingCircles } from "../sketches/bouncingCircles";
-import { sketch as circlesAroundCircles } from "../sketches/circlesAroundCircles";
-import { sketch as connectedDots } from "../sketches/connectedDots";
-import { sketch as cowEffect } from "../sketches/cowEffect";
-import { sketch as flowFieldSimulation } from "../sketches/flowFieldSimulation";
-import { sketch as insertionSort } from "../sketches/insertionSort";
-import { sketch as kaleidoscope } from "../sketches/kaleidoscope";
-import { sketch as manualClock } from "../sketches/manualClock";
-import { sketch as matrixDigitalRain } from "../sketches/matrixDigitalRain";
-import { sketch as trippyEffect } from "../sketches/trippyEffect";
-import { sketch as syncBySin } from "../sketches/syncBySin";
-import { sketch as spirograph } from "../sketches/spirograph";
-import { sketch as spiralRGB } from "../sketches/spiralRGB";
-import { sketch as sinVisualization } from "../sketches/sinVisualization";
-import { sketch as sinCosWaves } from "../sketches/sinCosWaves";
-import { sketch as rotateAndAlign } from "../sketches/rotateAndAlign";
-import { sketch as recursiveTrees } from "../sketches/recursiveTrees";
-import { sketch as randomTree } from "../sketches/randomTree";
-import { sketch as randomTopographicMaps } from "../sketches/randomTopographicMaps";
-import { sketch as rainbowFlower } from "../sketches/rainbowFlower";
-import { sketch as perlinNoiseWaves } from "../sketches/perlinNoiseWaves";
-import { sketch as perlinNoiseTree } from "../sketches/perlinNoiseTree";
-import { sketch as opticalIllusionCircles } from "../sketches/opticalIllusionCircles";
-import { sketch as animatedTopographicMaps } from "../sketches/animatedTopographicMaps";
-import { sketch as perlinNoiseRays } from "../sketches/perlinNoiseRays";
-import { sketch as mirrorDraw } from "../sketches/mirrorDraw";
-import { sketch as pendulumWaves } from "../sketches/pendulumWaves";
-import { sketch as fireworks } from "../sketches/fireworks";
-import { sketch as sandEffect } from "../sketches/sandEffect";
-import { sketch as ringsDraw } from "../sketches/ringsDraw";
-import { sketch as rotatingCircles } from "../sketches/rotatingCircles";
-import { sketch as circleLoop } from "../sketches/circleLoop";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
     path: "pine-tree",
     title: "Pine Tree",
-    script: pineTree,
-    githubUrl: getSketchSourceUrl(pineTree.name),
+    loadSketch: () => import("../sketches/pineTree.js"),
+    githubUrl: getSketchSourceUrl("pineTree"),
   },
   {
     path: "flow-field",
     title: "Flow Field",
-    script: flowField,
-    githubUrl: getSketchSourceUrl(flowField.name),
+    loadSketch: () => import("../sketches/flowField.js"),
+    githubUrl: getSketchSourceUrl("flowField"),
   },
   {
     path: "rotating-squares",
     title: "Rotating Squares",
-    script: rotatingSquares,
     dashboard: RotatingSquaresDashboard,
-    githubUrl: getSketchSourceUrl(rotatingSquares.name),
+    loadSketch: () => import("../sketches/rotatingSquares.js"),
+    githubUrl: getSketchSourceUrl("rotatingSquares"),
   },
   {
     path: "bouncing-lines",
     title: "Bouncing Lines",
-    script: bouncingLines,
-    githubUrl: getSketchSourceUrl(bouncingLines.name),
+    loadSketch: () => import("../sketches/bouncingLines.js"),
+    githubUrl: getSketchSourceUrl("bouncingLines"),
   },
   {
     path: "bouncing-circles",
     title: "Bouncing Circles",
-    script: bouncingCircles,
-    githubUrl: getSketchSourceUrl(bouncingCircles.name),
+    loadSketch: () => import("../sketches/bouncingCircles.js"),
+    githubUrl: getSketchSourceUrl("bouncingCircles"),
   },
   {
     path: "circles-around-circles",
     title: "Circles Around Circles",
-    script: circlesAroundCircles,
-    githubUrl: getSketchSourceUrl(circlesAroundCircles.name),
+    loadSketch: () => import("../sketches/circlesAroundCircles.js"),
+    githubUrl: getSketchSourceUrl("circlesAroundCircles"),
   },
   {
     path: "connected-dots",
     title: "Connected Dots",
-    script: connectedDots,
-    githubUrl: getSketchSourceUrl(connectedDots.name),
+    loadSketch: () => import("../sketches/connectedDots.js"),
+    githubUrl: getSketchSourceUrl("connectedDots"),
   },
   {
     path: "cow-effect",
     title: "Cow Effect",
-    script: cowEffect,
-    githubUrl: getSketchSourceUrl(cowEffect.name),
-  },
-  {
-    path: "flow-field-simulation",
-    title: "Flow Field Simulation",
-    script: flowFieldSimulation,
-    githubUrl: getSketchSourceUrl(flowFieldSimulation.name),
+    loadSketch: () => import("../sketches/cowEffect.js"),
+    githubUrl: getSketchSourceUrl("cowEffect"),
   },
   {
     path: "insertion-sort",
     title: "Insertion Sort",
-    script: insertionSort,
-    githubUrl: getSketchSourceUrl(insertionSort.name),
+    loadSketch: () => import("../sketches/insertionSort.js"),
+    githubUrl: getSketchSourceUrl("insertionSort"),
   },
   {
     path: "kaleidoscope",
     title: "Kaleidoscope",
-    script: kaleidoscope,
-    githubUrl: getSketchSourceUrl(kaleidoscope.name),
+    loadSketch: () => import("../sketches/kaleidoscope.js"),
+    githubUrl: getSketchSourceUrl("kaleidoscope"),
   },
   {
     path: "manual-clock",
     title: "Manual Clock",
-    script: manualClock,
-    githubUrl: getSketchSourceUrl(manualClock.name),
+    loadSketch: () => import("../sketches/manualClock.js"),
+    githubUrl: getSketchSourceUrl("manualClock"),
   },
   {
     path: "matrix-digital-rain",
     title: "Matrix Digital Rain",
-    script: matrixDigitalRain,
-    githubUrl: getSketchSourceUrl(matrixDigitalRain.name),
+    loadSketch: () => import("../sketches/matrixDigitalRain.js"),
+    githubUrl: getSketchSourceUrl("matrixDigitalRain"),
   },
   {
     path: "trippy-effect",
     title: "Trippy Effect",
-    script: trippyEffect,
-    githubUrl: getSketchSourceUrl(trippyEffect.name),
+    loadSketch: () => import("../sketches/trippyEffect.js"),
+    githubUrl: getSketchSourceUrl("trippyEffect"),
   },
   {
     path: "sync-by-sin",
     title: "Sync By Sin",
-    script: syncBySin,
-    githubUrl: getSketchSourceUrl(syncBySin.name),
+    loadSketch: () => import("../sketches/syncBySin.js"),
+    githubUrl: getSketchSourceUrl("syncBySin"),
   },
   {
     path: "spirograph",
     title: "Spirograph",
-    script: spirograph,
-    githubUrl: getSketchSourceUrl(spirograph.name),
+    loadSketch: () => import("../sketches/spirograph.js"),
+    githubUrl: getSketchSourceUrl("spirograph"),
   },
   {
     path: "spiral-rgb",
     title: "Spiral RGB",
-    script: spiralRGB,
-    githubUrl: getSketchSourceUrl(spiralRGB.name),
+    loadSketch: () => import("../sketches/spiralRGB.js"),
+    githubUrl: getSketchSourceUrl("spiralRGB"),
   },
   {
     path: "sin-visualization",
     title: "Sin Visualization",
-    script: sinVisualization,
-    githubUrl: getSketchSourceUrl(sinVisualization.name),
+    loadSketch: () => import("../sketches/sinVisualization.js"),
+    githubUrl: getSketchSourceUrl("sinVisualization"),
   },
   {
     path: "sin-cos-waves",
     title: "Sin-Cos Waves",
-    script: sinCosWaves,
-    githubUrl: getSketchSourceUrl(sinCosWaves.name),
+    loadSketch: () => import("../sketches/sinCosWaves.js"),
+    githubUrl: getSketchSourceUrl("sinCosWaves"),
   },
   {
     path: "rotate-and-align",
     title: "Rotate And Align",
-    script: rotateAndAlign,
-    githubUrl: getSketchSourceUrl(rotateAndAlign.name),
+    loadSketch: () => import("../sketches/rotateAndAlign.js"),
+    githubUrl: getSketchSourceUrl("rotateAndAlign"),
   },
   {
     path: "recursive-trees",
     title: "Recursive Trees",
-    script: recursiveTrees,
-    githubUrl: getSketchSourceUrl(recursiveTrees.name),
+    loadSketch: () => import("../sketches/recursiveTrees.js"),
+    githubUrl: getSketchSourceUrl("recursiveTrees"),
   },
   {
     path: "random-tree",
     title: "Random Tree",
-    script: randomTree,
-    githubUrl: getSketchSourceUrl(randomTree.name),
+    loadSketch: () => import("../sketches/randomTree.js"),
+    githubUrl: getSketchSourceUrl("randomTree"),
   },
   {
     path: "random-topographic-maps",
     title: "Random Topographic Maps",
-    script: randomTopographicMaps,
-    githubUrl: getSketchSourceUrl(randomTopographicMaps.name),
+    loadSketch: () => import("../sketches/randomTopographicMaps.js"),
+    githubUrl: getSketchSourceUrl("randomTopographicMaps"),
   },
   {
     path: "rainbow-flower",
     title: "Rainbow Flower",
-    script: rainbowFlower,
-    githubUrl: getSketchSourceUrl(rainbowFlower.name),
+    loadSketch: () => import("../sketches/rainbowFlower.js"),
+    githubUrl: getSketchSourceUrl("rainbowFlower"),
   },
   {
     path: "perlin-noise-waves",
     title: "Perlin Noise Waves",
-    script: perlinNoiseWaves,
-    githubUrl: getSketchSourceUrl(perlinNoiseWaves.name),
-  },
-  {
-    path: "perlin-noise-tree",
-    title: "Perlin Noise Tree",
-    script: perlinNoiseTree,
-    githubUrl: getSketchSourceUrl(perlinNoiseTree.name),
+    loadSketch: () => import("../sketches/perlinNoiseWaves.js"),
+    githubUrl: getSketchSourceUrl("perlinNoiseWaves"),
   },
   {
     path: "optical-illusion-circles",
     title: "Optical Illusion Circles",
-    script: opticalIllusionCircles,
-    githubUrl: getSketchSourceUrl(opticalIllusionCircles.name),
+    loadSketch: () => import("../sketches/opticalIllusionCircles.js"),
+    githubUrl: getSketchSourceUrl("opticalIllusionCircles"),
   },
   {
     path: "animated-topgraphic-maps",
     title: "Animated Topographic Maps",
-    script: animatedTopographicMaps,
-    githubUrl: getSketchSourceUrl(animatedTopographicMaps.name),
-  },
-  {
-    path: "perlin-noise-rays",
-    title: "Perlin Noise Rays",
-    script: perlinNoiseRays,
-    githubUrl: getSketchSourceUrl(perlinNoiseRays.name),
+    loadSketch: () => import("../sketches/animatedTopographicMaps.js"),
+    githubUrl: getSketchSourceUrl("animatedTopographicMaps"),
   },
   {
     path: "mirror-draw",
     title: "Mirror Draw",
-    script: mirrorDraw,
-    githubUrl: getSketchSourceUrl(mirrorDraw.name),
+    loadSketch: () => import("../sketches/mirrorDraw.js"),
+    githubUrl: getSketchSourceUrl("mirrorDraw"),
   },
   {
     path: "pendulum-waves",
     title: "Pendulum Waves",
-    script: pendulumWaves,
-    githubUrl: getSketchSourceUrl(pendulumWaves.name),
-  },
-  {
-    path: "fireworks",
-    title: "Fireworks",
-    script: fireworks,
-    githubUrl: getSketchSourceUrl(fireworks.name),
+    loadSketch: () => import("../sketches/pendulumWaves.js"),
+    githubUrl: getSketchSourceUrl("pendulumWaves"),
   },
   {
     path: "sand-effect",
     title: "Sand Effect",
-    script: sandEffect,
-    githubUrl: getSketchSourceUrl(sandEffect.name),
+    loadSketch: () => import("../sketches/sandEffect.js"),
+    githubUrl: getSketchSourceUrl("sandEffect"),
   },
   {
     path: "rings-draw",
     title: "Rings Draw",
-    script: ringsDraw,
-    githubUrl: getSketchSourceUrl(ringsDraw.name),
+    loadSketch: () => import("../sketches/ringsDraw.js"),
+    githubUrl: getSketchSourceUrl("ringsDraw"),
   },
   {
     path: "rotating-circles",
     title: "Rotating Circles",
-    script: rotatingCircles,
-    githubUrl: getSketchSourceUrl(rotatingCircles.name),
+    loadSketch: () => import("../sketches/rotatingCircles.js"),
+    githubUrl: getSketchSourceUrl("rotatingCircles"),
   },
   {
     path: "circle-loop",
     title: "Circle Loop",
-    script: circleLoop,
-    githubUrl: getSketchSourceUrl(circleLoop.name),
+    loadSketch: () => import("../sketches/circleLoop.js"),
+    githubUrl: getSketchSourceUrl("circleLoop"),
   },
 ];

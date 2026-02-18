@@ -1,19 +1,23 @@
-import p5 from "p5";
 import { useEffect, useRef } from "react";
-import { CANVAS_CONTAINER } from "../constants/elements-ids";
+import { CANVAS_PARENT } from "../constants/elements-ids";
+
+declare const p5: any;
 
 type SketchType = {
-  script: (p: p5) => void;
+  loadSketch: () => Promise<{ sketch: (p: any) => void }>;
 };
 
-export default function Sketch({ script }: SketchType) {
+export default function Sketch({ loadSketch }: SketchType) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const p5Ref = useRef<p5 | null>(null);
+  const p5Ref = useRef<any>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const load = async () => {
+      const { sketch } = await loadSketch();
+      p5Ref.current = new p5(sketch, containerRef.current);
+    };
 
-    p5Ref.current = new p5(script, containerRef.current);
+    load();
 
     return () => {
       p5Ref.current?.remove();
@@ -22,7 +26,7 @@ export default function Sketch({ script }: SketchType) {
 
   return (
     <div
-      id={CANVAS_CONTAINER}
+      id={CANVAS_PARENT}
       className="flex-1 flex justify-end"
       ref={containerRef}
     />

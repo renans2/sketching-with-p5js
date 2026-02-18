@@ -1,1 +1,1 @@
-export const CANVAS_CONTAINER = "canvas_container";
+export const CANVAS_PARENT = "canvas_parent";

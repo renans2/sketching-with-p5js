@@ -12,5 +12,5 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  base: "/sketching-with-p5js",
+  // base: "/sketching-with-p5js",
 });
