@@ -3,11 +3,16 @@ import type p5 from "p5";
 import { useControlsStore } from "../stores/controls-store";
 
 export const sketch = (p: p5) => {
+  // interactive
   let n = useControlsStore.getState().val1;
-  const SPEED = 0.002;
+  let speed = useControlsStore.getState().val2;
+  let insideFaster = useControlsStore.getState().bool1;
+  let strokeOpacity = 0.7;
 
   const unsubscribe = useControlsStore.subscribe((state) => {
     n = state.val1;
+    speed = state.val2 * 0.00001;
+    insideFaster = state.bool1;
   });
 
   p.setup = () => {
@@ -15,7 +20,7 @@ export const sketch = (p: p5) => {
     p.createCanvas(canvasSize, canvasSize);
     p.rectMode(p.CENTER);
     p.noFill();
-    p.stroke(255, 130);
+    p.colorMode(p.HSL);
   };
 
   p.windowResized = () => {
@@ -29,8 +34,10 @@ export const sketch = (p: p5) => {
     p.translate(p.width / 2, p.height / 2);
 
     for (let i = 0; i < n; i++) {
-      const side = p.map(i, 0, n, p.width, 0);
-      const angle = p.frameCount * (i + 1) * SPEED;
+      const side = p.map(i, 0, n, 0, p.width);
+      const angle = (insideFaster ? n - i : i + 1) * p.frameCount * speed;
+      const hue = (p.map(i, 0, n, 0, 360) + p.frameCount * 3) % 360;
+      p.stroke(hue, 100, 50, strokeOpacity);
       p.push();
       p.rotate(angle);
       p.rect(0, 0, side, side);
