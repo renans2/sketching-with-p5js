@@ -1,6 +1,7 @@
 import type { SketchInfo } from "../types/SketchInfo";
-import RotatingSquaresDashboard from "../components/controls/rotating-squares";
 import { getSketchSourceUrl } from "../utils/get-sketch-source";
+import type { RotatingSquaresProps } from "../types/controls-props/rotating-squares.ts";
+import RotatingSquaresControls from "../components/controls/rotating-squares";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
@@ -18,9 +19,14 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
     path: "rotating-squares",
     title: "Rotating Squares",
-    dashboard: RotatingSquaresDashboard,
+    dashboard: RotatingSquaresControls,
     loadSketch: () => import("../sketches/rotatingSquares.ts"),
     githubUrl: getSketchSourceUrl("rotatingSquares"),
+    initialProps: {
+      n: 10,
+      speed: 1,
+      insideFaster: true,
+    } as RotatingSquaresProps,
   },
   {
     path: "bouncing-lines",

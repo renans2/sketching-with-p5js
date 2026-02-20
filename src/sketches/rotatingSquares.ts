@@ -1,19 +1,21 @@
+import type { RefObject } from "react";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { useControlsStore } from "../stores/controls-store";
+import type { RotatingSquaresProps } from "../types/controls-props/rotating-squares";
+// import { useControlsStore } from "../stores/controls-store";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, controlsRef: RefObject<RotatingSquaresProps>) => {
   // interactive
-  let n = useControlsStore.getState().val1;
-  let speed = useControlsStore.getState().val2;
-  let insideFaster = useControlsStore.getState().bool1;
+  // let n = useControlsStore.getState().val1;
+  // let speed = useControlsStore.getState().val2;
+  // let insideFaster = useControlsStore.getState().bool1;
   let strokeOpacity = 0.7;
 
-  const unsubscribe = useControlsStore.subscribe((state) => {
-    n = state.val1;
-    speed = state.val2 * 0.00001;
-    insideFaster = state.bool1;
-  });
+  // const unsubscribe = useControlsStore.subscribe((state) => {
+  //   n = state.val1;
+  //   speed = state.val2 * 0.00001;
+  //   insideFaster = state.bool1;
+  // });
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -30,6 +32,7 @@ export const sketch = (p: p5) => {
   };
 
   p.draw = () => {
+    const { n, speed, insideFaster } = controlsRef.current;
     p.background(0, 50);
     p.translate(p.width / 2, p.height / 2);
 
@@ -45,7 +48,7 @@ export const sketch = (p: p5) => {
     }
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
+  // p.remove = () => {
+  //   unsubscribe();
+  // };
 };

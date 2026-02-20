@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Sketch from "../components/Sketch";
 import usePageTitle from "../hooks/usePageTitle";
 import type { SketchInfo } from "../types/SketchInfo";
@@ -7,12 +8,13 @@ type SketchPageType = {
 };
 
 export default function SketchPage({ sketch }: SketchPageType) {
+  const controlsRef = useRef<any>(sketch.initialProps);
   usePageTitle(sketch.title);
 
   return (
     <main className="flex flex-1 min-h-0 flex-col md:flex-row p-4">
       <div className="space-y-4">
-        {sketch.dashboard && <sketch.dashboard />}
+        {sketch.dashboard && <sketch.dashboard controlsRef={controlsRef} />}
         <a
           href={sketch.githubUrl}
           target="_blank"
@@ -22,7 +24,7 @@ export default function SketchPage({ sketch }: SketchPageType) {
           Sketch source code on GitHub
         </a>
       </div>
-      <Sketch loadSketch={sketch.loadSketch} />
+      <Sketch loadSketch={sketch.loadSketch} controlsRef={controlsRef} />
     </main>
   );
 }
