@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CANVAS_PARENT } from "../constants/elements-ids";
 
-declare const p5: any;
+declare const p5: typeof import("p5");
 
 type SketchType = {
   loadSketch: () => Promise<{ sketch: (p: any) => void }>;
@@ -13,6 +13,8 @@ export default function Sketch({ loadSketch }: SketchType) {
 
   useEffect(() => {
     const load = async () => {
+      if (!containerRef.current) return;
+
       const { sketch } = await loadSketch();
       p5Ref.current = new p5(sketch, containerRef.current);
     };
