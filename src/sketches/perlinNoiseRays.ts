@@ -3,10 +3,14 @@ import type { default as P5 } from "p5";
 declare const p5: typeof import("p5");
 
 export const sketch = (p: P5) => {
-  const AMOUNT = 10;
-  let MULTIPLIER = 0.003;
-  const SPEED = 0.01;
-  const VEC_LENGTH = 5;
+  // interactive
+  let n = 30; // up to 20
+  let multiplier = 0.0075;
+  let speed = 0.01;
+  let strokeWeight = 1;
+  let opacity = 0.2;
+
+  const VEC_LENGTH = 10;
   let offset: number;
 
   p.setup = () => {
@@ -15,19 +19,18 @@ export const sketch = (p: P5) => {
     p.background(0);
     p.colorMode(p.HSL);
     p.noFill();
-    offset = p.width / AMOUNT;
+    offset = p.width / n;
   };
 
   p.draw = () => {
     p.background(0, 50);
-    p.strokeWeight(2);
-    MULTIPLIER = p.map(p.mouseX, 0, p.width, 0.005, 0.01);
+    p.strokeWeight(strokeWeight);
 
-    for (let i = 0; i < AMOUNT; i++) {
-      for (let j = 0; j < AMOUNT; j++) {
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
         const x = i * offset + offset / 2;
         const y = j * offset + offset / 2;
-        p.stroke(p.map(x, 0, p.width, 0, 360), 100, 50, 0.3);
+        p.stroke(p.map(x, 0, p.width, 0, 360), 100, 50, opacity);
         p.beginShape();
         drawLine(x, y, getVectorFromPos(i, j));
         p.endShape();
@@ -38,6 +41,7 @@ export const sketch = (p: P5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function drawLine(x: number, y: number, vec: P5.Vector) {
@@ -51,9 +55,9 @@ export const sketch = (p: P5) => {
 
   function getVectorFromPos(x: number, y: number) {
     const noisee = p.noise(
-      x * MULTIPLIER,
-      y * MULTIPLIER,
-      p.frameCount * SPEED,
+      x * multiplier,
+      y * multiplier,
+      p.frameCount * speed,
     );
     const angle = p.map(noisee, 0, 1, 0, p.TWO_PI);
     return p5.Vector.fromAngle(angle, VEC_LENGTH);

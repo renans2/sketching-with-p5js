@@ -2,43 +2,47 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
+  // interactive
+  let n = 7;
+  let colorSpeed = 3;
+  let backgroundOpacity = 0.1;
+  let strokeWeight = 3;
+
   const MIN_SPEED = 4;
   const MAX_SPEED = 6;
-  const N_LINES = 5;
-  const LINE_COLOR_INCREMENTER = 1;
-  let bouncingLines: BouncingLine[] = [];
-  let lineColor = 0;
+  const bouncingLines: BouncingLine[] = [];
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
+    p.background(0);
     p.colorMode(p.HSL);
-    p.strokeWeight(3);
+    p.strokeWeight(strokeWeight);
     p.noFill();
 
-    for (let i = 0; i < N_LINES; i++) {
+    for (let i = 0; i < n; i++) {
       bouncingLines.push(new BouncingLine());
     }
   };
 
   p.draw = () => {
-    p.background(0, 0, 0, 0.05);
+    p.background(0, 0, 0, backgroundOpacity);
 
-    // draw bouncing p.lines
+    const hue = p.frameCount * colorSpeed;
+    p.stroke(hue, 100, 50, 0.5);
+
     p.beginShape();
     for (const line of bouncingLines) {
       line.move();
       p.vertex(line.x, line.y);
     }
-    p.stroke(lineColor, 100, 50, 0.5);
     p.endShape(p.CLOSE);
-
-    lineColor = (lineColor + LINE_COLOR_INCREMENTER) % 360;
   };
 
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   class BouncingLine {
@@ -59,7 +63,6 @@ export const sketch = (p: p5) => {
       this.y += this.ySpeed;
 
       if (this.hitBorderX()) this.reverseXSpeed();
-
       if (this.hitBorderY()) this.reverseYSpeed();
     }
 

@@ -2,7 +2,10 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  let amount = 0;
+  // interactive
+  let amount = 0; // 1 to 30
+  let speed = 5; // up to 10
+
   let maxDiameter = 50;
   let diameter: number;
   let strkWeightOuterCicle = 5;
@@ -10,7 +13,6 @@ export const sketch = (p: p5) => {
   let multiplier: number;
   let offset: number;
   let angleIncrementer = 0;
-  let speed = 2;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -23,7 +25,7 @@ export const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    p.background(24, 1, 97);
+    p.background(0);
     p.translate(p.width / 2, p.height / 2);
 
     calcNewAmountAndDiameter();
@@ -37,6 +39,7 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function drawCircles() {
@@ -50,7 +53,7 @@ export const sketch = (p: p5) => {
   }
 
   function calcNewAmountAndDiameter() {
-    let newAmount = p.floor(p.map(p.mouseX, 0, p.width, 3, 20));
+    let newAmount = p.floor(p.map(p.mouseX, 0, p.width, 1, 30));
     if (newAmount % 2 != 0) {
       amount = newAmount;
       diameter = maxDiameter - amount;

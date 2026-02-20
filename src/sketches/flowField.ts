@@ -27,6 +27,7 @@ export const sketch = (p: P5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function drawAll() {

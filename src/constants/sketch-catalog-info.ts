@@ -178,12 +178,12 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
     loadSketch: () => import("../sketches/sandEffect.ts"),
     githubUrl: getSketchSourceUrl("sandEffect"),
   },
-  {
-    path: "rings-draw",
-    title: "Rings Draw",
-    loadSketch: () => import("../sketches/ringsDraw.ts"),
-    githubUrl: getSketchSourceUrl("ringsDraw"),
-  },
+  // {
+  //   path: "rings-draw",
+  //   title: "Rings Draw",
+  //   loadSketch: () => import("../sketches/ringsDraw.ts"),
+  //   githubUrl: getSketchSourceUrl("ringsDraw"),
+  // },
   {
     path: "rotating-circles",
     title: "Rotating Circles",
@@ -195,5 +195,17 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
     title: "Circle Loop",
     loadSketch: () => import("../sketches/circleLoop.ts"),
     githubUrl: getSketchSourceUrl("circleLoop"),
+  },
+  {
+    path: "perlin-noise-rays",
+    title: "Perlin Noise Rays",
+    loadSketch: () => import("../sketches/perlinNoiseRays.ts"),
+    githubUrl: getSketchSourceUrl("perlinNoiseRays"),
+  },
+  {
+    path: "animated-flow-field",
+    title: "Animated Flow Field",
+    loadSketch: () => import("../sketches/animatedFlowField.ts"),
+    githubUrl: getSketchSourceUrl("animatedFlowField"),
   },
 ];

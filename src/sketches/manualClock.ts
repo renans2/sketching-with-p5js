@@ -2,19 +2,16 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  const now = new Date();
-  let hours = now.getHours() % 12;
-  let minutes = now.getMinutes();
-  let seconds = now.getSeconds();
-  console.log(hours);
-
+  let hours: number;
+  let minutes: number;
+  let seconds: number;
   let angleHours: number;
   let angleMinutes: number;
   let angleSeconds: number;
 
-  let outCircDiameter;
-  let hourIconDiameter = 25;
-  let smallIconsDiameter = 8;
+  let outCircRadius: number;
+  let hourIconRadius: number;
+  let smallIconsRadius: number;
   let iconDistance: number;
   let secPointerMult: number;
   let minPointerMult: number;
@@ -23,78 +20,55 @@ export const sketch = (p: p5) => {
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
+    p.frameRate(1);
     p.colorMode(p.HSL);
-    p.background(0, 0, 0, 1);
-    p.fill(255);
 
-    outCircDiameter = p.height;
-    iconDistance = outCircDiameter / 2 - hourIconDiameter;
-    secPointerMult = outCircDiameter / 2.5;
-    minPointerMult = outCircDiameter / 3;
-    hourPointerMult = outCircDiameter / 5;
-
-    angleHours = p.map(hours, 0, 12, 0, p.TWO_PI);
-    angleMinutes = p.map(minutes, 0, 60, 0, p.TWO_PI);
-    angleSeconds = p.map(seconds, 0, 60, 0, p.TWO_PI);
+    setMeasures();
+    drawSettings();
+    getValues();
+    drawClock();
   };
 
   p.draw = () => {
-    p.background(0);
-    p.translate(p.width / 2, p.height / 2);
-    p.frameRate(1);
-
-    drawHoursIcons();
-    drawHoursSmallIcons();
-    increment();
-    drawPointers();
-    drawMiddleScrew();
+    drawSettings();
+    getValues();
+    drawClock();
   };
 
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
+    setMeasures();
   };
 
-  function increment() {
-    seconds = (seconds + 1) % 60;
-
-    if (seconds === 0) {
-      minutes = (minutes + 1) % 60;
-      if (minutes === 0) {
-        hours = (hours + 1) % 12;
-      }
-    }
-
-    angleSeconds = p.map(seconds, 0, 60, 0, p.TWO_PI) - p.PI / 2;
-    angleMinutes = p.map(minutes, 0, 60, 0, p.TWO_PI) - p.PI / 2;
-    angleHours = p.map(hours, 0, 12, 0, p.TWO_PI) - p.PI / 2;
+  function drawSettings() {
+    p.background(0);
+    p.translate(p.width / 2, p.height / 2);
   }
 
-  function drawHoursIcons() {
-    p.strokeWeight(2);
+  function drawClock() {
+    p.noStroke();
+    p.fill(255);
+
     for (let i = 0; i < 12; i++) {
-      p.stroke(255);
+      const hourAngleOffset = p.TWO_PI / 12;
       p.circle(
-        p.cos(i * (p.TWO_PI / 12)) * iconDistance,
-        p.sin(i * (p.TWO_PI / 12)) * iconDistance,
-        hourIconDiameter,
+        p.cos(i * hourAngleOffset) * iconDistance,
+        p.sin(i * hourAngleOffset) * iconDistance,
+        hourIconRadius * 2,
       );
     }
-  }
 
-  function drawHoursSmallIcons() {
-    p.strokeWeight(2);
     for (let i = 0; i < 60; i++) {
-      p.stroke(255);
+      const minAndSecAngleOffset = p.TWO_PI / 60;
       p.circle(
-        p.cos(i * (p.TWO_PI / 60)) * iconDistance,
-        p.sin(i * (p.TWO_PI / 60)) * iconDistance,
-        smallIconsDiameter,
+        p.cos(i * minAndSecAngleOffset) * iconDistance,
+        p.sin(i * minAndSecAngleOffset) * iconDistance,
+        smallIconsRadius * 2,
       );
     }
-  }
 
-  function drawPointers() {
     p.strokeWeight(20);
 
     p.stroke(0, 100, 50, 1);
@@ -120,11 +94,29 @@ export const sketch = (p: p5) => {
       p.cos(angleHours) * hourPointerMult,
       p.sin(angleHours) * hourPointerMult,
     );
+
+    p.fill(255);
+    p.noStroke();
+    p.circle(0, 0, smallIconsRadius);
   }
 
-  function drawMiddleScrew() {
-    p.strokeWeight(2);
-    p.fill(255);
-    p.circle(0, 0, 10);
+  function setMeasures() {
+    outCircRadius = p.height / 2;
+    hourIconRadius = p.height * 0.015;
+    smallIconsRadius = hourIconRadius * 0.5;
+    iconDistance = outCircRadius - 2 * hourIconRadius;
+    secPointerMult = outCircRadius * 0.85;
+    minPointerMult = outCircRadius * 0.7;
+    hourPointerMult = outCircRadius * 0.5;
+  }
+
+  function getValues() {
+    const now = new Date();
+    hours = now.getHours() % 12;
+    minutes = now.getMinutes();
+    seconds = now.getSeconds();
+    angleHours = (p.TWO_PI / 12) * hours - p.PI / 2;
+    angleMinutes = (p.TWO_PI / 60) * minutes - p.PI / 2;
+    angleSeconds = (p.TWO_PI / 60) * seconds - p.PI / 2;
   }
 };

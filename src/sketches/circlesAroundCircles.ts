@@ -5,9 +5,9 @@ export const sketch = (p: p5) => {
   const RADIUS = 15;
   const N = 6;
   const DEPTH = 3;
-  const ROTATION_SPEED = 0.02;
+  const ROTATION_SPEED = 0.01;
   let multiplier;
-  let offset: number;
+  let offset = p.TWO_PI / N;
   let colorVar = 0;
 
   p.setup = () => {
@@ -16,7 +16,6 @@ export const sketch = (p: p5) => {
     p.background(0);
     p.colorMode(p.HSL);
     p.noStroke();
-    offset = p.TWO_PI / N;
   };
 
   p.draw = () => {
@@ -38,6 +37,7 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function generateCircles(
@@ -53,6 +53,9 @@ export const sketch = (p: p5) => {
         let angle = i * offset + angleIncrementer;
         let x = centerX + p.cos(angle) * multiplier;
         let y = centerY + p.sin(angle) * multiplier;
+        const hue = (p.map(i, 0, N, 0, 360) + p.frameCount * 1) % 360;
+        p.stroke(hue, 100, 50, 1);
+        p.noFill();
         p.circle(x, y, radius * 2);
         generateCircles(
           x,

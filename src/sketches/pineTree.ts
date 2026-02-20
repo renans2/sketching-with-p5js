@@ -21,6 +21,7 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function drawPineTree(d: number, l: number, a: number, it: number) {

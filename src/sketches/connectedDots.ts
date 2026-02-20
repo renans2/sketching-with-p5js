@@ -10,11 +10,13 @@ export const sketch = (p: p5) => {
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
-    p.stroke(0);
+    p.background(0);
+    p.stroke(255);
+    p.noFill();
   };
 
   p.draw = () => {
-    p.background(255, 75);
+    p.background(0, 75);
     p.translate(p.width / 2, p.height / 2);
     p.rotate(-p.PI / 2);
 
@@ -42,5 +44,6 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 };

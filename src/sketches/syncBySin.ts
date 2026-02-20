@@ -4,7 +4,7 @@ import type p5 from "p5";
 export const sketch = (p: p5) => {
   const N = 50;
   const STARTING_ANGLE = 0;
-  const SPEED = 0.0005;
+  const SPEED = 0.0025;
   let radius: number;
   let offset: number;
   let multiplier: number;
@@ -27,6 +27,7 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function generateCircles() {

@@ -2,10 +2,13 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  const AMOUNT = 150;
-  const NOISE_MULTIPLIER = 0.015;
-  const SPEED = 0.0035;
-  const GAP = 0.0075;
+  // interactive
+  let n = 150;
+  let noiseMultiplier = 0.015;
+  let gap = 0.0075;
+  let step = 0.05;
+  let speed = 0.0035;
+
   let offset: number;
   let radius: number;
 
@@ -15,24 +18,24 @@ export const sketch = (p: p5) => {
     p.background(0);
     p.colorMode(p.HSL);
     p.noStroke();
-    offset = p.width / AMOUNT;
+    offset = p.width / n;
     radius = offset / 2;
   };
 
   p.draw = () => {
     p.background(0);
 
-    for (let i = 0; i < AMOUNT; i++) {
-      for (let j = 0; j < AMOUNT; j++) {
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
         const noisee = p.noise(
-          i * NOISE_MULTIPLIER,
-          j * NOISE_MULTIPLIER,
-          p.frameCount * SPEED,
+          i * noiseMultiplier,
+          j * noiseMultiplier,
+          p.frameCount * speed,
         );
 
-        const n = noisee % 0.05;
+        const n = noisee % step;
 
-        if (n < GAP) {
+        if (n < gap) {
           const hue = p.map(noisee, 0, 1, -100, 460);
           p.fill(hue, 100, 50);
 
@@ -47,5 +50,8 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
+    offset = p.width / n;
+    radius = offset / 2;
   };
 };

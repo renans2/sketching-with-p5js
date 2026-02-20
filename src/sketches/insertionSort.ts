@@ -8,6 +8,7 @@ export const sketch = (p: p5) => {
   let isShuffled = false;
   let barrier = 1;
   let index = barrier;
+  const speed = 60;
 
   let offset: number;
 
@@ -22,7 +23,7 @@ export const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    // p.frameRate(p.map(p.mouseX, 0, p.width, 1, 60));
+    p.frameRate(speed);
     p.translate(0, p.height);
     p.background(0);
 
@@ -41,6 +42,7 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   p.mousePressed = () => {

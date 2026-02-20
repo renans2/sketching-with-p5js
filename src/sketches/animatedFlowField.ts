@@ -3,41 +3,44 @@ import type { default as P5 } from "p5";
 declare const p5: typeof import("p5");
 
 export const sketch = (p: P5) => {
+  // interactive
+  let particlesPerFrame = 5;
   const particles: P5.Vector[] = [];
-  let m1 = 0.005;
-  let m2 = 0.0025;
-  let speed = 2;
-  const particlesPerFrame = 5;
+  let noiseMultiplier = 0.005;
+  let noiseSpeed = 0.00005;
+  let particleSpeed = 1;
+  let strokeWidth = 1;
+  let strokeOpacity = 0.1;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
     p.background(0);
     p.colorMode(p.HSL);
-    p.stroke(255);
-    p.strokeWeight(1);
+    p.strokeWeight(strokeWidth);
   };
 
   p.draw = () => {
     spawnParticles(particlesPerFrame);
 
-    p.background(0, 0, 0, 0);
-    m1 = p.map(p.mouseX, 0, p.width, 0, 0.01);
-    speed = p.map(p.mouseY, 0, p.height, 1, 5);
-
     for (let i = particles.length - 1; i >= 0; i--) {
       const particle = particles[i];
       const x = particle.x;
       const y = particle.y;
-      const n = p.noise(particle.x * m1, particle.y * m1, p.frameCount * m2);
+      const n = p.noise(
+        particle.x * noiseMultiplier,
+        particle.y * noiseMultiplier,
+        p.frameCount * noiseSpeed,
+      );
 
-      p.stroke(p.map(x, 0, p.width, 0, 360), 100, 50, 0.3);
+      p.stroke(p.map(x, 0, p.width, 0, 360), 100, 50, strokeOpacity);
       p.point(x, y);
 
       const angle = p.map(n, 0, 1, 0, 2 * p.TWO_PI);
 
       if (!isInsideCanvas(x, y)) particles.splice(i, 1);
-      else particles[i] = particle.add(p5.Vector.fromAngle(angle, speed));
+      else
+        particles[i] = particle.add(p5.Vector.fromAngle(angle, particleSpeed));
     }
 
     if (p.frameCount % 100 === 0)
@@ -47,6 +50,7 @@ export const sketch = (p: P5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function spawnParticles(n: number) {

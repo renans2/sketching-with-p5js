@@ -2,16 +2,19 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  const HUE_INCREMENTER = 0.05;
+  // interactive
+  let speed = 10;
+  let radius1 = 200;
+  let radius2 = 200;
+  let colorSpeed = 0.5;
+  let leadAngleInc = 0.03;
+  let angleInc = 0.024131;
+
+  const INITIAL_HUE = p.random(360);
   let leadAngle = 0;
   let angle = 0;
-  let leadAngleInc: number;
-  let angleInc: number;
-  let r1: number;
-  let r2: number;
   let prevX: number;
   let prevY: number;
-  let hue: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -20,25 +23,22 @@ export const sketch = (p: p5) => {
     p.colorMode(p.HSL);
     p.background(0);
 
-    leadAngleInc = p.random(0.001, 0.1);
-    angleInc = p.random(0.001, 0.1);
-
-    hue = p.random(360);
-
-    r1 = p.random(p.height / 10, p.height / 4);
-    r2 = p.height / 2 - r1;
+    // radius2 = p.width / 2 - radius1;
   };
 
   p.draw = () => {
     p.translate(p.width / 2, p.height / 2);
 
-    for (let i = 0; i < 15; i++) {
-      const leadX = p.cos(-leadAngle) * r1;
-      const leadY = p.sin(-leadAngle) * r1;
+    for (let i = 0; i < speed; i++) {
+      const leadX = p.cos(-leadAngle) * radius1;
+      const leadY = p.sin(-leadAngle) * radius1;
+      // p.circle(leadX, leadY, 10);
 
-      const x = leadX + p.cos(angle) * r2;
-      const y = leadY + p.sin(angle) * r2;
+      const x = leadX + p.cos(angle) * radius2;
+      const y = leadY + p.sin(angle) * radius2;
+      // p.circle(x, y, 10);
 
+      const hue = (INITIAL_HUE + p.frameCount * colorSpeed) % 360;
       p.stroke(hue, 100, 50, 1);
       p.line(prevX, prevY, x, y);
 
@@ -47,12 +47,12 @@ export const sketch = (p: p5) => {
 
       leadAngle += leadAngleInc;
       angle += angleInc;
-      hue = (hue + HUE_INCREMENTER) % 360;
     }
   };
 
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 };

@@ -2,10 +2,12 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  const RADIUS = 20;
+  // interactive
+  const radius = 20;
+  const n = 50;
+
   const MIN_SPEED = 7;
   const MAX_SPEED = 14;
-  const N = 20;
   const circles: BouncingCircle[] = [];
 
   p.setup = () => {
@@ -18,7 +20,7 @@ export const sketch = (p: p5) => {
     p.cursor(p.HAND);
 
     // create bouncing circles
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < n; i++) {
       circles.push(new BouncingCircle());
     }
   };
@@ -36,6 +38,7 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   class BouncingCircle {
@@ -58,13 +61,13 @@ export const sketch = (p: p5) => {
       this.y += this.ySpeed;
 
       if (this.hitBorderX()) {
-        this.x = this.x < p.width / 2 ? RADIUS : p.width - RADIUS;
+        this.x = this.x < p.width / 2 ? radius : p.width - radius;
         this.reverseXSpeed();
         this.setNewColor();
       }
 
       if (this.hitBorderY()) {
-        this.y = this.y < p.height / 2 ? RADIUS : p.height - RADIUS;
+        this.y = this.y < p.height / 2 ? radius : p.height - radius;
         this.reverseYSpeed();
         this.setNewColor();
       }
@@ -72,11 +75,11 @@ export const sketch = (p: p5) => {
 
     draw() {
       p.fill(this.hue, 100, 50);
-      p.circle(this.x, this.y, RADIUS * 2);
+      p.circle(this.x, this.y, radius * 2);
     }
 
     hitBorderX() {
-      return p.width - RADIUS < this.x || this.x < RADIUS;
+      return p.width - radius < this.x || this.x < radius;
     }
 
     hitBorderY() {

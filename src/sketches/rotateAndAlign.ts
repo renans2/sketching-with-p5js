@@ -2,23 +2,17 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  let MIN_MULTIPLIER = 50;
-  let maxMultiplier: number;
-  let minAmount = 3;
-  let maxAmount = 150;
-  let maxDiameter = 20;
-  let minDiameter = 1;
-  let amount = 15;
+  // interactive
+  let globalSpeed = 0.005;
+  let n = 20;
+  let insideFaster = false;
+
   let globalAngle = 0;
-  let globalSpeed;
-  let diameter: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
-    maxMultiplier = p.height / 2;
     p.colorMode(p.HSL);
-    p.angleMode(p.DEGREES);
     p.stroke(255);
     p.strokeWeight(3);
     p.background(0);
@@ -28,9 +22,6 @@ export const sketch = (p: p5) => {
     p.background(0, 0, 0, 0.2);
     p.translate(p.width / 2, p.height / 2);
 
-    amount = p.floor(p.map(p.mouseX, 0, p.width, minAmount, maxAmount));
-    diameter = p.map(amount, minAmount, maxAmount, maxDiameter, minDiameter);
-    globalSpeed = p.map(p.mouseY, p.height, 0, 0, 0.3);
     globalAngle = (globalAngle - globalSpeed) % 360;
     drawCirclesAndLines();
   };
@@ -38,22 +29,22 @@ export const sketch = (p: p5) => {
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
+    p.background(0);
   };
 
   function drawCirclesAndLines() {
     p.push();
-    p.rotate(90);
     p.beginShape();
-    for (let i = 0; i < amount; i++) {
-      let multiplier = p.map(i, 0, amount, MIN_MULTIPLIER, maxMultiplier);
-      let angle = globalAngle * (amount - i);
-      let x = p.cos(angle) * multiplier;
-      let y = p.sin(angle) * multiplier;
-      let color = p.map(i, 0, amount, 0, 360);
-      p.fill(color, 100, 50, 1);
-      p.stroke(color, 100, 50, 1);
-      p.circle(x, y, diameter);
+    for (let i = 0; i < n; i++) {
+      const multiplier = p.map(i, 0, n, 0.1 * p.width, p.width / 2);
+      const angle = (insideFaster ? n - i : i + 1) * globalAngle;
+      const x = p.cos(angle) * multiplier;
+      const y = p.sin(angle) * multiplier;
+      const hue = p.map(i, 0, n, 0, 360);
+      p.fill(hue, 100, 50, 1);
+      p.stroke(hue, 100, 50, 1);
       p.line(0, 0, x, y);
+      p.circle(x, y, ((1 - n) / n) * 15);
       p.noFill();
       p.vertex(x, y);
     }
