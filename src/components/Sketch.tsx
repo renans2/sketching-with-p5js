@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { CANVAS_PARENT } from "../constants/elements-ids";
+import type { SketchInfo } from "../types/SketchInfo";
 
 declare const p5: typeof import("p5");
 
-type SketchType = {
-  loadSketch: () => Promise<{ sketch: (p: any, controls: any) => void }>;
-  controlsRef: React.RefObject<any>;
+type SketchProps = {
+  sketch: SketchInfo;
 };
 
-export default function Sketch({ loadSketch, controlsRef }: SketchType) {
+export default function Sketch({ sketch: { loadSketch, store } }: SketchProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const p5Ref = useRef<any>(null);
 
@@ -17,10 +17,7 @@ export default function Sketch({ loadSketch, controlsRef }: SketchType) {
       if (!containerRef.current) return;
 
       const { sketch } = await loadSketch();
-      p5Ref.current = new p5(
-        (p) => sketch(p, controlsRef),
-        containerRef.current,
-      );
+      p5Ref.current = new p5((p) => sketch(p, store!), containerRef.current);
     };
 
     load();

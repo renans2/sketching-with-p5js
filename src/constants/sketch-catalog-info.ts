@@ -1,7 +1,10 @@
 import type { SketchInfo } from "../types/SketchInfo";
 import { getSketchSourceUrl } from "../utils/get-sketch-source";
-import type { RotatingSquaresProps } from "../types/controls-props/rotating-squares.ts";
 import RotatingSquaresControls from "../components/controls/rotating-squares";
+import { create } from "zustand";
+import type { StoreFactory } from "../types/StoreFactory.ts";
+import type { RotatingSquaresProps } from "../types/sketches-props.ts";
+import type { ZustandStore } from "../types/ZustandStore.ts";
 
 export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
@@ -19,14 +22,17 @@ export const SKETCH_CATALOG_INFO: SketchInfo[] = [
   {
     path: "rotating-squares",
     title: "Rotating Squares",
+    githubUrl: getSketchSourceUrl("rotatingSquares"),
     dashboard: RotatingSquaresControls,
     loadSketch: () => import("../sketches/rotatingSquares.ts"),
-    githubUrl: getSketchSourceUrl("rotatingSquares"),
-    initialProps: {
-      n: 10,
-      speed: 1,
-      insideFaster: true,
-    } as RotatingSquaresProps,
+    store: create<StoreFactory<RotatingSquaresProps>>((set) => ({
+      data: {
+        n: 10,
+        speed: 10,
+        insideFaster: true,
+      },
+      setData: (value) => set({ data: value }),
+    })) as ZustandStore<RotatingSquaresProps>,
   },
   {
     path: "bouncing-lines",
