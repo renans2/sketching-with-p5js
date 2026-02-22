@@ -1,14 +1,13 @@
 import type p5 from "p5";
-import type { JSX } from "react";
 import type { ZustandStore } from "./ZustandStore";
-import type { DashboardType } from "./DashboardType";
+import type { Control } from "./controls";
 
 export interface SketchInfo {
   path: string;
   title: string;
   githubUrl: string;
-  store?: ZustandStore<any>;
-  dashboard?: (props: DashboardType<any>) => JSX.Element;
+  store: ZustandStore<any>;
+  controls: Control[];
   loadSketch: () => Promise<{
     sketch: (p: p5, store: ZustandStore<any>) => void;
   }>;
