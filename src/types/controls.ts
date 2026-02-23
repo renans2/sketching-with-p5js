@@ -7,5 +7,5 @@ export type Control =
       step?: number;
       key: string;
     }
-  | { type: "checkbox"; label: string; default: boolean; key: string };
-// | { type: "button"; label: string; action: () => void };
+  | { type: "checkbox"; label: string; default: boolean; key: string }
+  | { type: "button"; label: string; key: string };

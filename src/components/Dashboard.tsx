@@ -3,6 +3,7 @@ import Slider from "../components/ui/Slider";
 import type { Control } from "../types/controls";
 import type { ZustandStore } from "../types/ZustandStore";
 import Checkbox from "../components/ui/Checkbox";
+import Button from "./ui/Button";
 
 type DashboardType = {
   store: ZustandStore<any>;
@@ -15,16 +16,27 @@ export default function Dashboard({ store, controls }: DashboardType) {
   return (
     <div>
       {controls.map((control) => {
-        const commonProps = {
-          label: control.label,
+        const label = control.label;
+        const sliderAndCheckboxCommonProps = {
+          label,
           val: data[control.key],
           setVal: (val: any) => setData({ ...data, [control.key]: val }),
         };
 
         if (control.type === "slider") {
-          return <Slider key={control.key} {...commonProps} />;
+          return <Slider key={control.key} {...sliderAndCheckboxCommonProps} />;
         } else if (control.type === "checkbox") {
-          return <Checkbox key={control.key} {...commonProps} />;
+          return (
+            <Checkbox key={control.key} {...sliderAndCheckboxCommonProps} />
+          );
+        } else if (control.type === "button") {
+          return (
+            <Button
+              key={control.key}
+              label={label}
+              action={data[control.key]}
+            />
+          );
         }
       })}
     </div>

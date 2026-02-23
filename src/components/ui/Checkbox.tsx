@@ -6,7 +6,7 @@ type SliderProps = {
 
 export default function Checkbox({ label, val, setVal }: SliderProps) {
   return (
-    <label htmlFor={label}>
+    <label htmlFor={label} className="block">
       <p>{label}</p>
       <input
         type="checkbox"
