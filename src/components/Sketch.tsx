@@ -6,9 +6,13 @@ declare const p5: typeof import("p5");
 
 type SketchProps = {
   sketch: SketchInfo;
+  setIsReady: () => void;
 };
 
-export default function Sketch({ sketch: { loadSketch, store } }: SketchProps) {
+export default function Sketch({
+  sketch: { loadSketch, store },
+  setIsReady,
+}: SketchProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const p5Ref = useRef<any>(null);
 
@@ -18,6 +22,7 @@ export default function Sketch({ sketch: { loadSketch, store } }: SketchProps) {
 
       const { sketch } = await loadSketch();
       p5Ref.current = new p5((p) => sketch(p, store!), containerRef.current);
+      setIsReady();
     };
 
     load();
