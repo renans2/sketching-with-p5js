@@ -2,7 +2,8 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  const RADIUS = 5;
+  // connected-dots
+  let radius = 5;
   let n, angleOffset;
   let angle = 0;
   let angleIncrementer;
@@ -35,7 +36,7 @@ export const sketch = (p: p5) => {
         p.line(x, y, otherX, otherY);
       }
 
-      p.circle(x, y, RADIUS * 2);
+      p.circle(x, y, radius * 2);
     }
 
     angle += angleIncrementer;

@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // pendulum-waves
   let speed = 0.003;
   let colorSpeed = 3;
   let insideFaster = true;

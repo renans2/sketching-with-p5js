@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // rotate-and-align
   let globalSpeed = 0.005;
   let n = 20;
   let insideFaster = false;

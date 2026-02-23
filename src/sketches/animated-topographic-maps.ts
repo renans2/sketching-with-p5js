@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // animated-topographic-maps
   let n = 150;
   let noiseMultiplier = 0.015;
   let gap = 0.0075;

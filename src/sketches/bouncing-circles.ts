@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // bouncing-circles
   const radius = 20;
   const n = 50;
 
@@ -27,6 +27,13 @@ export const sketch = (p: p5) => {
 
   p.draw = () => {
     p.background(0);
+
+    if (n < circles.length) circles.splice(0, circles.length - n);
+    else if (n > circles.length) {
+      for (let i = 0; i < n - circles.length; i++) {
+        circles.push(new BouncingCircle());
+      }
+    }
 
     // draw bouncing circles
     for (const c of circles) {

@@ -2,12 +2,13 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  const RADIUS = 15;
-  const N = 6;
-  const DEPTH = 3;
-  const ROTATION_SPEED = 0.01;
+  // circles-around-circles
+  let radius = 15;
+  let n = 6;
+  let depth = 3;
+  let rotationSpeed = 0.01;
   let multiplier;
-  let offset = p.TWO_PI / N;
+  let offset = p.TWO_PI / n;
   let colorVar = 0;
 
   p.setup = () => {
@@ -26,9 +27,9 @@ export const sketch = (p: p5) => {
       0,
       0,
       multiplier,
-      RADIUS * 2,
-      p.frameCount * ROTATION_SPEED,
-      DEPTH,
+      radius * 2,
+      p.frameCount * rotationSpeed,
+      depth,
     );
     colorVar = (colorVar + 1) % 360;
     p.fill(colorVar, 100, 50, 0.5);
@@ -49,11 +50,11 @@ export const sketch = (p: p5) => {
     depth: number,
   ) {
     if (depth > 0) {
-      for (let i = 0; i < N; i++) {
+      for (let i = 0; i < n; i++) {
         let angle = i * offset + angleIncrementer;
         let x = centerX + p.cos(angle) * multiplier;
         let y = centerY + p.sin(angle) * multiplier;
-        const hue = (p.map(i, 0, N, 0, 360) + p.frameCount * 1) % 360;
+        const hue = (p.map(i, 0, n, 0, 360) + p.frameCount * 1) % 360;
         p.stroke(hue, 100, 50, 1);
         p.noFill();
         p.circle(x, y, radius * 2);

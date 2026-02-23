@@ -23,6 +23,13 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
     p.rectMode(p.CENTER);
     p.noFill();
     p.colorMode(p.HSL);
+
+    store.setState((state) => ({
+      data: {
+        ...state.data,
+        clear: () => p.background(0),
+      },
+    }));
   };
 
   p.windowResized = () => {
@@ -32,7 +39,7 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
   };
 
   p.draw = () => {
-    p.background(0, 50);
+    // p.background(0, 0.1);
     p.translate(p.width / 2, p.height / 2);
 
     for (let i = 0; i < n; i++) {

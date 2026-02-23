@@ -2,10 +2,10 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // spiral-rgb
   let n = 30;
   let insideFaster = false;
-  const speed = 0.005;
+  let speed = 0.005;
   let radius = 14;
   let colorSpeed = 3;
   let backgroundOpacity = 0.5;

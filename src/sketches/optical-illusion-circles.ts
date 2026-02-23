@@ -2,9 +2,9 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
-  let amount = 0; // 1 to 30
-  let speed = 5; // up to 10
+  // optical-illusion-circles
+  let amount = 0;
+  let speed = 5;
 
   let maxDiameter = 50;
   let diameter: number;

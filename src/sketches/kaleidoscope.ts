@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // kaleidoscope
   const n = 100;
   const speed = 0.01;
   const colorSpeed = 0.2;

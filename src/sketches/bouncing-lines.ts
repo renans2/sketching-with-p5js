@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // bounding-lines
   let n = 7;
   let colorSpeed = 3;
   let backgroundOpacity = 0.1;
@@ -27,6 +27,14 @@ export const sketch = (p: p5) => {
 
   p.draw = () => {
     p.background(0, 0, 0, backgroundOpacity);
+
+    if (n < bouncingLines.length)
+      bouncingLines.splice(0, bouncingLines.length - n);
+    else if (n > bouncingLines.length) {
+      for (let i = 0; i < n - bouncingLines.length; i++) {
+        bouncingLines.push(new BouncingLine());
+      }
+    }
 
     const hue = p.frameCount * colorSpeed;
     p.stroke(hue, 100, 50, 0.5);

@@ -2,15 +2,16 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // perlin-noise-waves
   let n = 50;
-  let offset: number;
   let noiseMultiplier = 0.002;
   let speed = 0.005;
   let widthMultiplier = 0.5;
   let heightMultiplier = 2;
   let opacity = 1;
   let backgroundOpacity = 1;
+
+  let offset: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();

@@ -2,7 +2,7 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
 export const sketch = (p: p5) => {
-  // interactive
+  // mirror-draw
   let divisions = 30;
   let strokeWeight = 2;
   let colored = true;

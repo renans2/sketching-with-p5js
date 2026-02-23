@@ -3,14 +3,15 @@ import type { default as P5 } from "p5";
 declare const p5: typeof import("p5");
 
 export const sketch = (p: P5) => {
-  // interactive
+  // animated-flow-field
   let particlesPerFrame = 5;
-  const particles: P5.Vector[] = [];
   let noiseMultiplier = 0.005;
   let noiseSpeed = 0.00005;
   let particleSpeed = 1;
   let strokeWidth = 1;
   let strokeOpacity = 0.1;
+
+  const particles: P5.Vector[] = [];
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
