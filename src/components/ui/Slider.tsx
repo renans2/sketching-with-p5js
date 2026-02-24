@@ -1,10 +1,12 @@
 type SliderProps = {
   label: string;
+  min: number;
+  max: number;
   val: number;
   setVal: (val: number) => void;
 };
 
-export default function Slider({ label, val, setVal }: SliderProps) {
+export default function Slider({ label, min, max, val, setVal }: SliderProps) {
   const id = label.replace(/\s+/g, "-").toLowerCase();
 
   return (
@@ -15,6 +17,8 @@ export default function Slider({ label, val, setVal }: SliderProps) {
           type="range"
           id={id}
           value={val}
+          min={min}
+          max={max}
           onChange={(e) => setVal(Number(e.target.value))}
           className="flex-1"
         />

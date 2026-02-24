@@ -24,7 +24,14 @@ export default function Dashboard({ store, controls }: DashboardType) {
         };
 
         if (control.type === "slider") {
-          return <Slider key={control.key} {...sliderAndCheckboxCommonProps} />;
+          return (
+            <Slider
+              key={control.key}
+              min={control.min}
+              max={control.max}
+              {...sliderAndCheckboxCommonProps}
+            />
+          );
         } else if (control.type === "checkbox") {
           return (
             <Checkbox key={control.key} {...sliderAndCheckboxCommonProps} />
