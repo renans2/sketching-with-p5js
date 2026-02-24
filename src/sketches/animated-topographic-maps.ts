@@ -1,7 +1,12 @@
+import type { AnimatedTopographicMapsProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (
+  p: p5,
+  store: ZustandStore<AnimatedTopographicMapsProps>,
+) => {
   // animated-topographic-maps
   let n = 150;
   let noiseMultiplier = 0.015;

@@ -1,7 +1,9 @@
+import type { BouncingCirclesProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
   // bouncing-circles
   const radius = 20;
   const n = 50;

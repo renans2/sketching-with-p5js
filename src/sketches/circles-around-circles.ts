@@ -1,7 +1,12 @@
+import type { CirclesAroundCirclesProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (
+  p: p5,
+  store: ZustandStore<CirclesAroundCirclesProps>,
+) => {
   // circles-around-circles
   let radius = 15;
   let n = 6;

@@ -1,7 +1,9 @@
+import type { SpiralRgbProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
   // spiral-rgb
   let n = 30;
   let insideFaster = false;

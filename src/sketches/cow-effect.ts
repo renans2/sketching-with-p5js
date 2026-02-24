@@ -1,7 +1,9 @@
+import type { CowEffectProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<CowEffectProps>) => {
   // cow-effect
   let n = 75;
   let noiseMultiplier = 0.05;

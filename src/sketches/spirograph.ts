@@ -1,7 +1,9 @@
+import type { SpirographProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<SpirographProps>) => {
   // spirograph
   let speed = 10;
   let radius1 = 200;

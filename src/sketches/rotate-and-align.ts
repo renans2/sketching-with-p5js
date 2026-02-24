@@ -1,7 +1,9 @@
+import type { RotateAndAlignProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
   // rotate-and-align
   let globalSpeed = 0.005;
   let n = 20;

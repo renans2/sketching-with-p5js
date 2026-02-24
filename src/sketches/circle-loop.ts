@@ -1,7 +1,9 @@
+import type { CircleLoopProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<CircleLoopProps>) => {
   // circle-loop
   let n = 250;
   let speed = 0.01;

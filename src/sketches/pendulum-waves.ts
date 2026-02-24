@@ -1,7 +1,9 @@
+import type { PendulumWavesProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
   // pendulum-waves
   let speed = 0.003;
   let colorSpeed = 3;

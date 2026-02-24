@@ -1,7 +1,9 @@
+import type { PerlinNoiseWavesProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
   // perlin-noise-waves
   let n = 50;
   let noiseMultiplier = 0.002;

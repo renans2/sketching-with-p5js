@@ -1,7 +1,12 @@
+import type { OpticalIllusionCirclesProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 
-export const sketch = (p: p5) => {
+export const sketch = (
+  p: p5,
+  store: ZustandStore<OpticalIllusionCirclesProps>,
+) => {
   // optical-illusion-circles
   let amount = 0;
   let speed = 5;

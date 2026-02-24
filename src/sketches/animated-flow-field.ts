@@ -1,8 +1,10 @@
+import type { AnimatedFlowFieldProps } from "../types/sketches-props";
+import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type { default as P5 } from "p5";
 declare const p5: typeof import("p5");
 
-export const sketch = (p: P5) => {
+export const sketch = (p: P5, store: ZustandStore<AnimatedFlowFieldProps>) => {
   // animated-flow-field
   let particlesPerFrame = 5;
   let noiseMultiplier = 0.005;
