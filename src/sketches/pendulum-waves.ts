@@ -2,12 +2,15 @@ import type { PendulumWavesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
-  // pendulum-waves
-  let speed = 0.003;
-  let colorSpeed = 3;
-  let insideFaster = true;
+  const vars = getInitialVars("pendulum-waves") as PendulumWavesProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // let speed = 0.003;
+  // let colorSpeed = 3;
+  // let insideFaster = true;
 
   const N_CIRCLES = 20;
   const RADIUS = 7;
@@ -29,7 +32,8 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
 
     for (let i = 0; i < N_CIRCLES; i++) {
       const myColor = p.color(
-        (p.map(i, 0, N_CIRCLES, 30, 360) + p.frameCount * colorSpeed) % 360,
+        (p.map(i, 0, N_CIRCLES, 30, 360) + p.frameCount * vars.colorSpeed) %
+          360,
         100,
         50,
         1,
@@ -40,8 +44,8 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
       let a =
         (p.PI +
           p.frameCount *
-            (N_CIRCLES - (insideFaster ? i : -i) * 0.4 + 1) *
-            speed) %
+            (N_CIRCLES - (vars.insideFaster ? i : -i) * 0.4 + 1) *
+            vars.speed) %
         p.TWO_PI;
       let tempAngle;
 
@@ -65,5 +69,9 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
     offset = p.width / 2 / N_CIRCLES;
+  };
+
+  p.remove = () => {
+    unsubscribe();
   };
 };

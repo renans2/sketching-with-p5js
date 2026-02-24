@@ -2,11 +2,14 @@ import type { BouncingCirclesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
-  // bouncing-circles
-  const radius = 20;
-  const n = 50;
+  const vars = getInitialVars("bouncing-circles") as BouncingCirclesProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // const radius = 20;
+  // const n = 50;
 
   const MIN_SPEED = 7;
   const MAX_SPEED = 14;
@@ -22,7 +25,7 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
     p.cursor(p.HAND);
 
     // create bouncing circles
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < vars.n; i++) {
       circles.push(new BouncingCircle());
     }
   };
@@ -30,9 +33,9 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
   p.draw = () => {
     p.background(0);
 
-    if (n < circles.length) circles.splice(0, circles.length - n);
-    else if (n > circles.length) {
-      for (let i = 0; i < n - circles.length; i++) {
+    if (vars.n < circles.length) circles.splice(0, circles.length - vars.n);
+    else if (vars.n > circles.length) {
+      for (let i = 0; i < vars.n - circles.length; i++) {
         circles.push(new BouncingCircle());
       }
     }
@@ -48,6 +51,10 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
+  };
+
+  p.remove = () => {
+    unsubscribe();
   };
 
   class BouncingCircle {
@@ -70,13 +77,13 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
       this.y += this.ySpeed;
 
       if (this.hitBorderX()) {
-        this.x = this.x < p.width / 2 ? radius : p.width - radius;
+        this.x = this.x < p.width / 2 ? vars.radius : p.width - vars.radius;
         this.reverseXSpeed();
         this.setNewColor();
       }
 
       if (this.hitBorderY()) {
-        this.y = this.y < p.height / 2 ? radius : p.height - radius;
+        this.y = this.y < p.height / 2 ? vars.radius : p.height - vars.radius;
         this.reverseYSpeed();
         this.setNewColor();
       }
@@ -84,11 +91,11 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
 
     draw() {
       p.fill(this.hue, 100, 50);
-      p.circle(this.x, this.y, radius * 2);
+      p.circle(this.x, this.y, vars.radius * 2);
     }
 
     hitBorderX() {
-      return p.width - radius < this.x || this.x < radius;
+      return p.width - vars.radius < this.x || this.x < vars.radius;
     }
 
     hitBorderY() {

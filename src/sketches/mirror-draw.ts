@@ -2,17 +2,20 @@ import type { MirrorDrawProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
-  // mirror-draw
-  let divisions = 30;
-  let strokeWeight = 2;
-  let colored = true;
-  let opacity = 1;
-  let colorSpeed = 1;
-  let mirror = false;
+  const vars = getInitialVars("mirror-draw") as MirrorDrawProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // let divisions = 30;
+  // let strokeWeight = 2;
+  // let colored = true;
+  // let opacity = 1;
+  // let colorSpeed = 1;
+  // let mirror = false;
 
-  let angleOffset = p.TWO_PI / divisions;
+  let angleOffset = p.TWO_PI / vars.divisions;
   let x: number | null = 0;
   let y: number | null = 0;
 
@@ -24,7 +27,7 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
   };
 
   p.draw = () => {
-    p.strokeWeight(strokeWeight);
+    p.strokeWeight(vars.strokeWeight);
     p.translate(p.width / 2, p.height / 2);
 
     if (p.mouseIsPressed) {
@@ -36,17 +39,19 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
         y = newY;
       }
 
-      for (let i = 0; i < divisions; i++) {
+      for (let i = 0; i < vars.divisions; i++) {
         p.rotate(angleOffset);
         p.push();
-        if (i % 2 === 0 && mirror) p.scale(1, -1);
+        if (i % 2 === 0 && vars.mirror) p.scale(1, -1);
 
-        if (colored) {
+        if (vars.colored) {
           const hue =
-            (p.map(i, 0, divisions, 0, 360) + p.frameCount * colorSpeed) % 360;
-          p.stroke(hue, 100, 50, opacity);
+            (p.map(i, 0, vars.divisions, 0, 360) +
+              p.frameCount * vars.colorSpeed) %
+            360;
+          p.stroke(hue, 100, 50, vars.opacity);
         } else {
-          p.stroke(255, opacity);
+          p.stroke(255, vars.opacity);
         }
 
         if (x && y) {
@@ -66,6 +71,10 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
+  };
+
+  p.remove = () => {
+    unsubscribe();
   };
 
   p.doubleClicked = () => {

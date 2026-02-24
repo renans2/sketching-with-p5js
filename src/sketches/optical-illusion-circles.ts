@@ -2,14 +2,19 @@ import type { OpticalIllusionCirclesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (
   p: p5,
   store: ZustandStore<OpticalIllusionCirclesProps>,
 ) => {
-  // optical-illusion-circles
-  let amount = 0;
-  let speed = 5;
+  const vars = getInitialVars(
+    "optical-illusion-circles",
+  ) as OpticalIllusionCirclesProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // let amount = 0;
+  // let speed = 5;
 
   let maxDiameter = 50;
   let diameter: number;
@@ -47,8 +52,12 @@ export const sketch = (
     p.background(0);
   };
 
+  p.remove = () => {
+    unsubscribe();
+  };
+
   function drawCircles() {
-    for (let i = 0; i < amount; i++) {
+    for (let i = 0; i < vars.amount; i++) {
       let x = p.sin(i * offset + angleIncrementer) * multiplier;
       p.push();
       p.rotate(i * offset);
@@ -60,14 +69,14 @@ export const sketch = (
   function calcNewAmountAndDiameter() {
     let newAmount = p.floor(p.map(p.mouseX, 0, p.width, 1, 30));
     if (newAmount % 2 != 0) {
-      amount = newAmount;
-      diameter = maxDiameter - amount;
+      vars.amount = newAmount;
+      diameter = maxDiameter - vars.amount;
     }
   }
 
   function calcOffsetIncAngle() {
-    angleIncrementer = (angleIncrementer + speed) % 360;
-    offset = 360 / amount;
+    angleIncrementer = (angleIncrementer + vars.speed) % 360;
+    offset = 360 / vars.amount;
   }
 
   function drawSingleCircle() {
@@ -83,7 +92,7 @@ export const sketch = (
     p.push();
     p.stroke(255);
     p.strokeWeight(strkWeightlines);
-    for (let i = 0; i < amount; i++) {
+    for (let i = 0; i < vars.amount; i++) {
       p.push();
       p.rotate(i * offset);
       p.line(-multiplier, 0, multiplier, 0);

@@ -2,12 +2,15 @@ import type { RotateAndAlignProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
-  // rotate-and-align
-  let globalSpeed = 0.005;
-  let n = 20;
-  let insideFaster = false;
+  const vars = getInitialVars("rotate-and-align") as RotateAndAlignProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // let globalSpeed = 0.005;
+  // let n = 20;
+  // let insideFaster = false;
 
   let globalAngle = 0;
 
@@ -24,7 +27,7 @@ export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
     p.background(0, 0, 0, 0.2);
     p.translate(p.width / 2, p.height / 2);
 
-    globalAngle = (globalAngle - globalSpeed) % 360;
+    globalAngle = (globalAngle - vars.globalSpeed) % 360;
     drawCirclesAndLines();
   };
 
@@ -34,19 +37,23 @@ export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
     p.background(0);
   };
 
+  p.remove = () => {
+    unsubscribe();
+  };
+
   function drawCirclesAndLines() {
     p.push();
     p.beginShape();
-    for (let i = 0; i < n; i++) {
-      const multiplier = p.map(i, 0, n, 0.1 * p.width, p.width / 2);
-      const angle = (insideFaster ? n - i : i + 1) * globalAngle;
+    for (let i = 0; i < vars.n; i++) {
+      const multiplier = p.map(i, 0, vars.n, 0.1 * p.width, p.width / 2);
+      const angle = (vars.insideFaster ? vars.n - i : i + 1) * globalAngle;
       const x = p.cos(angle) * multiplier;
       const y = p.sin(angle) * multiplier;
-      const hue = p.map(i, 0, n, 0, 360);
+      const hue = p.map(i, 0, vars.n, 0, 360);
       p.fill(hue, 100, 50, 1);
       p.stroke(hue, 100, 50, 1);
       p.line(0, 0, x, y);
-      p.circle(x, y, ((1 - n) / n) * 15);
+      p.circle(x, y, ((1 - vars.n) / vars.n) * 15);
       p.noFill();
       p.vertex(x, y);
     }

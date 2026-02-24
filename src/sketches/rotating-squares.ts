@@ -6,7 +6,6 @@ import { subscribeToStore } from "../utils/subscribe";
 import { getInitialVars } from "../utils/get-initial-vars";
 
 export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
-  // interactive
   const vars = getInitialVars("rotating-squares") as RotatingSquaresProps;
   const unsubscribe = subscribeToStore(vars, store);
 

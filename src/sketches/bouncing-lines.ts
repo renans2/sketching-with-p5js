@@ -2,13 +2,16 @@ import type { BoundingLinesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<BoundingLinesProps>) => {
-  // bounding-lines
-  let n = 7;
-  let colorSpeed = 3;
-  let backgroundOpacity = 0.1;
-  let strokeWeight = 3;
+  const vars = getInitialVars("bounding-lines") as BoundingLinesProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // let n = 7;
+  // let colorSpeed = 3;
+  // let backgroundOpacity = 0.1;
+  // let strokeWeight = 3;
 
   const MIN_SPEED = 4;
   const MAX_SPEED = 6;
@@ -19,26 +22,26 @@ export const sketch = (p: p5, store: ZustandStore<BoundingLinesProps>) => {
     p.createCanvas(canvasSize, canvasSize);
     p.background(0);
     p.colorMode(p.HSL);
-    p.strokeWeight(strokeWeight);
+    p.strokeWeight(vars.strokeWeight);
     p.noFill();
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < vars.n; i++) {
       bouncingLines.push(new BouncingLine());
     }
   };
 
   p.draw = () => {
-    p.background(0, 0, 0, backgroundOpacity);
+    p.background(0, 0, 0, vars.backgroundOpacity);
 
-    if (n < bouncingLines.length)
-      bouncingLines.splice(0, bouncingLines.length - n);
-    else if (n > bouncingLines.length) {
-      for (let i = 0; i < n - bouncingLines.length; i++) {
+    if (vars.n < bouncingLines.length)
+      bouncingLines.splice(0, bouncingLines.length - vars.n);
+    else if (vars.n > bouncingLines.length) {
+      for (let i = 0; i < vars.n - bouncingLines.length; i++) {
         bouncingLines.push(new BouncingLine());
       }
     }
 
-    const hue = p.frameCount * colorSpeed;
+    const hue = p.frameCount * vars.colorSpeed;
     p.stroke(hue, 100, 50, 0.5);
 
     p.beginShape();
@@ -53,6 +56,10 @@ export const sketch = (p: p5, store: ZustandStore<BoundingLinesProps>) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
+  };
+
+  p.remove = () => {
+    unsubscribe();
   };
 
   class BouncingLine {

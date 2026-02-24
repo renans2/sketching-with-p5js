@@ -2,19 +2,25 @@ import type { CirclesAroundCirclesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
+import { getInitialVars } from "../utils/get-initial-vars";
+import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (
   p: p5,
   store: ZustandStore<CirclesAroundCirclesProps>,
 ) => {
-  // circles-around-circles
-  let radius = 15;
-  let n = 6;
-  let depth = 3;
-  let rotationSpeed = 0.01;
-  let multiplier;
-  let offset = p.TWO_PI / n;
+  const vars = getInitialVars(
+    "circles-around-circles",
+  ) as CirclesAroundCirclesProps;
+  const unsubscribe = subscribeToStore(vars, store);
+  // let radius = 15;
+  // let n = 6;
+  // let depth = 3;
+  // let rotationSpeed = 0.01;
+
+  let offset = p.TWO_PI / vars.n;
   let colorVar = 0;
+  let multiplier;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -32,9 +38,9 @@ export const sketch = (
       0,
       0,
       multiplier,
-      radius * 2,
-      p.frameCount * rotationSpeed,
-      depth,
+      vars.radius * 2,
+      p.frameCount * vars.rotationSpeed,
+      vars.depth,
     );
     colorVar = (colorVar + 1) % 360;
     p.fill(colorVar, 100, 50, 0.5);
@@ -46,6 +52,10 @@ export const sketch = (
     p.background(0);
   };
 
+  p.remove = () => {
+    unsubscribe();
+  };
+
   function generateCircles(
     centerX: number,
     centerY: number,
@@ -55,11 +65,11 @@ export const sketch = (
     depth: number,
   ) {
     if (depth > 0) {
-      for (let i = 0; i < n; i++) {
+      for (let i = 0; i < vars.n; i++) {
         let angle = i * offset + angleIncrementer;
         let x = centerX + p.cos(angle) * multiplier;
         let y = centerY + p.sin(angle) * multiplier;
-        const hue = (p.map(i, 0, n, 0, 360) + p.frameCount * 1) % 360;
+        const hue = (p.map(i, 0, vars.n, 0, 360) + p.frameCount * 1) % 360;
         p.stroke(hue, 100, 50, 1);
         p.noFill();
         p.circle(x, y, radius * 2);
