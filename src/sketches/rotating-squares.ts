@@ -2,20 +2,15 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 import type { ZustandStore } from "../types/ZustandStore";
 import type { RotatingSquaresProps } from "../types/sketches-props";
+import { subscribeToStore } from "../utils/subscribe";
+import { getInitialVars } from "../utils/get-initial-vars";
 
 export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
   // interactive
-  const { data } = store.getState();
-  let n = data.n;
-  let speed = data.speed;
-  let insideFaster = data.insideFaster;
-  let strokeOpacity = 0.7;
+  const vars = getInitialVars("rotating-squares") as RotatingSquaresProps;
+  const unsubscribe = subscribeToStore(vars, store);
 
-  const unsubscribe = store.subscribe(({ data }) => {
-    n = data.n;
-    speed = data.speed;
-    insideFaster = data.insideFaster;
-  });
+  let strokeOpacity = 0.7;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -39,6 +34,7 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
   };
 
   p.draw = () => {
+    const { n, speed, insideFaster } = vars;
     // p.background(0, 0.1);
     p.translate(p.width / 2, p.height / 2);
 
