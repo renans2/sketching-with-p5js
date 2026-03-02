@@ -28,7 +28,11 @@ export default function Slider({
           min={min}
           max={max}
           step={step}
-          onChange={(e) => setVal(Number(e.target.value))}
+          onChange={(e) => {
+            console.clear();
+            console.log(e.target.value);
+            setVal(Number(e.target.value));
+          }}
           className="flex-1"
         />
         {/* <span className="flex items-center justify-center rounded-lg bg-black/9 w-10 p-1">

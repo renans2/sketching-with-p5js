@@ -15,7 +15,6 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
   // let colorSpeed = 1;
   // let mirror = false;
 
-  let angleOffset = p.TWO_PI / vars.divisions;
   let x: number | null = 0;
   let y: number | null = 0;
 
@@ -27,6 +26,12 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
   };
 
   p.draw = () => {
+    const angleOffset = p.TWO_PI / vars.divisions;
+    const realDivisions = vars.mirror
+      ? vars.divisions % 2 === 0
+        ? vars.divisions
+        : vars.divisions + 1
+      : vars.divisions;
     p.strokeWeight(vars.strokeWeight);
     p.translate(p.width / 2, p.height / 2);
 
@@ -39,14 +44,19 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
         y = newY;
       }
 
-      for (let i = 0; i < vars.divisions; i++) {
-        p.rotate(angleOffset);
+      p.rotate(-angleOffset);
+      for (
+        let i = 0;
+        i < (vars.mirror ? realDivisions * 2 : realDivisions);
+        i++
+      ) {
         p.push();
+        p.rotate(i * angleOffset);
         if (i % 2 === 0 && vars.mirror) p.scale(1, -1);
 
         if (vars.colored) {
           const hue =
-            (p.map(i, 0, vars.divisions, 0, 360) +
+            (p.map(i, 0, realDivisions, 0, 360) +
               p.frameCount * vars.colorSpeed) %
             360;
           p.stroke(hue, 100, 50, vars.opacity);

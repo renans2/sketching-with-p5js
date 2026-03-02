@@ -115,4 +115,5 @@ export type AnimatedFlowFieldProps = {
   particleSpeed: number;
   strokeWidth: number;
   strokeOpacity: number;
+  backgroundOpacity: number;
 };

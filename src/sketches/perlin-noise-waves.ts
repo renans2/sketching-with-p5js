@@ -16,14 +16,11 @@ export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
   // let opacity = 1;
   // let backgroundOpacity = 1;
 
-  let offset: number;
-
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
     p.noStroke();
     p.rectMode(p.CENTER);
-    offset = p.width / vars.n;
   };
 
   p.draw = () => {
@@ -42,6 +39,8 @@ export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
   };
 
   function drawRectangles() {
+    const offset = p.width / vars.n;
+
     for (let i = 0; i < vars.n; i++) {
       for (let j = 0; j < vars.n; j++) {
         const x = j * offset + offset / 2;

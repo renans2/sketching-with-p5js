@@ -12,18 +12,16 @@ export const sketch = (p: p5, store: ZustandStore<CowEffectProps>) => {
   // let noiseMultiplier = 0.05;
   // let speed = 0.035;
 
-  let offset: number;
-
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
-    offset = p.width / vars.n;
     p.pixelDensity(1);
     p.noStroke();
     p.noiseDetail(2, 0.9);
   };
 
   p.draw = () => {
+    const offset = p.width / vars.n;
     p.background(0);
     p.frameRate(24);
     p.noStroke();
@@ -47,7 +45,6 @@ export const sketch = (p: p5, store: ZustandStore<CowEffectProps>) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
-    offset = p.width / vars.n;
   };
 
   p.remove = () => {

@@ -14,7 +14,6 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
 
   const N_CIRCLES = 20;
   const RADIUS = 7;
-  let offset: number;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -22,11 +21,10 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
 
     p.noStroke();
     p.colorMode(p.HSL);
-
-    offset = p.width / 2 / N_CIRCLES;
   };
 
   p.draw = () => {
+    const offset = p.width / 2 / N_CIRCLES;
     p.translate(p.width / 2, p.height - RADIUS);
     p.background(0);
 
@@ -68,7 +66,6 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
-    offset = p.width / 2 / N_CIRCLES;
   };
 
   p.remove = () => {

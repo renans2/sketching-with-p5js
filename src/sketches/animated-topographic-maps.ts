@@ -19,20 +19,17 @@ export const sketch = (
   // let step = 0.05;
   // let speed = 0.0035;
 
-  let offset: number;
-  let radius: number;
-
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
     p.background(0);
     p.colorMode(p.HSL);
     p.noStroke();
-    offset = p.width / vars.n;
-    radius = offset / 2;
   };
 
   p.draw = () => {
+    const offset = p.width / vars.n;
+    const radius = offset / 2;
     p.background(0);
 
     for (let i = 0; i < vars.n; i++) {
@@ -61,8 +58,6 @@ export const sketch = (
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
-    offset = p.width / vars.n;
-    radius = offset / 2;
   };
 
   p.remove = () => {

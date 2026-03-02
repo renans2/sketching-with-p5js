@@ -23,10 +23,11 @@ export const sketch = (p: P5, store: ZustandStore<AnimatedFlowFieldProps>) => {
     p.createCanvas(canvasSize, canvasSize);
     p.background(0);
     p.colorMode(p.HSL);
-    p.strokeWeight(vars.strokeWidth);
   };
 
   p.draw = () => {
+    p.background(0, vars.backgroundOpacity);
+    p.strokeWeight(vars.strokeWidth);
     spawnParticles(vars.particlesPerFrame);
 
     for (let i = particles.length - 1; i >= 0; i--) {

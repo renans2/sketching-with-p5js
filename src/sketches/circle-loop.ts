@@ -13,8 +13,6 @@ export const sketch = (p: p5, store: ZustandStore<CircleLoopProps>) => {
   // let colorSpeed = 1;
   // let radius = 5;
 
-  let angleOffset = p.TWO_PI / vars.n;
-
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
@@ -23,6 +21,7 @@ export const sketch = (p: p5, store: ZustandStore<CircleLoopProps>) => {
   };
 
   p.draw = () => {
+    const angleOffset = p.TWO_PI / vars.n;
     p.background(0, 0.1);
     p.translate(p.width / 2, p.height / 2);
     const corners = p.floor(p.map(p.mouseX, 0, p.width, 0, 50));

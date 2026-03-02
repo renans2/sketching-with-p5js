@@ -16,15 +16,12 @@ export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
   // let backgroundOpacity = 0.5;
   // let noFill = false;
 
-  let offset: number;
-
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
     p.colorMode(p.HSL);
     p.noStroke();
     p.background(0);
-    offset = p.width / 2 / vars.n;
   };
 
   p.draw = () => {
@@ -37,7 +34,6 @@ export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
-    offset = p.width / 2 / vars.n;
   };
 
   p.remove = () => {
@@ -45,6 +41,8 @@ export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
   };
 
   function drawCircles() {
+    const offset = p.width / 2 / vars.n;
+
     for (let i = 0; i < vars.n; i++) {
       const angle =
         (vars.insideFaster ? vars.n - i : i + 1) * p.frameCount * vars.speed;

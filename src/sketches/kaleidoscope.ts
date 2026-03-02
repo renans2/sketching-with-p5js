@@ -16,7 +16,6 @@ export const sketch = (p: p5, store: ZustandStore<KaleidoscopeProps>) => {
 
   let x: number;
   let y: number;
-  let angleOffset = p.TWO_PI / vars.n;
   const INITIAL_HUE = p.random(360);
 
   p.setup = () => {
@@ -33,6 +32,8 @@ export const sketch = (p: p5, store: ZustandStore<KaleidoscopeProps>) => {
   };
 
   p.draw = () => {
+    const angleOffset = p.TWO_PI / vars.n;
+    p.strokeWeight(vars.strokeWeight);
     p.translate(p.width / 2, p.height / 2);
     const hue = (INITIAL_HUE + p.frameCount * vars.colorSpeed) % 360;
     p.stroke(hue, 100, 50, vars.opacity);

@@ -18,7 +18,6 @@ export const sketch = (
   // let depth = 3;
   // let rotationSpeed = 0.01;
 
-  let offset = p.TWO_PI / vars.n;
   let colorVar = 0;
   let multiplier;
 
@@ -65,6 +64,7 @@ export const sketch = (
     depth: number,
   ) {
     if (depth > 0) {
+      const offset = p.TWO_PI / vars.n;
       for (let i = 0; i < vars.n; i++) {
         let angle = i * offset + angleIncrementer;
         let x = centerX + p.cos(angle) * multiplier;

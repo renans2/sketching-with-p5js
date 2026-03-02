@@ -35,10 +35,10 @@ export const sketch = (
   };
 
   p.draw = () => {
+    diameter = maxDiameter - vars.n;
     p.background(0);
     p.translate(p.width / 2, p.height / 2);
 
-    calcNewAmountAndDiameter();
     calcOffsetIncAngle();
     drawLines();
     drawOuterCircle();
@@ -57,7 +57,7 @@ export const sketch = (
   };
 
   function drawCircles() {
-    for (let i = 0; i < vars.amount; i++) {
+    for (let i = 0; i < vars.n; i++) {
       let x = p.sin(i * offset + angleIncrementer) * multiplier;
       p.push();
       p.rotate(i * offset);
@@ -66,17 +66,9 @@ export const sketch = (
     }
   }
 
-  function calcNewAmountAndDiameter() {
-    let newAmount = p.floor(p.map(p.mouseX, 0, p.width, 1, 30));
-    if (newAmount % 2 != 0) {
-      vars.amount = newAmount;
-      diameter = maxDiameter - vars.amount;
-    }
-  }
-
   function calcOffsetIncAngle() {
     angleIncrementer = (angleIncrementer + vars.speed) % 360;
-    offset = 360 / vars.amount;
+    offset = 360 / vars.n;
   }
 
   function drawSingleCircle() {
@@ -92,7 +84,7 @@ export const sketch = (
     p.push();
     p.stroke(255);
     p.strokeWeight(strkWeightlines);
-    for (let i = 0; i < vars.amount; i++) {
+    for (let i = 0; i < vars.n; i++) {
       p.push();
       p.rotate(i * offset);
       p.line(-multiplier, 0, multiplier, 0);
