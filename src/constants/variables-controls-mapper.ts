@@ -29,8 +29,8 @@ const NO_OP = () => {};
 export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
   "rotating-squares": {
     initialValue: {
-      n: 10,
-      speed: 10,
+      n: 40,
+      speed: 0.001,
       insideFaster: true,
       clear: NO_OP,
     } as RotatingSquaresProps,
@@ -41,12 +41,19 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         label: "Number of Squares",
         min: 1,
         max: 100,
+        step: 1,
       },
-      { type: "slider", key: "speed", label: "Speed", min: 1, max: 10 },
+      {
+        type: "slider",
+        key: "speed",
+        label: "Speed",
+        min: 0,
+        max: 0.01,
+      },
       {
         type: "checkbox",
         key: "insideFaster",
-        label: "Inside Faster",
+        label: "Inside faster",
         default: true,
       },
       {
@@ -83,7 +90,13 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         min: 0,
         max: 0.1,
       },
-      { type: "slider", key: "angleInc", label: "Angle Inc", min: 0, max: 0.1 },
+      {
+        type: "slider",
+        key: "angleInc",
+        label: "Angle Inc",
+        min: 0,
+        max: 0.1,
+      },
     ],
   },
 
@@ -105,7 +118,13 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         label: "Inside Faster",
         default: false,
       },
-      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.05 },
+      {
+        type: "slider",
+        key: "speed",
+        label: "Speed",
+        min: 0,
+        max: 0.05,
+      },
       { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
       {
         type: "slider",
@@ -137,7 +156,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         key: "globalSpeed",
         label: "Global Speed",
         min: 0,
-        max: 0.05,
+        max: 0.01,
       },
       { type: "slider", key: "n", label: "N", min: 1, max: 100 },
       {
@@ -154,7 +173,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       n: 50,
       noiseMultiplier: 0.002,
       speed: 0.005,
-      widthMultiplier: 0.5,
+      widthMultiplier: 0.25,
       heightMultiplier: 2,
       opacity: 1,
       backgroundOpacity: 1,
@@ -168,27 +187,27 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         min: 0,
         max: 0.01,
       },
-      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.05 },
+      { type: "slider", key: "speed", label: "Speed", min: 0.001, max: 0.05 },
       {
         type: "slider",
         key: "widthMultiplier",
         label: "Width Multiplier",
-        min: 0,
-        max: 5,
+        min: 0.025,
+        max: 10,
       },
       {
         type: "slider",
         key: "heightMultiplier",
         label: "Height Multiplier",
-        min: 0,
-        max: 5,
+        min: 0.02,
+        max: 10,
       },
       { type: "slider", key: "opacity", label: "Opacity", min: 0, max: 1 },
       {
         type: "slider",
         key: "backgroundOpacity",
         label: "Background Opacity",
-        min: 0,
+        min: 0.01,
         max: 1,
       },
     ],
@@ -197,17 +216,24 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
   "pendulum-waves": {
     initialValue: {
       speed: 0.003,
-      colorSpeed: 3,
+      colorSpeed: 1,
       insideFaster: true,
     } as PendulumWavesProps,
     controls: [
-      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.05 },
+      {
+        type: "slider",
+        key: "speed",
+        label: "Speed",
+        min: 0,
+        max: 0.01,
+      },
       {
         type: "slider",
         key: "colorSpeed",
         label: "Color Speed",
-        min: 0,
+        min: 0.1,
         max: 10,
+        step: 0.1,
       },
       {
         type: "checkbox",
@@ -220,47 +246,55 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
 
   "optical-illusion-circles": {
     initialValue: {
-      amount: 0,
-      speed: 5,
+      n: 5,
+      speed: 3,
     } as OpticalIllusionCirclesProps,
     controls: [
-      { type: "slider", key: "amount", label: "Amount", min: 0, max: 100 },
-      { type: "slider", key: "speed", label: "Speed", min: 0, max: 20 },
+      { type: "slider", key: "n", label: "N", min: 0, max: 100, step: 1 },
+      { type: "slider", key: "speed", label: "Speed", min: 1, max: 10 },
     ],
   },
 
   "mirror-draw": {
     initialValue: {
       divisions: 30,
-      strokeWeight: 2,
+      strokeWeight: 1,
       colored: true,
       opacity: 1,
       colorSpeed: 1,
-      mirror: false,
+      mirror: true,
     } as MirrorDrawProps,
     controls: [
       {
         type: "slider",
         key: "divisions",
         label: "Divisions",
-        min: 1,
+        min: 3,
         max: 100,
+        step: 1,
       },
       {
         type: "slider",
         key: "strokeWeight",
         label: "Stroke Weight",
         min: 1,
-        max: 10,
+        max: 100,
+        step: 1,
       },
       { type: "checkbox", key: "colored", label: "Colored", default: true },
-      { type: "slider", key: "opacity", label: "Opacity", min: 0, max: 1 },
+      {
+        type: "slider",
+        key: "opacity",
+        label: "Opacity",
+        min: 0.01,
+        max: 1,
+      },
       {
         type: "slider",
         key: "colorSpeed",
         label: "Color Speed",
         min: 0,
-        max: 10,
+        max: 50,
       },
       { type: "checkbox", key: "mirror", label: "Mirror", default: false },
     ],
@@ -272,17 +306,17 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       speed: 0.01,
       colorSpeed: 0.2,
       strokeWeight: 1,
-      opacity: 0.2,
+      opacity: 0.3,
     } as KaleidoscopeProps,
     controls: [
-      { type: "slider", key: "n", label: "N", min: 1, max: 200 },
-      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.05 },
+      { type: "slider", key: "n", label: "N", min: 10, max: 200 },
+      { type: "slider", key: "speed", label: "Speed", min: 0.001, max: 0.05 },
       {
         type: "slider",
         key: "colorSpeed",
         label: "Color Speed",
         min: 0,
-        max: 5,
+        max: 10,
       },
       {
         type: "slider",
@@ -291,7 +325,13 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         min: 1,
         max: 10,
       },
-      { type: "slider", key: "opacity", label: "Opacity", min: 0, max: 1 },
+      {
+        type: "slider",
+        key: "opacity",
+        label: "Opacity",
+        min: 0.05,
+        max: 1,
+      },
     ],
   },
 
@@ -320,20 +360,18 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       n: 6,
       depth: 3,
       rotationSpeed: 0.01,
-      colorVar: 0,
     } as CirclesAroundCirclesProps,
     controls: [
-      { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
-      { type: "slider", key: "n", label: "N", min: 1, max: 50 },
-      { type: "slider", key: "depth", label: "Depth", min: 1, max: 10 },
+      { type: "slider", key: "radius", label: "Radius", min: 1, max: 250 },
+      { type: "slider", key: "n", label: "N", min: 1, max: 10, step: 1 },
+      { type: "slider", key: "depth", label: "Depth", min: 1, max: 5, step: 1 },
       {
         type: "slider",
         key: "rotationSpeed",
         label: "Rotation Speed",
         min: 0,
-        max: 0.05,
+        max: 0.1,
       },
-      { type: "slider", key: "colorVar", label: "Color Var", min: 0, max: 360 },
     ],
   },
 
@@ -345,7 +383,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       radius: 5,
     } as CircleLoopProps,
     controls: [
-      { type: "slider", key: "n", label: "N", min: 1, max: 500 },
+      { type: "slider", key: "n", label: "N", min: 1, max: 500, step: 1 },
       { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.05 },
       {
         type: "slider",
@@ -354,7 +392,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         min: 0,
         max: 10,
       },
-      { type: "slider", key: "radius", label: "Radius", min: 1, max: 20 },
+      { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
     ],
   },
 
@@ -398,7 +436,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
     } as BouncingCirclesProps,
     controls: [
       { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
-      { type: "slider", key: "n", label: "N", min: 1, max: 200 },
+      { type: "slider", key: "n", label: "N", min: 1, max: 200, step: 1 },
     ],
   },
 
@@ -411,7 +449,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       speed: 0.0035,
     } as AnimatedTopographicMapsProps,
     controls: [
-      { type: "slider", key: "n", label: "N", min: 1, max: 300 },
+      { type: "slider", key: "n", label: "N", min: 1, max: 300, step: 1 },
       {
         type: "slider",
         key: "noiseMultiplier",
@@ -432,7 +470,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       noiseSpeed: 0.00005,
       particleSpeed: 1,
       strokeWidth: 1,
-      strokeOpacity: 0.1,
+      strokeOpacity: 0.15,
     } as AnimatedFlowFieldProps,
     controls: [
       {
@@ -441,12 +479,13 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         label: "Particles Per Frame",
         min: 1,
         max: 50,
+        step: 1,
       },
       {
         type: "slider",
         key: "noiseMultiplier",
         label: "Noise Multiplier",
-        min: 0,
+        min: 0.0005,
         max: 0.05,
       },
       {
@@ -454,7 +493,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         key: "noiseSpeed",
         label: "Noise Speed",
         min: 0,
-        max: 0.001,
+        max: 0.005,
       },
       {
         type: "slider",
@@ -474,7 +513,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         type: "slider",
         key: "strokeOpacity",
         label: "Stroke Opacity",
-        min: 0,
+        min: 0.05,
         max: 1,
       },
     ],

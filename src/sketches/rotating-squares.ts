@@ -14,6 +14,7 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
   p.setup = () => {
     const canvasSize = getCanvasSize();
     p.createCanvas(canvasSize, canvasSize);
+    p.background(0);
     p.rectMode(p.CENTER);
     p.noFill();
     p.colorMode(p.HSL);
@@ -34,7 +35,7 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
 
   p.draw = () => {
     const { n, speed, insideFaster } = vars;
-    // p.background(0, 0.1);
+    p.background(0, 0.5);
     p.translate(p.width / 2, p.height / 2);
 
     for (let i = 0; i < n; i++) {

@@ -26,6 +26,7 @@ export default function Dashboard({ store, controls }: DashboardType) {
         if (control.type === "slider") {
           return (
             <Slider
+              step={control.step || control.max / 100}
               key={control.key}
               min={control.min}
               max={control.max}

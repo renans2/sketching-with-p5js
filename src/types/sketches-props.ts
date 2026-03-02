@@ -46,7 +46,7 @@ export type PendulumWavesProps = {
 };
 
 export type OpticalIllusionCirclesProps = {
-  amount: number;
+  n: number;
   speed: number;
 };
 
