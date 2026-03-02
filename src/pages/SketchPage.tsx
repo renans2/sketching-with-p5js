@@ -17,14 +17,16 @@ export default function SketchPage({ sketch }: SketchPageType) {
       {ready && (
         <div className="space-y-4 flex-1">
           <Dashboard store={sketch.store} controls={sketch.controls} />
-          <a
-            href={sketch.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-black p-2 rounded-lg text-white"
-          >
-            Sketch source code on GitHub
-          </a>
+          <button className="bg-black p-2 rounded-lg text-white">
+            <a
+              href={sketch.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=""
+            >
+              Sketch source code on GitHub
+            </a>
+          </button>
         </div>
       )}
       <Sketch setIsReady={() => setReady(true)} sketch={sketch} />

@@ -6,7 +6,7 @@ type SliderProps = {
 
 export default function Checkbox({ label, val, setVal }: SliderProps) {
   return (
-    <label htmlFor={label} className="block">
+    <label htmlFor={label} className="flex items-center justify-between my-4">
       <p>{label}</p>
       <input
         type="checkbox"
