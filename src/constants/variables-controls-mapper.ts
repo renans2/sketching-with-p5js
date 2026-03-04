@@ -71,6 +71,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       colorSpeed: 0.5,
       leadAngleInc: 0.03,
       angleInc: 0.024131,
+      clear: NO_OP,
     } as SpirographProps,
     controls: [
       { type: "slider", key: "speed", label: "Speed", min: 1, max: 20 },
@@ -97,6 +98,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         min: 0,
         max: 0.1,
       },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
+      },
     ],
   },
 
@@ -109,6 +115,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       colorSpeed: 3,
       backgroundOpacity: 0.5,
       noFill: false,
+      clear: NO_OP,
     } as SpiralRgbProps,
     controls: [
       { type: "slider", key: "n", label: "N", min: 1, max: 100 },
@@ -141,6 +148,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         max: 1,
       },
       { type: "checkbox", key: "noFill", label: "No Fill", default: false },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
+      },
     ],
   },
 
@@ -177,6 +189,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       heightMultiplier: 2,
       opacity: 1,
       backgroundOpacity: 1,
+      clear: NO_OP,
     } as PerlinNoiseWavesProps,
     controls: [
       { type: "slider", key: "n", label: "N", min: 5, max: 200 },
@@ -209,6 +222,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         label: "Background Opacity",
         min: 0.01,
         max: 1,
+      },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
       },
     ],
   },
@@ -263,6 +281,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       opacity: 1,
       colorSpeed: 1,
       mirror: true,
+      clear: NO_OP,
     } as MirrorDrawProps,
     controls: [
       {
@@ -297,6 +316,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         max: 50,
       },
       { type: "checkbox", key: "mirror", label: "Mirror", default: false },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
+      },
     ],
   },
 
@@ -307,6 +331,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       colorSpeed: 0.2,
       strokeWeight: 1,
       opacity: 0.3,
+      clear: NO_OP,
     } as KaleidoscopeProps,
     controls: [
       { type: "slider", key: "n", label: "N", min: 10, max: 200 },
@@ -331,6 +356,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         label: "Opacity",
         min: 0.05,
         max: 1,
+      },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
       },
     ],
   },
@@ -381,6 +411,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       speed: 0.01,
       colorSpeed: 1,
       radius: 5,
+      clear: NO_OP,
     } as CircleLoopProps,
     controls: [
       { type: "slider", key: "n", label: "N", min: 25, max: 1000, step: 1 },
@@ -393,6 +424,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         max: 10,
       },
       { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
+      },
     ],
   },
 
@@ -472,6 +508,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       strokeWidth: 1,
       strokeOpacity: 0.15,
       backgroundOpacity: 0,
+      clear: NO_OP,
     } as AnimatedFlowFieldProps,
     controls: [
       {
@@ -523,6 +560,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         label: "Background Opacity",
         min: 0,
         max: 1,
+      },
+      {
+        type: "button",
+        key: "clear",
+        label: "Clear",
       },
     ],
   },
