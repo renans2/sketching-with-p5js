@@ -35,9 +35,6 @@ export default function Slider({
           }}
           className="flex-1"
         />
-        {/* <span className="flex items-center justify-center rounded-lg bg-black/9 w-10 p-1">
-          {val}
-        </span> */}
       </div>
     </label>
   );

@@ -30,7 +30,7 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
   "rotating-squares": {
     initialValue: {
       n: 40,
-      speed: 0.001,
+      speed: 0.00175,
       insideFaster: true,
       clear: NO_OP,
     } as RotatingSquaresProps,

@@ -10,6 +10,7 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
   const unsubscribe = subscribeToStore(vars, store);
 
   let strokeOpacity = 0.7;
+  let globalSpeed = 0;
 
   p.setup = () => {
     const canvasSize = getCanvasSize();
@@ -34,14 +35,14 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
   };
 
   p.draw = () => {
-    const { n, speed, insideFaster } = vars;
+    globalSpeed += vars.speed;
     p.background(0, 0.5);
     p.translate(p.width / 2, p.height / 2);
 
-    for (let i = 0; i < n; i++) {
-      const side = p.map(i, 0, n, 0, p.width);
-      const angle = (insideFaster ? n - i : i + 1) * p.frameCount * speed;
-      const hue = (p.map(i, 0, n, 0, 360) + p.frameCount * 3) % 360;
+    for (let i = 0; i < vars.n; i++) {
+      const side = p.map(i, 0, vars.n, 0, p.width);
+      const angle = (vars.insideFaster ? vars.n - i : i + 1) * globalSpeed;
+      const hue = (p.map(i, 0, vars.n, 0, 360) + p.frameCount * 3) % 360;
       p.stroke(hue, 100, 50, strokeOpacity);
       p.push();
       p.rotate(angle);

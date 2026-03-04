@@ -12,6 +12,7 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
   // let colorSpeed = 3;
   // let insideFaster = true;
 
+  let globalSpeed = 0;
   const N_CIRCLES = 20;
   const RADIUS = 7;
 
@@ -24,6 +25,7 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
   };
 
   p.draw = () => {
+    globalSpeed += vars.speed;
     const offset = p.width / 2 / N_CIRCLES;
     p.translate(p.width / 2, p.height - RADIUS);
     p.background(0);
@@ -41,9 +43,7 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
 
       let a =
         (p.PI +
-          p.frameCount *
-            (N_CIRCLES - (vars.insideFaster ? i : -i) * 0.4 + 1) *
-            vars.speed) %
+          (N_CIRCLES - (vars.insideFaster ? i : -i) * 0.4 + 1) * globalSpeed) %
         p.TWO_PI;
       let tempAngle;
 

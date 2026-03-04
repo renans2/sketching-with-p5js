@@ -18,6 +18,7 @@ export const sketch = (
   // let depth = 3;
   // let rotationSpeed = 0.01;
 
+  let globalSpeed = 0;
   let colorVar = 0;
   let multiplier;
 
@@ -30,17 +31,11 @@ export const sketch = (
   };
 
   p.draw = () => {
+    globalSpeed += vars.rotationSpeed;
     p.background(0, 0, 0, 0.1);
     multiplier = p.map(p.mouseY, p.height, 0, 1, 500);
     p.translate(p.width / 2, p.height / 2);
-    generateCircles(
-      0,
-      0,
-      multiplier,
-      vars.radius * 2,
-      p.frameCount * vars.rotationSpeed,
-      vars.depth,
-    );
+    generateCircles(0, 0, multiplier, vars.radius * 2, globalSpeed, vars.depth);
     colorVar = (colorVar + 1) % 360;
     p.fill(colorVar, 100, 50, 0.5);
   };
