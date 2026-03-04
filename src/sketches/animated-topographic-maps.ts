@@ -9,6 +9,7 @@ export const sketch = (
   p: p5,
   store: ZustandStore<AnimatedTopographicMapsProps>,
 ) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars(
     "animated-topographic-maps",
   ) as AnimatedTopographicMapsProps;
@@ -52,6 +53,11 @@ export const sketch = (
         }
       }
     }
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("perlin-noise-waves") as PerlinNoiseWavesProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let n = 50;
@@ -26,6 +27,11 @@ export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
   p.draw = () => {
     p.background(0, vars.backgroundOpacity * 255);
     drawRectangles();
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

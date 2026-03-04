@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("spiral-rgb") as SpiralRgbProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let n = 30;
@@ -31,6 +32,11 @@ export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
     p.background(0, 0, 0, vars.backgroundOpacity);
     p.translate(p.width / 2, p.height / 2);
     drawCircles();
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<SpirographProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("spirograph") as SpirographProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let speed = 10;
@@ -53,6 +54,11 @@ export const sketch = (p: p5, store: ZustandStore<SpirographProps>) => {
       leadAngle += vars.leadAngleInc;
       angle += vars.angleInc;
     }
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

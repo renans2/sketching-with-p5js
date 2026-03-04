@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("pendulum-waves") as PendulumWavesProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let speed = 0.003;
@@ -60,6 +61,11 @@ export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
       p.circle(0, 0, radius * 2);
       p.pop();
     }
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

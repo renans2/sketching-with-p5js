@@ -9,6 +9,7 @@ export const sketch = (
   p: p5,
   store: ZustandStore<CirclesAroundCirclesProps>,
 ) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars(
     "circles-around-circles",
   ) as CirclesAroundCirclesProps;
@@ -38,6 +39,11 @@ export const sketch = (
     generateCircles(0, 0, multiplier, vars.radius * 2, globalSpeed, vars.depth);
     colorVar = (colorVar + 1) % 360;
     p.fill(colorVar, 100, 50, 0.5);
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

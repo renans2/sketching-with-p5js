@@ -7,6 +7,7 @@ import { subscribeToStore } from "../utils/subscribe";
 declare const p5: typeof import("p5");
 
 export const sketch = (p: P5, store: ZustandStore<AnimatedFlowFieldProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("animated-flow-field") as AnimatedFlowFieldProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let particlesPerFrame = 5;
@@ -51,19 +52,17 @@ export const sketch = (p: P5, store: ZustandStore<AnimatedFlowFieldProps>) => {
           p5.Vector.fromAngle(angle, vars.particleSpeed),
         );
     }
+  };
 
-    if (p.frameCount % 100 === 0)
-      console.log(particles.length + " " + p.frameRate());
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {
     const newCanvasSize = getCanvasSize();
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
-  };
-
-  p.remove = () => {
-    unsubscribe();
   };
 
   function spawnParticles(n: number) {

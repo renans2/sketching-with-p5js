@@ -9,6 +9,7 @@ export const sketch = (
   p: p5,
   store: ZustandStore<OpticalIllusionCirclesProps>,
 ) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars(
     "optical-illusion-circles",
   ) as OpticalIllusionCirclesProps;
@@ -44,6 +45,11 @@ export const sketch = (
     drawOuterCircle();
     drawCircles();
     drawSingleCircle();
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

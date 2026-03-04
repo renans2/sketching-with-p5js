@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<BoundingLinesProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("bounding-lines") as BoundingLinesProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let n = 7;
@@ -50,6 +51,11 @@ export const sketch = (p: p5, store: ZustandStore<BoundingLinesProps>) => {
       p.vertex(line.x, line.y);
     }
     p.endShape(p.CLOSE);
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

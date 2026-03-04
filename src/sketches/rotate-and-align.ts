@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("rotate-and-align") as RotateAndAlignProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let globalSpeed = 0.005;
@@ -29,6 +30,11 @@ export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
 
     globalAngle = (globalAngle - vars.globalSpeed) % 360;
     drawCirclesAndLines();
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

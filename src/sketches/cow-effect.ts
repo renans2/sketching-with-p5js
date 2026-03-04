@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<CowEffectProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("cow-effect") as CowEffectProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let n = 75;
@@ -39,6 +40,11 @@ export const sketch = (p: p5, store: ZustandStore<CowEffectProps>) => {
         p.rect(j * offset, i * offset, offset + 1);
       }
     }
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

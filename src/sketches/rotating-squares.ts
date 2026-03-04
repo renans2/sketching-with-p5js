@@ -6,6 +6,7 @@ import { subscribeToStore } from "../utils/subscribe";
 import { getInitialVars } from "../utils/get-initial-vars";
 
 export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("rotating-squares") as RotatingSquaresProps;
   const unsubscribe = subscribeToStore(vars, store);
 
@@ -26,6 +27,11 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
         clear: () => p.background(0),
       },
     }));
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

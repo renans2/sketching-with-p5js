@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("bouncing-circles") as BouncingCirclesProps;
   const unsubscribe = subscribeToStore(vars, store);
   // const radius = 20;
@@ -45,6 +46,11 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
       c.move();
       c.draw();
     }
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

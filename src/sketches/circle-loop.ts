@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<CircleLoopProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("circle-loop") as CircleLoopProps;
   const unsubscribe = subscribeToStore(vars, store);
   // let n = 250;
@@ -44,6 +45,11 @@ export const sketch = (p: p5, store: ZustandStore<CircleLoopProps>) => {
       p.noFill();
       p.circle(0, y, vars.radius * 2);
     }
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {

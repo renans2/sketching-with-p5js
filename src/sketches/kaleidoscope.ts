@@ -6,6 +6,7 @@ import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
 
 export const sketch = (p: p5, store: ZustandStore<KaleidoscopeProps>) => {
+  const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("kaleidoscope") as KaleidoscopeProps;
   const unsubscribe = subscribeToStore(vars, store);
   // const n = 100;
@@ -48,6 +49,11 @@ export const sketch = (p: p5, store: ZustandStore<KaleidoscopeProps>) => {
 
     x = newX;
     y = newY;
+  };
+
+  p.remove = () => {
+    unsubscribe();
+    p5Remove();
   };
 
   p.windowResized = () => {
