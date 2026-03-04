@@ -4,12 +4,14 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type { default as P5 } from "p5";
 import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
+import { initClearCanvasMethod } from "../utils/define-store-methods";
 declare const p5: typeof import("p5");
 
 export const sketch = (p: P5, store: ZustandStore<AnimatedFlowFieldProps>) => {
   const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("animated-flow-field") as AnimatedFlowFieldProps;
   const unsubscribe = subscribeToStore(vars, store);
+  initClearCanvasMethod(p, store);
   // let particlesPerFrame = 5;
   // let noiseMultiplier = 0.005;
   // let noiseSpeed = 0.00005;

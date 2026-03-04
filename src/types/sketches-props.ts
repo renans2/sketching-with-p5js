@@ -2,6 +2,7 @@ export type RotatingSquaresProps = {
   n: number;
   speed: number;
   insideFaster: boolean;
+  clear: () => void;
 };
 
 export type SpirographProps = {
@@ -11,6 +12,7 @@ export type SpirographProps = {
   colorSpeed: number;
   leadAngleInc: number;
   angleInc: number;
+  clear: () => void;
 };
 
 export type SpiralRgbProps = {
@@ -21,6 +23,7 @@ export type SpiralRgbProps = {
   colorSpeed: number;
   backgroundOpacity: number;
   noFill: boolean;
+  clear: () => void;
 };
 
 export type RotateAndAlignProps = {
@@ -37,6 +40,7 @@ export type PerlinNoiseWavesProps = {
   heightMultiplier: number;
   opacity: number;
   backgroundOpacity: number;
+  clear: () => void;
 };
 
 export type PendulumWavesProps = {
@@ -57,6 +61,7 @@ export type MirrorDrawProps = {
   opacity: number;
   colorSpeed: number;
   mirror: boolean;
+  clear: () => void;
 };
 
 export type KaleidoscopeProps = {
@@ -65,6 +70,7 @@ export type KaleidoscopeProps = {
   colorSpeed: number;
   strokeWeight: number;
   opacity: number;
+  clear: () => void;
 };
 
 export type CowEffectProps = {
@@ -86,6 +92,7 @@ export type CircleLoopProps = {
   speed: number;
   colorSpeed: number;
   radius: number;
+  clear: () => void;
 };
 
 export type BoundingLinesProps = {
@@ -116,4 +123,5 @@ export type AnimatedFlowFieldProps = {
   strokeWidth: number;
   strokeOpacity: number;
   backgroundOpacity: number;
+  clear: () => void;
 };

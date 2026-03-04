@@ -4,11 +4,13 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
+import { initClearCanvasMethod } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
   const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("perlin-noise-waves") as PerlinNoiseWavesProps;
   const unsubscribe = subscribeToStore(vars, store);
+  initClearCanvasMethod(p, store);
   // let n = 50;
   // let noiseMultiplier = 0.002;
   // let speed = 0.005;

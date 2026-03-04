@@ -4,11 +4,13 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 import { getInitialVars } from "../utils/get-initial-vars";
 import { subscribeToStore } from "../utils/subscribe";
+import { initClearCanvasMethod } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<SpirographProps>) => {
   const p5Remove = p.remove.bind(p);
   const vars = getInitialVars("spirograph") as SpirographProps;
   const unsubscribe = subscribeToStore(vars, store);
+  initClearCanvasMethod(p, store);
   // let speed = 10;
   // let radius1 = 200;
   // let radius2 = 200;
