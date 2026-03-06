@@ -15,6 +15,7 @@ export default function Dashboard({ store, controls }: DashboardType) {
 
   return (
     <div className="space-y-5">
+      <Button label="Save Screen Shot" action={data["screenShot"]} />
       {controls.map((control) => {
         const label = control.label;
         const sliderAndCheckboxCommonProps = {
