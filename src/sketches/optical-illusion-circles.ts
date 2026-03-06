@@ -58,10 +58,6 @@ export const sketch = (
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   function drawCircles() {
     for (let i = 0; i < vars.n; i++) {
       let x = p.sin(i * offset + angleIncrementer) * multiplier;

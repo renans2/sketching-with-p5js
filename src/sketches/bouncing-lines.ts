@@ -64,10 +64,6 @@ export const sketch = (p: p5, store: ZustandStore<BoundingLinesProps>) => {
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   class BouncingLine {
     x;
     y;

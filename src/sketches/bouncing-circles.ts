@@ -59,10 +59,6 @@ export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   class BouncingCircle {
     hue;
     x;

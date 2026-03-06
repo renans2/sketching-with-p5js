@@ -42,10 +42,6 @@ export const sketch = (p: p5, store: ZustandStore<PerlinNoiseWavesProps>) => {
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   function drawRectangles() {
     const offset = p.width / vars.n;
 

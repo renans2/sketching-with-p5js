@@ -52,10 +52,6 @@ export const sketch = (
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   function generateCircles(
     centerX: number,
     centerY: number,

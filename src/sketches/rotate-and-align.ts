@@ -43,10 +43,6 @@ export const sketch = (p: p5, store: ZustandStore<RotateAndAlignProps>) => {
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   function drawCirclesAndLines() {
     p.push();
     p.beginShape();

@@ -65,8 +65,4 @@ export const sketch = (
     p.resizeCanvas(newCanvasSize, newCanvasSize);
     p.background(0);
   };
-
-  p.remove = () => {
-    unsubscribe();
-  };
 };

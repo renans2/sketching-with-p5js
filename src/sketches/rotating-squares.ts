@@ -50,8 +50,4 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
       p.pop();
     }
   };
-
-  p.remove = () => {
-    unsubscribe();
-  };
 };

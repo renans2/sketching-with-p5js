@@ -91,10 +91,6 @@ export const sketch = (p: p5, store: ZustandStore<MirrorDrawProps>) => {
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   p.doubleClicked = () => {
     p.background(0);
   };

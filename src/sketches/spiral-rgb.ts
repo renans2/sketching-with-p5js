@@ -47,10 +47,6 @@ export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
     p.background(0);
   };
 
-  p.remove = () => {
-    unsubscribe();
-  };
-
   function drawCircles() {
     const offset = p.width / 2 / vars.n;
 
