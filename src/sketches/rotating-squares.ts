@@ -2,15 +2,14 @@ import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
 import type { ZustandStore } from "../types/ZustandStore";
 import type { RotatingSquaresProps } from "../types/sketches-props";
-import { subscribeToStore } from "../utils/subscribe";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { initClearCanvasMethod } from "../utils/define-store-methods";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars("rotating-squares") as RotatingSquaresProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  initClearCanvasMethod(p, store);
+  const { p5Remove, vars, unsubscribe } = initMethods<RotatingSquaresProps>(
+    "rotating-squares",
+    p,
+    store,
+  );
 
   let strokeOpacity = 0.7;
   let globalSpeed = 0;
