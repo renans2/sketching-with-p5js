@@ -11,6 +11,7 @@ type SketchPageType = {
 export default function SketchPage({ sketch }: SketchPageType) {
   const [ready, setReady] = useState(false);
   usePageTitle(sketch.title);
+  console.log(ready);
 
   return (
     <main className="flex flex-1 min-h-0 min-w-0 flex-col md:flex-row md:justify-between p-2 md:p-6 gap-5">
