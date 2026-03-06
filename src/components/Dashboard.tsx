@@ -24,7 +24,7 @@ export default function Dashboard({
   const { data, setData } = useStore(store);
 
   return (
-    <div className="space-y-5 p-2 md:p-4 border-2 border-[#00ff00] md:min-w-100 md:flex-1">
+    <div className="space-y-5 p-2 md:p-4 border-2 border-[#00ff00] md:min-w-80 md:max-w-120 md:flex-1">
       <div className="flex flex-col md:flex-row gap-4">
         <button className={BUTTON_STYLES}>
           <a
