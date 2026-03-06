@@ -2,22 +2,14 @@ import type { CirclesAroundCirclesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (
   p: p5,
   store: ZustandStore<CirclesAroundCirclesProps>,
 ) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars(
-    "circles-around-circles",
-  ) as CirclesAroundCirclesProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  // let radius = 15;
-  // let n = 6;
-  // let depth = 3;
-  // let rotationSpeed = 0.01;
+  const { p5Remove, vars, unsubscribe } =
+    initMethods<CirclesAroundCirclesProps>("circles-around-circles", p, store);
 
   let globalSpeed = 0;
   let colorVar = 0;

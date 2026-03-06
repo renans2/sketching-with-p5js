@@ -2,20 +2,14 @@ import type { KaleidoscopeProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
-import { initClearCanvasMethod } from "../utils/define-store-methods";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<KaleidoscopeProps>) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars("kaleidoscope") as KaleidoscopeProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  initClearCanvasMethod(p, store);
-  // const n = 100;
-  // const speed = 0.01;
-  // const colorSpeed = 0.2;
-  // const strokeWeight = 1;
-  // const opacity = 0.2;
+  const { p5Remove, vars, unsubscribe } = initMethods<KaleidoscopeProps>(
+    "kaleidoscope",
+    p,
+    store,
+  );
 
   let x: number;
   let y: number;

@@ -2,16 +2,14 @@ import type { PendulumWavesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<PendulumWavesProps>) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars("pendulum-waves") as PendulumWavesProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  // let speed = 0.003;
-  // let colorSpeed = 3;
-  // let insideFaster = true;
+  const { p5Remove, vars, unsubscribe } = initMethods<PendulumWavesProps>(
+    "pendulum-waves",
+    p,
+    store,
+  );
 
   let globalSpeed = 0;
   const N_CIRCLES = 20;

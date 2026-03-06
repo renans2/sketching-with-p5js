@@ -2,23 +2,18 @@ import type { AnimatedTopographicMapsProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (
   p: p5,
   store: ZustandStore<AnimatedTopographicMapsProps>,
 ) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars(
-    "animated-topographic-maps",
-  ) as AnimatedTopographicMapsProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  // let n = 150;
-  // let noiseMultiplier = 0.015;
-  // let gap = 0.0075;
-  // let step = 0.05;
-  // let speed = 0.0035;
+  const { p5Remove, vars, unsubscribe } =
+    initMethods<AnimatedTopographicMapsProps>(
+      "animated-topographic-maps",
+      p,
+      store,
+    );
 
   p.setup = () => {
     const canvasSize = getCanvasSize();

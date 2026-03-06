@@ -2,16 +2,14 @@ import type { CowEffectProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<CowEffectProps>) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars("cow-effect") as CowEffectProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  // let n = 75;
-  // let noiseMultiplier = 0.05;
-  // let speed = 0.035;
+  const { p5Remove, vars, unsubscribe } = initMethods<CowEffectProps>(
+    "cow-effect",
+    p,
+    store,
+  );
 
   p.setup = () => {
     const canvasSize = getCanvasSize();

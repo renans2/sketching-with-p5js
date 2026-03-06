@@ -2,15 +2,14 @@ import type { BouncingCirclesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<BouncingCirclesProps>) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars("bouncing-circles") as BouncingCirclesProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  // const radius = 20;
-  // const n = 50;
+  const { p5Remove, vars, unsubscribe } = initMethods<BouncingCirclesProps>(
+    "bouncing-circles",
+    p,
+    store,
+  );
 
   const MIN_SPEED = 7;
   const MAX_SPEED = 14;

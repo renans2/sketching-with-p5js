@@ -2,22 +2,14 @@ import type { SpiralRgbProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
-import { initClearCanvasMethod } from "../utils/define-store-methods";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (p: p5, store: ZustandStore<SpiralRgbProps>) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars("spiral-rgb") as SpiralRgbProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  initClearCanvasMethod(p, store);
-  // let n = 30;
-  // let insideFaster = false;
-  // let speed = 0.005;
-  // let radius = 14;
-  // let colorSpeed = 3;
-  // let backgroundOpacity = 0.5;
-  // let noFill = false;
+  const { p5Remove, vars, unsubscribe } = initMethods<SpiralRgbProps>(
+    "spiral-rgb",
+    p,
+    store,
+  );
 
   let globalSpeed = 0;
 

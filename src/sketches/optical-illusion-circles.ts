@@ -2,20 +2,18 @@ import type { OpticalIllusionCirclesProps } from "../types/sketches-props";
 import type { ZustandStore } from "../types/ZustandStore";
 import { getCanvasSize } from "../utils/canvas-parent";
 import type p5 from "p5";
-import { getInitialVars } from "../utils/get-initial-vars";
-import { subscribeToStore } from "../utils/subscribe";
+import { initMethods } from "../utils/define-store-methods";
 
 export const sketch = (
   p: p5,
   store: ZustandStore<OpticalIllusionCirclesProps>,
 ) => {
-  const p5Remove = p.remove.bind(p);
-  const vars = getInitialVars(
-    "optical-illusion-circles",
-  ) as OpticalIllusionCirclesProps;
-  const unsubscribe = subscribeToStore(vars, store);
-  // let amount = 0;
-  // let speed = 5;
+  const { p5Remove, vars, unsubscribe } =
+    initMethods<OpticalIllusionCirclesProps>(
+      "optical-illusion-circles",
+      p,
+      store,
+    );
 
   let maxDiameter = 50;
   let diameter: number;
