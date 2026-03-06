@@ -6,7 +6,7 @@ import HomePage from "./pages/Home";
 
 function App() {
   return (
-    <div className="h-screen flex flex-col">
+    <>
       <Header />
 
       <Routes>
@@ -22,7 +22,7 @@ function App() {
           ))}
         </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 

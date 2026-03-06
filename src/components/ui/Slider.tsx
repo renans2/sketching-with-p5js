@@ -16,11 +16,16 @@ export default function Slider({
   setVal,
 }: SliderProps) {
   const id = label.replace(/\s+/g, "-").toLowerCase();
+  const percentage = ((val - min) / (max - min)) * 100;
 
   return (
-    <label htmlFor={id} className="space-y-2">
+    <label htmlFor={id} className="flex flex-col gap-1">
       <p>{label}</p>
-      <div className="flex items-center gap-4">
+      <div className="w-full h-3 relative border-2 border-[#00ff00]">
+        <div
+          style={{ width: `${percentage}%` }}
+          className="absolute top-0 left-0 bg-[#00ff00] h-full"
+        />
         <input
           type="range"
           id={id}

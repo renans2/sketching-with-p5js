@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CANVAS_PARENT } from "../constants/elements-ids";
 import type { SketchInfo } from "../types/SketchInfo";
+import type { default as P5 } from "p5";
 
 declare const p5: typeof import("p5");
 
@@ -14,14 +15,14 @@ export default function Sketch({
   setIsReady,
 }: SketchProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const p5Ref = useRef<any>(null);
+  const p5Ref = useRef<P5>(null);
 
   useEffect(() => {
     const load = async () => {
       if (!containerRef.current) return;
 
       const { sketch } = await loadSketch();
-      p5Ref.current = new p5((p) => sketch(p, store!), containerRef.current);
+      p5Ref.current = new p5((p) => sketch(p, store), containerRef.current);
       setIsReady();
     };
 
@@ -35,7 +36,7 @@ export default function Sketch({
   return (
     <div
       id={CANVAS_PARENT}
-      className="flex-1 flex justify-end"
+      className="aspect-square min-w-0 flex"
       ref={containerRef}
     />
   );

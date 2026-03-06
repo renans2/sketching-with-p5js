@@ -11,7 +11,7 @@ export default function HomePage() {
         {SKETCH_CATALOG_INFO.map((skecth) => (
           <Link
             key={skecth.path}
-            className="bg-black font-bold p-2 text-white w-full aspect-square flex items-end"
+            className="border-2 border-[#00ff00] font-bold p-2 text-white w-full aspect-square flex items-end"
             to={`/sketch/${skecth.path}`}
           >
             {skecth.title}

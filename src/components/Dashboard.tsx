@@ -14,7 +14,7 @@ export default function Dashboard({ store, controls }: DashboardType) {
   const { data, setData } = useStore(store);
 
   return (
-    <div>
+    <div className="space-y-5">
       {controls.map((control) => {
         const label = control.label;
         const sliderAndCheckboxCommonProps = {

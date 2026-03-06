@@ -36,6 +36,11 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
     } as RotatingSquaresProps,
     controls: [
       {
+        type: "button",
+        key: "clear",
+        label: "Clear",
+      },
+      {
         type: "slider",
         key: "n",
         label: "Number of Squares",
@@ -55,11 +60,6 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
         key: "insideFaster",
         label: "Inside faster",
         default: true,
-      },
-      {
-        type: "button",
-        key: "clear",
-        label: "Clear",
       },
     ],
   },

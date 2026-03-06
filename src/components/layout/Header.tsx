@@ -4,10 +4,10 @@ export default function Header() {
   const { pathname } = useLocation();
 
   return (
-    <header className="bg-white text-black">
-      <div className="max-w-500 mx-auto p-4 flex items-center justify-between">
+    <header className="text-white">
+      <div className="p-4 md:p-6 flex items-center justify-between">
         <Link to="/">
-          <h1 className="text-2xl font-bold">Sketching w/ p5.js</h1>
+          <h1 className="text-3xl font-bold">Sketching w/ p5.js</h1>
         </Link>
         <nav>
           <ul className="flex gap-2">
