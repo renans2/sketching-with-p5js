@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { SKETCH_CATALOG_INFO } from "../constants/sketch-catalog-info";
 import usePageTitle from "../hooks/usePageTitle";
+import sketchImg from "../assets/sketch.png";
 
 export default function HomePage() {
   usePageTitle("Sketching w/ p5.js");
@@ -15,7 +16,7 @@ export default function HomePage() {
             className="relative border-2 border-[#00ff00] w-full aspect-square flex items-end"
           >
             <img
-              src="/src/assets/sketch.png"
+              src={sketchImg}
               alt="sketch"
               className="absolute w-full h-full top-0 left-0"
             />
