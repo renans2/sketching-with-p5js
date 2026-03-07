@@ -6,6 +6,6 @@ import { VARIABLES_CONTROLS_MAPPER } from "./variables-controls-mapper";
 export const STORE_MAPPER = Object.fromEntries(
   Object.entries(VARIABLES_CONTROLS_MAPPER).map(([key, value]) => [
     key,
-    createStore({ ...value.initialValue, screenShot: () => {} }),
+    createStore(value.initialValue),
   ]),
 ) as Record<SketchFile, ZustandStore<any>>;

@@ -29,29 +29,39 @@ export default function Dashboard({
 
   const getControls = () =>
     controls.map((control) => {
-      const label = control.label;
-      const sliderAndCheckboxCommonProps = {
-        label,
-        val: data[control.key],
-        setVal: (val: any) => setData({ ...data, [control.key]: val }),
-      };
+      if (control.type !== "clearButton") {
+        const label = control.label;
+        const sliderAndCheckboxCommonProps = {
+          label,
+          val: data[control.key],
+          setVal: (val: any) => setData({ ...data, [control.key]: val }),
+        };
 
-      if (control.type === "slider") {
-        return (
-          <Slider
-            step={control.step || control.max / 100}
-            key={control.key}
-            min={control.min}
-            max={control.max}
-            {...sliderAndCheckboxCommonProps}
-          />
-        );
-      } else if (control.type === "checkbox") {
-        return <Checkbox key={control.key} {...sliderAndCheckboxCommonProps} />;
-      } else if (control.type === "button") {
-        return (
-          <Button key={control.key} label={label} action={data[control.key]} />
-        );
+        if (control.type === "slider") {
+          return (
+            <Slider
+              step={control.step || control.max / 100}
+              key={control.key}
+              min={control.min}
+              max={control.max}
+              {...sliderAndCheckboxCommonProps}
+            />
+          );
+        } else if (control.type === "checkbox") {
+          return (
+            <Checkbox key={control.key} {...sliderAndCheckboxCommonProps} />
+          );
+        } else if (control.type === "button") {
+          return (
+            <Button
+              key={control.key}
+              label={label}
+              action={data[control.key]}
+            />
+          );
+        }
+      } else {
+        return <Button key="clear" label="Clear" action={data.clear} />;
       }
     });
 

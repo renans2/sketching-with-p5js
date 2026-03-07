@@ -8,4 +8,5 @@ export type Control =
       key: string;
     }
   | { type: "checkbox"; label: string; default: boolean; key: string }
-  | { type: "button"; label: string; key: string };
+  | { type: "button"; label: string; key: string }
+  | { type: "clearButton" };
