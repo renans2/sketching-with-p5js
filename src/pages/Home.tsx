@@ -8,12 +8,12 @@ export default function HomePage() {
 
   return (
     <main className="max-w-500 w-full mx-auto p-2 space-y-2">
-      <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-1">
+      <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-3">
         {SKETCH_CATALOG_INFO.map((sketch) => (
           <Link
             key={sketch.path}
             to={`/sketch/${sketch.path}`}
-            className="relative border-2 border-[#00ff00] w-full aspect-square flex items-end"
+            className="relative border-2 border-[#00ff00] w-full aspect-square flex items-end hover:scale-105 hover:z-10 transition"
           >
             <img
               src={sketchImg}
