@@ -117,3 +117,45 @@ export type AnimatedFlowFieldProps = {
   strokeOpacity: number;
   backgroundOpacity: number;
 };
+
+export type ConnectedDotsProps = {
+  radius: number;
+  n: number;
+  speed: number;
+};
+
+export type RainbowFlowerProps = {
+  n: number;
+  radius: number;
+  speed: number;
+};
+
+export type RotatingCirclesProps = {
+  nRings: number;
+  nCirclesPerRing: number;
+  circleRadius: number;
+  speed: number;
+};
+
+export type SandEffectProps = {
+  n: number;
+};
+
+export type SinCosWavesProps = {
+  n: number;
+  radius: number;
+  amplitude: number;
+  frequency: number;
+};
+
+export type SinVisualizationProps = {
+  n: number;
+  speed: number;
+  maxRotation: number;
+};
+
+export type TrippyEffectProps = {
+  n: number;
+  speed: number;
+  rotations: number;
+};

@@ -12,10 +12,17 @@ import type {
   CowEffectProps,
   CirclesAroundCirclesProps,
   CircleLoopProps,
-  // BouncingLinesProps,
+  BouncingLinesProps,
   BouncingCirclesProps,
   AnimatedTopographicMapsProps,
   AnimatedFlowFieldProps,
+  ConnectedDotsProps,
+  RainbowFlowerProps,
+  RotatingCirclesProps,
+  SandEffectProps,
+  SinCosWavesProps,
+  SinVisualizationProps,
+  TrippyEffectProps,
 } from "../types/sketches-props";
 import type { SketchFile } from "../types/SketchFile";
 
@@ -409,38 +416,38 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
     ],
   },
 
-  // "bouncing-lines": {
-  //   initialValue: {
-  //     n: 7,
-  //     colorSpeed: 3,
-  //     backgroundOpacity: 0.1,
-  //     strokeWeight: 3,
-  //   } as BoundingLinesProps,
-  //   controls: [
-  //     { type: "slider", key: "n", label: "N", min: 1, max: 50 },
-  //     {
-  //       type: "slider",
-  //       key: "colorSpeed",
-  //       label: "Color Speed",
-  //       min: 0,
-  //       max: 10,
-  //     },
-  //     {
-  //       type: "slider",
-  //       key: "backgroundOpacity",
-  //       label: "Background Opacity",
-  //       min: 0,
-  //       max: 1,
-  //     },
-  //     {
-  //       type: "slider",
-  //       key: "strokeWeight",
-  //       label: "Stroke Weight",
-  //       min: 1,
-  //       max: 10,
-  //     },
-  //   ],
-  // },
+  "bouncing-lines": {
+    initialValue: {
+      n: 7,
+      colorSpeed: 3,
+      backgroundOpacity: 0.1,
+      strokeWeight: 3,
+    } as BouncingLinesProps,
+    controls: [
+      { type: "slider", key: "n", label: "N", min: 1, max: 50, step: 1 },
+      {
+        type: "slider",
+        key: "colorSpeed",
+        label: "Color Speed",
+        min: 0,
+        max: 10,
+      },
+      {
+        type: "slider",
+        key: "backgroundOpacity",
+        label: "Background Opacity",
+        min: 0,
+        max: 1,
+      },
+      {
+        type: "slider",
+        key: "strokeWeight",
+        label: "Stroke Weight",
+        min: 1,
+        max: 10,
+      },
+    ],
+  },
 
   "bouncing-circles": {
     initialValue: {
@@ -542,146 +549,146 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
       },
     ],
   },
-};
 
-/*
-me ajude a completar esse mapper onde, para cada sketch file é gerado um objeto que possui initialValue para preencher a store (apenas com valores numéricos ou boolean, sem funções) e um array de controls. para isso, vou te passar uma coleção de trechos de sketches e cada trecho possui o nome do sketch file comentado (para vc saber a key no mapper) e o conjunto de variaveis que quero que vc considere. todas as variáveis numéricas deverão ter um slider associado e todo boolean deverá ter uma checkbox associada. logo abaixo, mostro o exemplo de rotating-squares já feito, repare que cada key do initialValue corresponde à uma variável que eu retirei do sketch e cada uma delas possui um slider/checkbox associado no array de controls. crie tambem um arquivo com todos os tipos que vc usar (equivalente à RotatingSquaresProps)
-
-mapper para completar:
-export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
-  "rotating-squares": {
+  "connected-dots": {
     initialValue: {
+      radius: 5,
       n: 10,
-      speed: 10,
-      insideFaster: true,
-    } as RotatingSquaresProps,
+      speed: 0.001,
+    } as ConnectedDotsProps,
+    controls: [
+      { type: "slider", key: "n", label: "Dots", min: 1, max: 200, step: 1 },
+      { type: "slider", key: "radius", label: "Radius", min: 1, max: 20 },
+      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.01 },
+    ],
+  },
+
+  "rainbow-flower": {
+    initialValue: {
+      n: 100,
+      radius: 15,
+      speed: 0.001,
+    } as RainbowFlowerProps,
+    controls: [
+      { type: "slider", key: "n", label: "Petals", min: 1, max: 300, step: 1 },
+      { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
+      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.01 },
+    ],
+  },
+
+  "rotating-circles": {
+    initialValue: {
+      nRings: 30,
+      nCirclesPerRing: 5,
+      circleRadius: 7,
+      speed: 0.003,
+    } as RotatingCirclesProps,
+    controls: [
+      {
+        type: "slider",
+        key: "nRings",
+        label: "Rings",
+        min: 1,
+        max: 100,
+        step: 1,
+      },
+      {
+        type: "slider",
+        key: "nCirclesPerRing",
+        label: "Circles per Ring",
+        min: 1,
+        max: 50,
+        step: 1,
+      },
+      {
+        type: "slider",
+        key: "circleRadius",
+        label: "Circle Radius",
+        min: 1,
+        max: 20,
+      },
+      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.02 },
+    ],
+  },
+
+  "sand-effect": {
+    initialValue: {
+      n: 100,
+    } as SandEffectProps,
     controls: [
       {
         type: "slider",
         key: "n",
-        label: "Number of Squares",
+        label: "Particles",
+        min: 1,
+        max: 500,
+        step: 1,
+      },
+    ],
+  },
+
+  "sin-cos-waves": {
+    initialValue: {
+      n: 100,
+      radius: 10,
+      amplitude: 250,
+      frequency: 2500,
+    } as SinCosWavesProps,
+    controls: [
+      { type: "slider", key: "n", label: "Points", min: 1, max: 300, step: 1 },
+      { type: "slider", key: "radius", label: "Radius", min: 1, max: 50 },
+      {
+        type: "slider",
+        key: "amplitude",
+        label: "Amplitude",
+        min: 0,
+        max: 500,
+      },
+      {
+        type: "slider",
+        key: "frequency",
+        label: "Frequency",
+        min: 0,
+        max: 5000,
+      },
+    ],
+  },
+
+  "sin-visualization": {
+    initialValue: {
+      n: 100,
+      speed: 0.035,
+      maxRotation: 1.5,
+    } as SinVisualizationProps,
+    controls: [
+      { type: "slider", key: "n", label: "Points", min: 1, max: 300, step: 1 },
+      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.1 },
+      {
+        type: "slider",
+        key: "maxRotation",
+        label: "Max Rotation",
+        min: 0,
+        max: 3,
+      },
+    ],
+  },
+
+  "trippy-effect": {
+    initialValue: {
+      n: 100,
+      speed: 0.025,
+      rotations: 20,
+    } as TrippyEffectProps,
+    controls: [
+      { type: "slider", key: "n", label: "Points", min: 1, max: 300, step: 1 },
+      { type: "slider", key: "speed", label: "Speed", min: 0, max: 0.1 },
+      {
+        type: "slider",
+        key: "rotations",
+        label: "Rotations",
         min: 1,
         max: 100,
-      },
-      { type: "slider", key: "speed", label: "Speed", min: 1, max: 10 },
-      {
-        type: "checkbox",
-        key: "insideFaster",
-        label: "Inside Faster",
-        default: true,
       },
     ],
   },
 };
-
-trechos dos sketches com as variáveis:
-
-  // spirograph
-  let speed = 10;
-  let radius1 = 200;
-  let radius2 = 200;
-  let colorSpeed = 0.5;
-  let leadAngleInc = 0.03;
-  let angleInc = 0.024131;
-
-    // spiral-rgb
-  let n = 30;
-  let insideFaster = false;
-  let speed = 0.005;
-  let radius = 14;
-  let colorSpeed = 3;
-  let backgroundOpacity = 0.5;
-  let noFill = false;
-
-    // rotate-and-align
-  let globalSpeed = 0.005;
-  let n = 20;
-  let insideFaster = false;
-
-    // perlin-noise-waves
-  let n = 50;
-  let noiseMultiplier = 0.002;
-  let speed = 0.005;
-  let widthMultiplier = 0.5;
-  let heightMultiplier = 2;
-  let opacity = 1;
-  let backgroundOpacity = 1;
-
-  // pendulum-waves
-  let speed = 0.003;
-  let colorSpeed = 3;
-  let insideFaster = true;
-
-  // optical-illusion-circles
-  let amount = 0;
-  let speed = 5;
-
-  // mirror-draw
-  let divisions = 30;
-  let strokeWeight = 2;
-  let colored = true;
-  let opacity = 1;
-  let colorSpeed = 1;
-  let mirror = false;
-
-  // kaleidoscope
-  const n = 100;
-  const speed = 0.01;
-  const colorSpeed = 0.2;
-  const strokeWeight = 1;
-  const opacity = 0.2;
-
-  // cow-effect
-  let n = 75;
-  let noiseMultiplier = 0.05;
-  let speed = 0.035;
-  let offset: number;
-
-  // circles-around-circles
-  let radius = 15;
-  let n = 6;
-  let depth = 3;
-  let rotationSpeed = 0.01;
-  let multiplier;
-  let offset = p.TWO_PI / n;
-  let colorVar = 0;
-
-  // circle-loop
-  let n = 250;
-  let speed = 0.01;
-  let angleOffset = p.TWO_PI / n;
-  let colorSpeed = 1;
-  let radius = 5;
-
-  // bounding-lines
-  let n = 7;
-  let colorSpeed = 3;
-  let backgroundOpacity = 0.1;
-  let strokeWeight = 3;
-
-  // bouncing-circles
-  const radius = 20;
-  const n = 50;
-
-  // animated-topographic-maps
-  let n = 150;
-  let noiseMultiplier = 0.015;
-  let gap = 0.0075;
-  let step = 0.05;
-  let speed = 0.0035;
-
-  // animated-flow-field
-  let particlesPerFrame = 5;
-  let noiseMultiplier = 0.005;
-  let noiseSpeed = 0.00005;
-  let particleSpeed = 1;
-  let strokeWidth = 1;
-  let strokeOpacity = 0.1;
-
-
-alem disso, insira aqui os arquivos em que vc gerou:
-
-export const SKETCH_FILES = [
-  "rotating-squares",
-  ...]
- */
