@@ -36,7 +36,7 @@ export const sketch = (p: p5, store: ZustandStore<RotatingSquaresProps>) => {
 
   p.draw = () => {
     globalSpeed += vars.speed;
-    p.background(0, 0.005);
+    p.background(0, 0.1);
     p.translate(p.width / 2, p.height / 2);
 
     for (let i = 0; i < vars.n; i++) {

@@ -12,7 +12,7 @@ import type {
   CowEffectProps,
   CirclesAroundCirclesProps,
   CircleLoopProps,
-  BoundingLinesProps,
+  // BouncingLinesProps,
   BouncingCirclesProps,
   AnimatedTopographicMapsProps,
   AnimatedFlowFieldProps,
@@ -409,38 +409,38 @@ export const VARIABLES_CONTROLS_MAPPER: Record<SketchFile, DashboardProps> = {
     ],
   },
 
-  "bounding-lines": {
-    initialValue: {
-      n: 7,
-      colorSpeed: 3,
-      backgroundOpacity: 0.1,
-      strokeWeight: 3,
-    } as BoundingLinesProps,
-    controls: [
-      { type: "slider", key: "n", label: "N", min: 1, max: 50 },
-      {
-        type: "slider",
-        key: "colorSpeed",
-        label: "Color Speed",
-        min: 0,
-        max: 10,
-      },
-      {
-        type: "slider",
-        key: "backgroundOpacity",
-        label: "Background Opacity",
-        min: 0,
-        max: 1,
-      },
-      {
-        type: "slider",
-        key: "strokeWeight",
-        label: "Stroke Weight",
-        min: 1,
-        max: 10,
-      },
-    ],
-  },
+  // "bouncing-lines": {
+  //   initialValue: {
+  //     n: 7,
+  //     colorSpeed: 3,
+  //     backgroundOpacity: 0.1,
+  //     strokeWeight: 3,
+  //   } as BoundingLinesProps,
+  //   controls: [
+  //     { type: "slider", key: "n", label: "N", min: 1, max: 50 },
+  //     {
+  //       type: "slider",
+  //       key: "colorSpeed",
+  //       label: "Color Speed",
+  //       min: 0,
+  //       max: 10,
+  //     },
+  //     {
+  //       type: "slider",
+  //       key: "backgroundOpacity",
+  //       label: "Background Opacity",
+  //       min: 0,
+  //       max: 1,
+  //     },
+  //     {
+  //       type: "slider",
+  //       key: "strokeWeight",
+  //       label: "Stroke Weight",
+  //       min: 1,
+  //       max: 10,
+  //     },
+  //   ],
+  // },
 
   "bouncing-circles": {
     initialValue: {

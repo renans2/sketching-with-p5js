@@ -11,7 +11,7 @@ export const SKETCH_FILES = [
   "cow-effect",
   "circles-around-circles",
   "circle-loop",
-  "bounding-lines",
+  // "bouncing-lines",
   "bouncing-circles",
   "animated-topographic-maps",
   "animated-flow-field",

@@ -88,7 +88,7 @@ export type CircleLoopProps = {
   radius: number;
 };
 
-export type BoundingLinesProps = {
+export type BouncingLinesProps = {
   n: number;
   colorSpeed: number;
   backgroundOpacity: number;

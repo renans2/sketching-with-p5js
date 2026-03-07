@@ -24,7 +24,8 @@ export function initMethods<T>(
     data: {
       ...state.data,
       clear: () => p.background(0),
-      screenShot: () => p.saveCanvas("sketch"),
+      screenShot: () =>
+        p.saveCanvas(`${sketchFile}-${new Date().toISOString()}`, "png"),
     },
   }));
 
