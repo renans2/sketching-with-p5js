@@ -1,13 +1,14 @@
-const offset = 10;
+const offset = 5;
 let amountX, amountY;
-const minMultiplier = 0.00045;
-const maxMultiplier = 0.002;
+const minMultiplier = 0.0045;
+const maxMultiplier = 0.005;
 let bottomColor, topColor;
 const colorGap = 100;
 let m1;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   cursor(HAND);
   strokeWeight(1);
