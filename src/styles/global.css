@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+* {
+  font-family: "Crimson Pro", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
