@@ -1,5 +1,23 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const sketchesDir = path.resolve("./public/sketches");
+  const files = fs.readdirSync(sketchesDir);
+
+  return files.map((file: any) => {
+    const slug = file.replace(".js", "");
+
+    return {
+      params: { slug },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const sketchSrc = `/sketches/${slug}.js`;
 ---
 
 <Layout>
@@ -17,4 +35,4 @@ import Layout from "../../layouts/Layout.astro";
   </main>
 </Layout>
 
-<script src="/sketches/flowField.js" is:inline></script>
+<script src=`${sketchSrc}` is:inline></script>

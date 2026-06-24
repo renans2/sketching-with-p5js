@@ -15,5 +15,8 @@
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^7.0.2",
     "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0"
   }
 }
