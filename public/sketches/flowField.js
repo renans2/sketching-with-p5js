@@ -47,9 +47,9 @@ function drawLine(x, y) {
   } else endShape();
 }
 
-function mousePressed() {
-  if (mouseButton === LEFT) drawAll();
-}
+// function mousePressed() {
+//   if (mouseButton === LEFT) drawAll();
+// }
 
 function isInsideCanvas(x, y) {
   return 0 <= x && x <= width && 0 <= y && y <= height;
