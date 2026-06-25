@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+import { SKETCHES_INFO } from "../constants/sketches";
+---
+
+<div class="grid grid-cols-6 gap-1">
+  {
+    SKETCHES_INFO.map((sketch) => (
+      <a href={`/sketches/${sketch.slug}`}>
+        <Image src={sketch.img} alt={sketch.slug} class="" />
+      </a>
+    ))
+  }
+</div>

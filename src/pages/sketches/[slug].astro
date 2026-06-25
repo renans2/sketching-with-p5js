@@ -2,6 +2,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import Layout from "../../layouts/Layout.astro";
+import SketchGallery from "../../components/SketchGallery";
+
+import flowField from "../../assets/sketches/flowField/flowField.png";
+import spirograph from "../../assets/sketches/spirograph/spirograph.png";
 
 export async function getStaticPaths() {
   const sketchesDir = path.resolve("./public/sketches");
@@ -21,7 +25,7 @@ const sketchSrc = `/sketches/${slug}.js`;
 ---
 
 <Layout>
-  <main class="space-y-5">
+  <main class="">
     <div>
       <p class="text-3xl text-center mt-6">Sketch title here</p>
       <ul class="text-xl justify-center flex gap-4">
@@ -30,8 +34,19 @@ const sketchSrc = `/sketches/${slug}.js`;
         <li>Tag 3</li>
       </ul>
     </div>
-    <div id="canvas-container" class="flex justify-center"></div>
-    <p class="text-xl text-center">Sketch quote is going to be here</p>
+    <div id="canvas-container" class="flex justify-center mt-5"></div>
+    <p class="text-3xl text-center mt-20">Sketch gallery</p>
+    <SketchGallery
+      images={[
+        flowField,
+        spirograph,
+        flowField,
+        spirograph,
+        flowField,
+        spirograph,
+      ]}
+      client:load
+    />
   </main>
 </Layout>
 
