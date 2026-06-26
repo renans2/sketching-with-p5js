@@ -1,13 +1,19 @@
 ---
 import { Image } from "astro:assets";
 import { SKETCHES_INFO } from "../constants/sketches";
+import flowField from "../assets/sketches/flowField/flowField.png";
 ---
 
-<div class="grid grid-cols-6 gap-1">
+<div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-0.5">
   {
     SKETCHES_INFO.map((sketch) => (
-      <a href={`/sketches/${sketch.slug}`}>
-        <Image src={sketch.img} alt={sketch.slug} class="" />
+      <a href={`/sketches/${sketch.slug}`} class="group relative">
+        <Image src={sketch.img || flowField} alt={sketch.slug} class="" />
+        <div class="absolute bottom-0 w-full bg-black/35 text-white py-1.5 px-3 backdrop-blur-xs">
+          <p class="text-xl hidden group-hover:block font-thin">
+            {sketch.slug}
+          </p>
+        </div>
       </a>
     ))
   }

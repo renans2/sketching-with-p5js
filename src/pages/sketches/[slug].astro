@@ -1,23 +1,15 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
 import Layout from "../../layouts/Layout.astro";
 import SketchGallery from "../../components/SketchGallery";
 
 import flowField from "../../assets/sketches/flowField/flowField.png";
 import spirograph from "../../assets/sketches/spirograph/spirograph.png";
+import { SKETCHES_INFO } from "../../constants/sketches";
 
 export async function getStaticPaths() {
-  const sketchesDir = path.resolve("./public/sketches");
-  const files = fs.readdirSync(sketchesDir);
-
-  return files.map((file: any) => {
-    const slug = file.replace(".js", "");
-
-    return {
-      params: { slug },
-    };
-  });
+  return SKETCHES_INFO.map((sketch) => ({
+    params: { slug: sketch.slug },
+  }));
 }
 
 const { slug } = Astro.params;
@@ -27,7 +19,7 @@ const sketchSrc = `/sketches/${slug}.js`;
 <Layout>
   <main class="">
     <div>
-      <p class="text-3xl text-center mt-6">Sketch title here</p>
+      <p class="text-3xl text-center mt-6">{slug}</p>
       <ul class="text-xl justify-center flex gap-4">
         <li>Tag 1</li>
         <li>Tag 2</li>

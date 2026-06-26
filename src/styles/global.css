@@ -5,3 +5,7 @@
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+canvas {
+  border: 1px solid black;
+}

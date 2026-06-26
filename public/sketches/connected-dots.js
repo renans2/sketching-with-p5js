@@ -4,7 +4,8 @@ let angle = 0;
 let angleIncrementer;
 
 function setup() {
-  createCanvas(600, 600);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   stroke(0);
 }
 
