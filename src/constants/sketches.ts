@@ -1,13 +1,24 @@
 import flowField from "../assets/sketches/flowField/flowField.png";
 import spirograph from "../assets/sketches/spirograph/spirograph.png";
 
-type Sketch = {
+export type Tag =
+  | "3d"
+  | "perlin-noise"
+  | "algorithm"
+  | "flow-field"
+  | "sin-cos"
+  | "recursive"
+  | "fractal"
+  | "tree";
+
+export type Sketch = {
   slug: string;
   img?: ImageMetadata;
+  tags?: Tag[];
 };
 
 export const SKETCHES_INFO: Sketch[] = [
-  { slug: "bouncing-balls" },
+  { slug: "bouncing-balls", tags: ["algorithm", "3d", "flow-field"] },
   { slug: "bouncing-lines" },
   { slug: "circles-around-circles" },
   { slug: "connected-dots" },
@@ -31,3 +42,7 @@ export const SKETCHES_INFO: Sketch[] = [
   { slug: "sync-by-sin" },
   { slug: "trippy-effect" },
 ];
+
+export function getSketchInfo(slug: string) {
+  return SKETCHES_INFO.find((s) => s.slug === slug);
+}

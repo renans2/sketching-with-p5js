@@ -4,15 +4,21 @@ import { SKETCHES_INFO } from "../constants/sketches";
 import flowField from "../assets/sketches/flowField/flowField.png";
 ---
 
-<div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-0.5">
+<div class="mt-20 grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-0.5">
   {
     SKETCHES_INFO.map((sketch) => (
       <a href={`/sketches/${sketch.slug}`} class="group relative">
         <Image src={sketch.img || flowField} alt={sketch.slug} class="" />
-        <div class="absolute bottom-0 w-full bg-black/35 text-white py-1.5 px-3 backdrop-blur-xs">
-          <p class="text-xl hidden group-hover:block font-thin">
-            {sketch.slug}
-          </p>
+        <ul class="hidden group-hover:flex absolute top-0 gap-2">
+          {sketch.tags &&
+            sketch.tags.map((tag) => (
+              <li class="bg-black/35 text-white py-0.5 px-2 backdrop-blur-xs font-thin">
+                {tag}
+              </li>
+            ))}
+        </ul>
+        <div class="hidden group-hover:block absolute bottom-0 w-full bg-black/35 text-white py-1.5 px-3 backdrop-blur-xs">
+          <p class="text-xl font-thin">{sketch.slug}</p>
         </div>
       </a>
     ))

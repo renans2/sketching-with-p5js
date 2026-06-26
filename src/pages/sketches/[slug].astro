@@ -5,6 +5,7 @@ import SketchGallery from "../../components/SketchGallery";
 import flowField from "../../assets/sketches/flowField/flowField.png";
 import spirograph from "../../assets/sketches/spirograph/spirograph.png";
 import { SKETCHES_INFO } from "../../constants/sketches";
+import { getSketchInfo } from "../../constants/sketches";
 
 export async function getStaticPaths() {
   return SKETCHES_INFO.map((sketch) => ({
@@ -14,6 +15,8 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const sketchSrc = `/sketches/${slug}.js`;
+
+const sketchInfo = getSketchInfo(slug)!;
 ---
 
 <Layout>
@@ -21,9 +24,7 @@ const sketchSrc = `/sketches/${slug}.js`;
     <div>
       <p class="text-3xl text-center mt-6">{slug}</p>
       <ul class="text-xl justify-center flex gap-4">
-        <li>Tag 1</li>
-        <li>Tag 2</li>
-        <li>Tag 3</li>
+        {sketchInfo.tags && sketchInfo.tags.map((tag) => <li>{tag}</li>)}
       </ul>
     </div>
     <div id="canvas-container" class="flex justify-center mt-5"></div>
