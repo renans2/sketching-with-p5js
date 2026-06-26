@@ -9,7 +9,8 @@ let index = barrier;
 let offset;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   rectMode(CENTER);
   strokeWeight(2);
   background(0);

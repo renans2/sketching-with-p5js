@@ -118,7 +118,8 @@ class Cell {
 function setup() {
   N_HORIZONTAL = windowWidth / SIDE_LENGTH;
   N_VERTICAL = windowHeight / SIDE_LENGTH;
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   background(0);
   noStroke();
   textAlign(LEFT, TOP);

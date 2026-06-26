@@ -5,7 +5,8 @@ const nRotations = 10;
 let rotationAngle;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   strokeWeight(10);
   noFill();
   colorMode(HSL);

@@ -8,7 +8,8 @@ let multiplier;
 
 function setup() {
   noStroke();
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   angleMode(DEGREES);
   colorMode(HSL);
   multiplier = width / 2;

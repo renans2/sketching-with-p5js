@@ -4,7 +4,8 @@ let gapInterval = 0.007;
 let gapOffset = 1 / gaps;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   pixelDensity(1);
   colorMode(HSL);
   noiseDetail(3, 1);
@@ -12,9 +13,9 @@ function setup() {
   drawMap();
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }
 
 function drawMap() {
   frameRate(1);

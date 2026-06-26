@@ -6,7 +6,8 @@ const particlesPerFrame = 5;
 const particleSize = 10;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   stroke(255);
   strokeWeight(10);

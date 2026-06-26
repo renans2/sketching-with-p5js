@@ -47,11 +47,17 @@ export default function ImageModal({
       </button>
 
       <div className="mx-auto grid grid-cols-[10%_1fr_10%] justify-center items-center gap-2">
-        <button className="p-5 cursor-pointer" onClick={handlePrevious}>
+        <button
+          className="p-5 cursor-pointer hover:scale-120"
+          onClick={handlePrevious}
+        >
           <FaChevronLeft size={42} className="text-white" />
         </button>
         <img src={image.src} alt="test" />
-        <button className="p-5 cursor-pointer" onClick={handleNext}>
+        <button
+          className="p-5 cursor-pointer hover:scale-120"
+          onClick={handleNext}
+        >
           <FaChevronRight size={42} className="text-white" />
         </button>
       </div>

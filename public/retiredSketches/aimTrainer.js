@@ -7,7 +7,8 @@ let over = false;
 let timeLimit = 10;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   textAlign(CENTER);
   noStroke();

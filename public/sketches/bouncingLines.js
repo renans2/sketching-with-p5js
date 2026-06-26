@@ -9,7 +9,8 @@ let lineColor = 0;
 const lineColorIncrementer = 1;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   strokeWeight(3);
   noFill();

@@ -5,7 +5,8 @@ const offset = 5;
 let i = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   background(255);
   strokeWeight(5);
 

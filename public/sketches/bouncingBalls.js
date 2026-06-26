@@ -8,7 +8,8 @@ const nBalls = 20;
 const bouncingBalls = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   strokeWeight(2);
   stroke(255);

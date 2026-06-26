@@ -3,7 +3,8 @@ let mic, fft, offset;
 let started = false;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   noStroke();
   colorMode(HSL);
   // stroke(255,0,0);

@@ -4,7 +4,8 @@ let leadAngleInc, angleInc, r1, r2, prevX, prevY, color;
 const colorInc = 0.05;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   strokeWeight(2);
   colorMode(HSL);
   background(0);

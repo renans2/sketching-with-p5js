@@ -2,7 +2,8 @@ const n = 100;
 let angleMultiplier = 0.035;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
 
   stroke(255);

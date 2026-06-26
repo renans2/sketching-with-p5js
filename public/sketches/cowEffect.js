@@ -4,7 +4,8 @@ let m2 = 0.035;
 let amountX, amountY;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   pixelDensity(1);
 
   noStroke();

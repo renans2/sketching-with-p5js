@@ -6,7 +6,8 @@ let angleIncrementer;
 let colorVar = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   angleMode(DEGREES);
   colorMode(HSL);
   fill(0, 100, 50, 1);

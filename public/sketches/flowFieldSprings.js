@@ -7,7 +7,8 @@ let bottomColor, topColor;
 let m1;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   amountX = width / offset;
   amountY = height / offset;

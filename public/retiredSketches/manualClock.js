@@ -19,7 +19,8 @@ let minPointerMult;
 let hourPointerMult;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   background(0, 0, 0, 1);
   angleMode(DEGREES);

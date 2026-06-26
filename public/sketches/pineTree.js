@@ -4,7 +4,8 @@ const lengthDecay = 0.9;
 const angleDecay = 0.92;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   background(0);
   translate(width / 2, height);
   scale(1, -1);

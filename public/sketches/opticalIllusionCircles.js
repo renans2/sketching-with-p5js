@@ -9,7 +9,8 @@ let angleIncrementer = 0;
 let speed = 2;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   noStroke();
   fill(255);
   angleMode(DEGREES);

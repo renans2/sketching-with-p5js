@@ -2,7 +2,8 @@ let offset, amountX, amountY, m1, rectHeight;
 const m2 = 0.005;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   noStroke();
 }

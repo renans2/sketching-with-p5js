@@ -16,7 +16,8 @@ let constraints = {
 
 function setup() {
   webcam = createCapture(constraints, { flipped: true });
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   webcam.hide();
   pixelDensity(1);
   noStroke();

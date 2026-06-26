@@ -7,7 +7,8 @@ let color = 0;
 const colorIncrementer = 5;
 
 function setup() {
-  createCanvas(windowHeight, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   angleMode(DEGREES);
   //noStroke();

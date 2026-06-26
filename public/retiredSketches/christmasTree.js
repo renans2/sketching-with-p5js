@@ -8,7 +8,8 @@ const wait = 100;
 let line = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   noStroke();
 
   baseWidth = baseWidthPct * width;

@@ -9,7 +9,8 @@ let globalAngle = 0;
 let globalSpeed;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   maxMultiplier = height / 2;
   colorMode(HSL);
   angleMode(DEGREES);

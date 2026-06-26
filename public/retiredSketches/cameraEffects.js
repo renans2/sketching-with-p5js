@@ -9,7 +9,8 @@ let aspectRatio;
 
 function setup() {
   webcam = createCapture("video", { flipped: true });
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   webcam.hide();
   pixelDensity(1);
   stroke(255, 0, 0);

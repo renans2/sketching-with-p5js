@@ -6,7 +6,8 @@ let y;
 let color;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   background(0);
   colorMode(HSL);
   strokeWeight(1);

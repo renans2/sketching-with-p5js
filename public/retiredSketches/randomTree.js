@@ -5,7 +5,8 @@ const maxLength = 50;
 const depth = 20;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(600, 600);
+  canvas.parent("canvas-container");
   colorMode(HSL);
   cursor(HAND);
   stroke(255);
