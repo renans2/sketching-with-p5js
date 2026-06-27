@@ -65,3 +65,9 @@ function drawSponge(depth, size){
      box(size); 
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

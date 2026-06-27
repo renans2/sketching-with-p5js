@@ -38,3 +38,9 @@ class Branch {
       branches.push(new Branch(this.position.copy(), this.direction.copy(), this.thickness));
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}
