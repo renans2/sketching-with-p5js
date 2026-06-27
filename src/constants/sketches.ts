@@ -20,6 +20,22 @@ export type Sketch = {
 
 export const SKETCHES_INFO: Sketch[] = [
   {
+    slug: "menger-sponge",
+    title: "Menger Sponge",
+  },
+  {
+    slug: "fireworks",
+    title: "Fireworks",
+  },
+  {
+    slug: "cloth-simulation",
+    title: "Cloth Simulation",
+  },
+  {
+    slug: "animated-tree",
+    title: "Animated Tree",
+  },
+  {
     slug: "circle-loop",
     title: "Circle Loop",
   },
