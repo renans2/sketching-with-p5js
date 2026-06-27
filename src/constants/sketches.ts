@@ -13,34 +13,39 @@ export type Tag =
 
 export type Sketch = {
   slug: string;
+  title: string;
   img?: ImageMetadata;
   tags?: Tag[];
 };
 
 export const SKETCHES_INFO: Sketch[] = [
-  { slug: "bouncing-balls", tags: ["algorithm", "3d", "flow-field"] },
-  { slug: "bouncing-lines" },
-  { slug: "circles-around-circles" },
-  { slug: "connected-dots" },
-  { slug: "cow-effect" },
-  { slug: "flow-field-simulation" },
-  { slug: "flow-field-springs" },
-  { slug: "flow-field", img: flowField },
-  { slug: "insertion-sort" },
-  { slug: "kaleidoscope" },
-  { slug: "matrix-digital-rain" },
-  { slug: "optical-illusion-circles" },
-  { slug: "perlin-noise-waves" },
-  { slug: "pine-tree" },
-  { slug: "rainbow-flower" },
-  { slug: "random-topographic-maps" },
-  { slug: "recursive-trees" },
-  { slug: "rotate-and-align" },
-  { slug: "sin-cos-waves" },
-  { slug: "sin-visualization" },
-  { slug: "spirograph", img: spirograph },
-  { slug: "sync-by-sin" },
-  { slug: "trippy-effect" },
+  {
+    slug: "bouncing-balls",
+    title: "Bouncing Circles",
+    tags: ["algorithm", "3d", "flow-field"],
+  },
+  { slug: "bouncing-lines", title: "Bouncing Lines" },
+  { slug: "circles-around-circles", title: "Circles around Circles" },
+  { slug: "connected-dots", title: "Connected Dots" },
+  { slug: "cow-effect", title: "Cow Effect" },
+  { slug: "flow-field-simulation", title: "Flow Field Simulation" },
+  { slug: "flow-field-springs", title: "Flow Field (springs)" },
+  { slug: "flow-field", img: flowField, title: "Flow Field" },
+  { slug: "insertion-sort", title: "Insertion Sort" },
+  { slug: "kaleidoscope", title: "Kaleidoscope" },
+  { slug: "matrix-digital-rain", title: "Matrix Digital Rain" },
+  { slug: "optical-illusion-circles", title: "Optical Illusion Circles" },
+  { slug: "perlin-noise-waves", title: "Perlin Noise Waves" },
+  { slug: "pine-tree", title: "Pine Tree" },
+  { slug: "rainbow-flower", title: "Rainbow Flower" },
+  { slug: "random-topographic-maps", title: "Randow Topographic Maps" },
+  { slug: "recursive-trees", title: "Recursive Trees" },
+  { slug: "rotate-and-align", title: "Rotate & Align" },
+  { slug: "sin-cos-waves", title: "Sin/Cos Waves" },
+  { slug: "sin-visualization", title: "Sin Visualization" },
+  { slug: "spirograph", img: spirograph, title: "Spirograph" },
+  { slug: "sync-by-sin", title: "Sync By Sin" },
+  { slug: "trippy-effect", title: "Trippy Effect" },
 ];
 
 export function getSketchInfo(slug: string) {

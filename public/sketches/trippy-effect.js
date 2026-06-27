@@ -1,5 +1,5 @@
 const speed = 0.025;
-const nLines = 250;
+const nLines = 50;
 let yOffset;
 const nRotations = 10;
 let rotationAngle;

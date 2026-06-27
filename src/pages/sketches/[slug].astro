@@ -22,7 +22,7 @@ const sketchInfo = getSketchInfo(slug)!;
 <Layout>
   <main class="">
     <div>
-      <p class="text-3xl text-center mt-6">{slug}</p>
+      <p class="text-3xl text-center mt-6">{sketchInfo.title}</p>
       <ul class="text-xl justify-center flex gap-4">
         {sketchInfo.tags && sketchInfo.tags.map((tag) => <li>{tag}</li>)}
       </ul>
