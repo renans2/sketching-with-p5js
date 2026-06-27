@@ -1,4 +1,4 @@
-import flowField from "../assets/sketches/flowField/flowField.png";
+import flowField from "../assets/sketches/flow-field/flow-field.png";
 import spirograph from "../assets/sketches/spirograph/spirograph.png";
 
 export type Tag =
