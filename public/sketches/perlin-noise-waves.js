@@ -1,49 +1,50 @@
 let offset, amountX, amountY, m1, rectHeight;
 const m2 = 0.005;
+const N = 10
+const noiseMultiplier = 0.01;
 
 function setup() {
   const canvas = createCanvas(600, 600);
   canvas.parent("canvas-container");
-  colorMode(HSL);
   noStroke();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  rectMode(CENTER);
 }
 
 function draw() {
-  background(0, 0.05);
-  updateVariables();
+  background(0, 100);
   drawRectangles();
 }
 
-function updateVariables() {
-  m1 = map(mouseX, 0, width, 0, 0.0025);
-  offset = map(mouseY, height, 0, 20, 125);
-  amountX = width / offset;
-  amountY = height / offset;
-  rectHeight = offset / 4;
-}
-
 function drawRectangles() {
-  for (let i = 0; i < amountY; i++) {
-    for (let j = 0; j < amountX; j++) {
-      const x = j * offset;
-      const y = i * offset + rectHeight;
-      const angle = map(
-        noise(x * m1 + frameCount * m2, y * m1 + frameCount * m2),
-        0,
-        1,
-        0,
-        2 * TWO_PI,
-      );
-      push();
-      translate(x, y);
-      rotate(angle);
-      fill(map(angle, 0, 1.5 * TWO_PI, 0, 360), 100, 50, 1);
-      rect(0, 0, offset, rectHeight);
-      pop();
+    const offset = width / N;
+
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        const x = j * offset + offset / 2;
+        const y = i * offset + offset / 2;
+        const angle = map(
+          noise(
+            x * noiseMultiplier,
+            y * noiseMultiplier,
+            frameCount * 0.01,
+          ),
+          0,
+          1,
+          0,
+          2 * TWO_PI,
+        );
+        push();
+        translate(x, y);
+        rotate(angle);
+        const color = map(angle, 0, TWO_PI, -100, 255);
+        fill(color, 100);
+        rect(
+          0,
+          0,
+          offset * 0.5,
+          offset * 0.5,
+        );
+        pop();
+      }
     }
   }
-}

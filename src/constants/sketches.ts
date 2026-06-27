@@ -20,6 +20,18 @@ export type Sketch = {
 
 export const SKETCHES_INFO: Sketch[] = [
   {
+    slug: "circle-loop",
+    title: "Circle Loop",
+  },
+  {
+    slug: "pendulum-waves",
+    title: "Pendulum Waves",
+  },
+  {
+    slug: "mirror-draw",
+    title: "Mirror Draw",
+  },
+  {
     slug: "bouncing-balls",
     title: "Bouncing Circles",
     tags: ["algorithm", "3d", "flow-field"],
@@ -38,7 +50,7 @@ export const SKETCHES_INFO: Sketch[] = [
   { slug: "perlin-noise-waves", title: "Perlin Noise Waves" },
   { slug: "pine-tree", title: "Pine Tree" },
   { slug: "rainbow-flower", title: "Rainbow Flower" },
-  { slug: "random-topographic-maps", title: "Randow Topographic Maps" },
+  { slug: "animated-topographic-maps", title: "Animated Topographic Maps" },
   { slug: "recursive-trees", title: "Recursive Trees" },
   { slug: "rotate-and-align", title: "Rotate & Align" },
   { slug: "sin-cos-waves", title: "Sin/Cos Waves" },

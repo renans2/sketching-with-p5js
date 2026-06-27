@@ -35,3 +35,9 @@ function draw() {
   y = newY;
   color = (color + 0.1) % 360;
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}
