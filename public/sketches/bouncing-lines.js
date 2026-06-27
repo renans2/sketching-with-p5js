@@ -82,3 +82,9 @@ class BouncingLine {
     this.ySpeed = (this.ySpeed < 0 ? 1 : -1) * random(minSpeed, maxSpeed);
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

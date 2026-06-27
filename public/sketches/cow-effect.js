@@ -38,3 +38,9 @@ function updateVariables() {
   amountX = width / offset;
   amountY = height / offset;
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

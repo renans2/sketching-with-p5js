@@ -50,3 +50,9 @@ function draw() {
 function doubleClicked() {
   background(0);
 };
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

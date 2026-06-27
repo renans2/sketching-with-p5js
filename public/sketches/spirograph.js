@@ -40,3 +40,9 @@ function draw() {
     color = (color + colorInc) % 360;
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

@@ -90,3 +90,9 @@ function drawRectangles() {
     rect(x, y, width / amount, rectHeight);
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

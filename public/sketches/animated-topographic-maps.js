@@ -39,3 +39,8 @@ function draw() {
   }
 };
 
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

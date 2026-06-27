@@ -54,3 +54,9 @@ function drawLine(x, y) {
 function isInsideCanvas(x, y) {
   return 0 <= x && x <= width && 0 <= y && y <= height;
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

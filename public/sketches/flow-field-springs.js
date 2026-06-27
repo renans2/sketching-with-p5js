@@ -62,3 +62,9 @@ function isInsideCanvas(x, y) {
     x > -offset && x < width + offset && y > -offset && y < height + offset
   );
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

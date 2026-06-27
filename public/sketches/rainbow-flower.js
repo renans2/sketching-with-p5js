@@ -33,3 +33,9 @@ function draw() {
     circle(0, localRadius, circlesDiameter);
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

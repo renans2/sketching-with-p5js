@@ -47,3 +47,9 @@ function drawPineTree(d, l, a, it) {
     }
   }
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

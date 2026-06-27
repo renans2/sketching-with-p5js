@@ -87,3 +87,9 @@ function drawOuterCircle() {
   circle(0, 0, multiplier * 2);
   pop();
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}

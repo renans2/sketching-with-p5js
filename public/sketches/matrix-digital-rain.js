@@ -184,3 +184,9 @@ function createRevealer() {
   let speed = floor(random(MIN_REVEALER_SPEED, MAX_REVEALER_SPEED));
   return new Revealer(length, speed);
 }
+
+function keyPressed() {
+  if (key === "s") {
+    saveCanvas(new Date().toLocaleString(), "png");
+  }
+}
